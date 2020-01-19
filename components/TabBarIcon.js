@@ -15,7 +15,7 @@ export default function TabBarIcon(props) {
       sizer,
       {
         toValue: 1,
-        time: 500,
+        duration: 1000,
         easing: Easing.in
       }
     ).start()
@@ -24,19 +24,33 @@ export default function TabBarIcon(props) {
       sizer,
       {
         toValue: 0,
-        time: 500,
-        easing: Easing.in
+        duration: 1000,
+        easing: Easing.in,
       }
     ).start()
   }, [props.focused])
 
   return (
     <Animated.View
+      style={{
+        transform : [{
+          scale : sizer.interpolate({
+            inputRange : [0, 1],
+            outputRange : [1, 1.2]
+          }),
+          translateY : sizer.interpolate({
+            inputRange : [0, 1],
+            outputRange : [0, -5]
+          })
+        }]
+      }}
     >
       <Ionicons
         name={props.name}
-        size={ props.focused ? 30 : 26 }
-        style={{ marginBottom: -3 }}
+        size={26}
+        style={{ 
+          marginBottom: -3,
+        }}
         color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
       />
     </Animated.View>

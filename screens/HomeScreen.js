@@ -44,7 +44,7 @@ export default function HomeScreen() {
           />
         </Animated.View>
         <Text style={{
-          fontFamily : "justfist",
+          fontFamily : "just-fist",
           fontSize : 30,
           color : Colors.gullyOrange,
           letterSpacing : 4,

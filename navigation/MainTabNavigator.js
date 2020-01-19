@@ -113,7 +113,7 @@ const tabNavigator = createBottomTabNavigator({
     labelStyle : {
       fontWeight : "700",
       color: "white"
-    }
+    },
   }
 }
 );
