@@ -5,12 +5,17 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import EventsScreen from '../screens/EventsScreen';
+import ScheduleScreen from '../screens/ScheduleScreen';
+import ContactScreen from "../screens/ContactScreen";
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
-  default: {},
+  default: {
+    cardStyle: {
+      backgroundColor : "rgba(0,0,0,0)"
+    }
+  }
 });
 
 const HomeStack = createStackNavigator(
@@ -27,52 +32,91 @@ HomeStack.navigationOptions = {
       focused={focused}
       name={
         Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+          ? `ios-home'}`
+          : 'md-home'
       }
     />
-  ),
+  )
 };
 
 HomeStack.path = '';
 
-const LinksStack = createStackNavigator(
+const EventsStack = createStackNavigator(
   {
-    Links: LinksScreen,
+    Events: EventsScreen,
   },
   config
 );
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+EventsStack.navigationOptions = {
+  tabBarLabel: 'Events',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-apps' : 'md-apps'} />
   ),
 };
 
-LinksStack.path = '';
+EventsStack.path = '';
 
-const SettingsStack = createStackNavigator(
+const ScheduleStack = createStackNavigator(
   {
-    Settings: SettingsScreen,
+    Schedule: ScheduleScreen,
   },
   config
 );
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+ScheduleStack.navigationOptions = {
+  tabBarLabel: 'Schedule',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'} />
   ),
 };
 
-SettingsStack.path = '';
+ScheduleStack.path = '';
+
+const ContactStack = createStackNavigator(
+  {
+    Contact: ContactScreen,
+  },
+  config
+);
+
+ContactStack.navigationOptions = {
+  tabBarLabel: 'Contact',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-contact' : 'md-contact'} />
+  ),
+};
+
+ContactStack.path = '';
+
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+  EventsStack,
+  ScheduleStack,
+  ContactStack,
+},
+{
+  initialRouteName : "HomeStack",
+  tabBarOptions: {
+    style : {
+      backgroundColor : "rgba(0,0,0,0.2)",
+      paddingTop : 20,
+      paddingBottom : 20,
+      height : 100,
+      borderTopWidth : 0
+    },
+    tabStyle : {
+      backgroundColor : "rgba(0,0,0,0)",
+      borderTopWidth : 0
+    },
+    labelStyle : {
+      fontWeight : "700",
+      color: "white"
+    }
+  }
+}
+);
 
 tabNavigator.path = '';
 
