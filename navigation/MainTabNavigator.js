@@ -5,7 +5,11 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
+
 import EventsScreen from '../screens/EventsScreen';
+import EventPage from "../screens/SpokenWordsPoetry";
+import EventsList from '../screens/Cultural'
+
 import ScheduleScreen from '../screens/ScheduleScreen';
 import ContactScreen from "../screens/ContactScreen";
 
@@ -44,6 +48,8 @@ HomeStack.path = '';
 const EventsStack = createStackNavigator(
   {
     Events: EventsScreen,
+    EventPage: EventPage,
+    EventsList: EventsList
   },
   config
 );

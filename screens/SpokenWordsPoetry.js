@@ -13,7 +13,7 @@ function mod(val, num)
   return val;
 }
 
-function CategoryScreen(props)
+function EventSingularPage(props)
 {
   const [animator] = useState(new Animated.Value(0))
 
@@ -55,7 +55,7 @@ function CategoryScreen(props)
   );
 }
 
-export default function EventsScreen(props) {
+export default function EventPage(props) {
 
   const [selected, setSelected] = useState(0)
   var key = 0;
@@ -84,47 +84,19 @@ export default function EventsScreen(props) {
     setSelected(selected => mod((selected + 1), 3));
   }
 
-  const openList = (category) => {
-      console.log(props.navigation.navigate("EventsList", {
-        category : category
-      }));
+  const openSpoken1 = () => {
+      props.navigation.navigate("EventsPage");
   }
 
 
   return (
     <View style={{flexDirection : "column"}}>
-      <View style={styles.container}>
-        <CategoryScreen selected={selected === 0}>
-          <Text style={styles.screenText}  onPress={() => openList("Sports")}>Cultural</Text>
-        </CategoryScreen>
-        <CategoryScreen selected={selected === 1}>
-          <Text style={styles.screenText}  onPress={() => openList("Sports")}>Technical</Text>
-        </CategoryScreen>
-        <CategoryScreen selected={selected === 2}>
-          <Text style={styles.screenText} onPress={() => openList("Sports")}>Sports</Text>
-        </CategoryScreen>
-      </View>
-      <View style={styles.buttonRow}>
-        <TouchableHighlight style={styles.navButtons} onPress={goBack}>
-          <View style={styles.buttoner}>
-            <Ionicons name={"md-arrow-dropleft"} size={30} color={"#FFFFFF"}></Ionicons>
-            <Text style={styles.buttonText}>{Categories[mod((selected - 1), 3)] || "Previous"}</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.navButtons} onPress={goNext}>
-          <View style={{
-            ...styles.buttoner
-          }}>
-            <Ionicons name={"md-arrow-dropright"} size={30} color={"#FFFFFF"}></Ionicons>
-            <Text style={styles.buttonText}>{Categories[mod((selected + 1), 3)] || "Next"}</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      
     </View>
   );
 }
 
-EventsScreen.navigationOptions = {
+EventPage.navigationOptions = {
   header: null,
 };
 
