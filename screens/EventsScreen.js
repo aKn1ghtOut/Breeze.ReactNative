@@ -4,6 +4,7 @@ import Animated, { Easing } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-navigation';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 function mod(val, num)
 {
@@ -92,35 +93,47 @@ export default function EventsScreen(props) {
 
 
   return (
-    <View style={{flexDirection : "column"}}>
-      <View style={styles.container}>
-        <CategoryScreen selected={selected === 0}>
-          <Text style={styles.screenText}  onPress={() => openList("Sports")}>Cultural</Text>
-        </CategoryScreen>
-        <CategoryScreen selected={selected === 1}>
-          <Text style={styles.screenText}  onPress={() => openList("Sports")}>Technical</Text>
-        </CategoryScreen>
-        <CategoryScreen selected={selected === 2}>
-          <Text style={styles.screenText} onPress={() => openList("Sports")}>Sports</Text>
-        </CategoryScreen>
+    <GestureRecognizer
+      onSwipeLeft={goNext}
+      onSwipeRight={goBack}
+      config={{
+        velocityThreshold: 0.3,
+        directionalOffsetThreshold: 80,
+      }}
+      style={{
+        flex: 1,
+      }}
+    >
+      <View style={{flexDirection : "column"}}>
+        <View style={styles.container}>
+          <CategoryScreen selected={selected === 0}>
+            <Text style={styles.screenText}  onPress={() => openList("Cultural")}>Cultural</Text>
+          </CategoryScreen>
+          <CategoryScreen selected={selected === 1}>
+            <Text style={styles.screenText}  onPress={() => openList("Technical")}>Technical</Text>
+          </CategoryScreen>
+          <CategoryScreen selected={selected === 2}>
+            <Text style={styles.screenText} onPress={() => openList("Sports")}>Sports</Text>
+          </CategoryScreen>
+        </View>
+        <View style={styles.buttonRow}>
+          <TouchableHighlight style={styles.navButtons} onPress={goBack}>
+            <View style={styles.buttoner}>
+              <Ionicons name={"md-arrow-dropleft"} size={30} color={"#FFFFFF"}></Ionicons>
+              <Text style={styles.buttonText}>{Categories[mod((selected - 1), 3)] || "Previous"}</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight style={styles.navButtons} onPress={goNext}>
+            <View style={{
+              ...styles.buttoner
+            }}>
+              <Ionicons name={"md-arrow-dropright"} size={30} color={"#FFFFFF"}></Ionicons>
+              <Text style={styles.buttonText}>{Categories[mod((selected + 1), 3)] || "Next"}</Text>
+            </View>
+          </TouchableHighlight>
+        </View>
       </View>
-      <View style={styles.buttonRow}>
-        <TouchableHighlight style={styles.navButtons} onPress={goBack}>
-          <View style={styles.buttoner}>
-            <Ionicons name={"md-arrow-dropleft"} size={30} color={"#FFFFFF"}></Ionicons>
-            <Text style={styles.buttonText}>{Categories[mod((selected - 1), 3)] || "Previous"}</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.navButtons} onPress={goNext}>
-          <View style={{
-            ...styles.buttoner
-          }}>
-            <Ionicons name={"md-arrow-dropright"} size={30} color={"#FFFFFF"}></Ionicons>
-            <Text style={styles.buttonText}>{Categories[mod((selected + 1), 3)] || "Next"}</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
-    </View>
+    </GestureRecognizer>
   );
 }
 
