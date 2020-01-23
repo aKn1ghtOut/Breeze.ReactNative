@@ -4,6 +4,7 @@ import Animated, { Easing } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-navigation';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+import GestureRecognizer from 'react-native-swipe-gestures'
 
 function mod(val, num)
 {
@@ -20,18 +21,18 @@ export default function EventsList(props) {
     "Technical",
     "Sports"
   ]
-  const navigatrioParams = props.navigation.getParam("category", "Cultural");
+  const EventCategory = props.navigation.getParam("category", "Cultural");
   console.log(navigatrioParams);
 
   return (
     <View style={styles.container}>
-        <Text>{navigatrioParams}</Text>
+        <Text>{EventCategory}</Text>
     </View>
   );
 }
 
 EventsList.navigationOptions = {
-  header: null,
+  title: "Events",
 };
 
 const styles = StyleSheet.create({
