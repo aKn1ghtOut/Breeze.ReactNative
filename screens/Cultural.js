@@ -6,6 +6,8 @@ import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handl
 import { Ionicons } from '@expo/vector-icons';
 import GestureRecognizer from 'react-native-swipe-gestures'
 
+import DefaultNavOptions from "../navigation/DefaultNavOptions";
+
 function mod(val, num)
 {
   val = val % num;
@@ -22,7 +24,6 @@ export default function EventsList(props) {
     "Sports"
   ]
   const EventCategory = props.navigation.getParam("category", "Cultural");
-  console.log(navigatrioParams);
 
   return (
     <View style={styles.container}>
@@ -33,13 +34,14 @@ export default function EventsList(props) {
 
 EventsList.navigationOptions = {
   title: "Events",
+  ...DefaultNavOptions
 };
 
 const styles = StyleSheet.create({
   container: {
     padding: 15,
     flexDirection : "column",
-    backgroundColor: 'rgba(0,0,0,0)',
+    backgroundColor: '#21212188',
     width : Dimensions.get("window").width,
     height : Dimensions.get("window").height - 150,
   },

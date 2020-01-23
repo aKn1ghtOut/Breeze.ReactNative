@@ -9,24 +9,64 @@ import {
   RefreshControl,
 } from 'react-native';
 
+import {withNavigationFocus} from "react-navigation"
+
 import Animated, { Easing } from 'react-native-reanimated';
 
 import Colors from "../constants/Colors"
+import { startAsync } from 'expo/build/AR';
 
-export default function HomeScreen() {
+const pWrapper = (method) => {
+  return new Promise(resolve => method(resolve));
+}
+
+function HomeScreen(props) {
 
   const [LogoRotate] = useState(new Animated.Value(0))
+  const [MarginV] = useState(new Animated.Value(0))
+
+  console.log(props);
+
+  const start = async() =>{
+    await pWrapper((resolve) =>
+      Animated.timing(
+        LogoRotate,
+        {
+          toValue : -60,
+          duration : 300,
+          easing : Easing.in
+        }
+      ).start(() => resolve())
+    )
+    await pWrapper((resolve) =>
+      Animated.timing(
+        LogoRotate,
+        {
+          toValue : 0,
+          duration : 300,
+          easing : Easing.in
+        }
+      ).start(() => resolve())
+    )
+    await pWrapper((resolve) =>
+      Animated.timing(
+        MarginV,
+        {
+          toValue : 1,
+          duration : 500,
+          easing : Easing.in
+        }
+      ).start(() => resolve())
+    )
+  }
 
   useEffect(() => {
-    Animated.timing(
-      LogoRotate,
-      {
-        toValue : 1,
-        time : 1200,
-        easing : Easing.in
-      }
-    ).start();
-  });
+    if(!props.isFocused)
+    return;
+    start()
+  }, [props.isFocused]);
+
+  const degrees = Animated.concat(LogoRotate, "deg")
 
   return (
     <View style={styles.container}>
@@ -36,7 +76,16 @@ export default function HomeScreen() {
         }
       >
         <Animated.View
-          style={styles.LogoContainer} //Make The Animations work
+          style={{
+            ...styles.LogoContainer,
+            transform: [{
+              rotate: degrees
+            }],
+            marginVertical: MarginV.interpolate({
+              inputRange: [0, 1],
+              outputRange : [100, 30]
+            })
+          }} //Make The Animations work
         >
           <Image 
             style={styles.BreezeLogo}
@@ -85,3 +134,6 @@ const styles = StyleSheet.create({
     backgroundColor : "rgba(0,0,0,0)"
   }
 });
+
+
+export default withNavigationFocus(HomeScreen)
