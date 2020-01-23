@@ -86,9 +86,9 @@ export default function EventsScreen(props) {
   }
 
   const openList = (category) => {
-      console.log(props.navigation.navigate("EventsList", {
+      props.navigation.navigate("EventsList", {
         category : category
-      }));
+      });
   }
 
 

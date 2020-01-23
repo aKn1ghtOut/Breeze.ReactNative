@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, StyleSheet, Text, View, Dimensions, Button, TouchableNativeFeedback } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Dimensions, Button, SafeAreaView } from 'react-native';
 import Animated, { Easing } from 'react-native-reanimated';
-import { SafeAreaView } from 'react-navigation';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableHighlight, TouchableOpacity, TouchableNativeFeedback } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 
 function mod(val, num)
@@ -91,7 +90,7 @@ export default function EventPage(props) {
 
   return (
     <View style={{flexDirection : "column"}}>
-      
+      <Text>YO MOFUS</Text>
     </View>
   );
 }
