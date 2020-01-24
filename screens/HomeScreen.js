@@ -25,14 +25,12 @@ function HomeScreen(props) {
   const [LogoRotate] = useState(new Animated.Value(0))
   const [MarginV] = useState(new Animated.Value(0))
 
-  console.log(props);
-
   const start = async() =>{
     await pWrapper((resolve) =>
       Animated.timing(
         LogoRotate,
         {
-          toValue : -60,
+          toValue : 60,
           duration : 300,
           easing : Easing.in
         }
@@ -62,7 +60,10 @@ function HomeScreen(props) {
 
   useEffect(() => {
     if(!props.isFocused)
-    return;
+    {
+      MarginV.setValue(0);
+    }
+    else
     start()
   }, [props.isFocused]);
 
