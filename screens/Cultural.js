@@ -6,8 +6,8 @@ import {
   View,
   Dimensions,
   Button,
-  TouchableNativeFeedback,
-  TextInput
+  TextInput,
+  TouchableNativeFeedback
 } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
 import { SafeAreaView } from "react-navigation";
@@ -55,11 +55,13 @@ export default class Cultural extends Component {
 
         console.log(events);
         self.setState({
-          eventList: events.map(event => {
-            event.display = "block";
-            event.searched = true;
-            return event;
-          }).sort((a, b) => a.name.localeCompare(b.name))
+          eventList: events
+            .map(event => {
+              event.display = "block";
+              event.searched = true;
+              return event;
+            })
+            .sort((a, b) => a.name.localeCompare(b.name))
         });
         // self.state.eventList.forEach(event => {
         //   let categs = event.category.split(/[,]+/i);
@@ -150,16 +152,15 @@ export default class Cultural extends Component {
     });
   }
 
-  openEvent = (event) => {
-(    this.props.navigation.navigate("EventPage", {
-      eventName: event
-    }))
-  }
+  openEvent = event => {
+    this.props.navigation.navigate("EventPage", {
+      eventName: event,
+      category: this.state.mainCategory
+    });
+  };
 
   render() {
-    const category = this.state.selectedCategory;
     const eventList = this.state.eventList.map(event => {
-      if (!event.category.includes(category) && category !== "all") return null;
       return (
         <View style={styles.darkBG}>
           <Text
@@ -180,7 +181,13 @@ export default class Cultural extends Component {
               ? "Individual Participation"
               : "Team Participation"}
           </Text>
-          <Text onPress={() => this.openEvent(event.name)} style={styles.button}>View</Text>
+          <TouchableHighlight
+            style={styles.buttonBack}
+            underlayColor={Colors.gullyOrange}
+            onPress={() => this.openEvent(event.name)}
+          >
+            <Text style={styles.button}>View</Text>
+          </TouchableHighlight>
         </View>
       );
     });
@@ -281,17 +288,21 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   button: {
-    padding: 20,
-    color: Colors.gullyRed,
+    fontSize: 17,
+    color: "#fff",
     textAlign: "center",
-    borderColor: Colors.gullyRed,
+    fontFamily: "axiforma-bold",
+    textTransform: "uppercase"
+  },
+  buttonBack: {
+    padding: 10,
+    backgroundColor: Colors.gullyRed,
+    textAlign: "center",
+    color: "#fff",
     borderRadius: 20,
-    borderWidth: 3,
-    fontSize: 20,
+    fontSize: 17,
     margin: 20,
     marginRight: 50,
-    marginLeft: 50,
-    textTransform: "uppercase",
-    fontFamily: "axiforma-bold"
+    marginLeft: 50
   }
 });
