@@ -12,4 +12,5 @@ export default {
   noticeBackground: tintColor,
   noticeText: '#fff',
   gullyOrange: '#ecba09',
+  gullyRed: "#e22028"
 };
