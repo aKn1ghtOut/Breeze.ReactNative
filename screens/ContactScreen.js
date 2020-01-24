@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 // export default function ContactScreen() {
 //   return (
@@ -96,17 +96,17 @@ export default class ContactScreen extends Component {
        <Text>
        {e.name}
        </Text>
-       <Text>
+       <View>
        
          <Text>{e.position} </Text>
-       </Text>
-       <Text>
+       </View>
+       <View>
        
          <Text>{e.phone} </Text>
-       </Text>
-       <Text>
+       </View>
+       <View>
          <Text >{e.email} </Text>
-       </Text>
+       </View>
      
    </View>	
    )
@@ -114,7 +114,7 @@ export default class ContactScreen extends Component {
 
        return (
            
-   <Text>
+   <View>
 
        <Text >Contact Us</Text>
 
@@ -138,7 +138,7 @@ export default class ContactScreen extends Component {
          </Text>
 
 
-   </Text>
+   </View>
        )
    }
 }

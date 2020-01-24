@@ -1,9 +1,7 @@
-import {RETRIEVE_USER_STATUS, USER_NOT_AUTHENTICATED, LOGIN_DATA, LOGIN_FAILED} from "../../actions/types"
+import {HOME_BG, TECHNICAL_BG, CULTURAL_BG, SPORTS_BG, EVENTPAGE_BG} from "../actions/types"
 
 const initialState = {
-	user: {},
-	status: true,
-	retrieved: false
+	background: "cultural_bg",
 }
 
 export default function(state = initialState, action){

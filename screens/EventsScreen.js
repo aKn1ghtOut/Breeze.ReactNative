@@ -16,28 +16,62 @@ function mod(val, num)
 
 function CategoryScreen(props)
 {
-  const [animator] = useState(new Animated.Value(0))
+  const [animator] = useState(new Animated.Value(1))
+  const [opacity] = useState(new Animated.Value(0))
+
+  const [selected, setSelected] = useState(false);
 
   useEffect(() => {
-    if(props.selected)
-    Animated.timing(
-      animator,
+    if(!selected)
+    {
+      if(props.position !== 1)
       {
-        toValue : 0,
-        easing : Easing.in,
-        duration : 500
+        animator.setValue(props.position);
       }
-    ).start();
+      else
+      {
+        setSelected(true);
+
+        Animated.timing(
+          animator,
+          {
+            toValue : 1,
+            easing : Easing.in,
+            duration : 500
+          }
+        ).start();
+        Animated.timing(
+          opacity,
+          {
+            toValue : 1,
+            easing : Easing.in,
+            duration : 500
+          }
+        ).start();
+      }
+    }
     else
-    Animated.timing(
-      animator,
-      {
-        toValue : 1,
-        easing : Easing.in,
-        duration : 500
-      }
-    ).start()
-  }, [props.selected])
+    {
+      setSelected(false);
+
+      Animated.timing(
+        animator,
+        {
+          toValue : props.position,
+          easing : Easing.in,
+          duration : 500
+        }
+      ).start()
+      Animated.timing(
+        opacity,
+        {
+          toValue : 0,
+          easing : Easing.in,
+          duration : 500
+        }
+      ).start();
+    }
+  }, [props.position])
 
   return (
     <Animated.View
@@ -45,12 +79,8 @@ function CategoryScreen(props)
      style={{
       ...styles.slide,
       left : animator.interpolate({
-        inputRange : [0, 1],
-        outputRange : [0, Dimensions.get("window").width]
-      }),
-      opacity : animator.interpolate({
-        inputRange : [0, 1],
-        outputRange : [1, 0]
+        inputRange : [0, 2],
+        outputRange : [-(Dimensions.get("window").width), Dimensions.get("window").width]
       })
     }}/>
   );
@@ -107,13 +137,13 @@ export default function EventsScreen(props) {
       <View style={{flexDirection : "column"}}>
         <View style={styles.container}>
           <CategoryScreen selected={selected === 0}>
-            <Text style={styles.screenText}  onPress={() => openList("Cultural")}>Cultural</Text>
+            <Text style={styles.screenText}  onPress={() => openList("Cultural")} position={selected === 0 ? 1 : selected === 1 ? 0 : 2}>Cultural</Text>
           </CategoryScreen>
           <CategoryScreen selected={selected === 1}>
-            <Text style={styles.screenText}  onPress={() => openList("Technical")}>Technical</Text>
+            <Text style={styles.screenText}  onPress={() => openList("Technical")} position={selected === 0 ? 2 : selected === 1 ? 1 : 0}>Technical</Text>
           </CategoryScreen>
           <CategoryScreen selected={selected === 2}>
-            <Text style={styles.screenText} onPress={() => openList("Sports")}>Sports</Text>
+            <Text style={styles.screenText} onPress={() => openList("Sports")} position={selected === 0 ? 0 : selected === 1 ? 2 : 1}>Sports</Text>
           </CategoryScreen>
         </View>
         <View style={styles.buttonRow}>
