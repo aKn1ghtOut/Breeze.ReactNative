@@ -120,7 +120,7 @@ export default class ContactScreen extends Component {
             style={{
               marginRight: 10
             }}
-            color="#fff"
+            color="#0077ff"
           /> 
            {"   " + e.phone + "   "}
            <Ionicons
@@ -129,7 +129,7 @@ export default class ContactScreen extends Component {
             style={{
               marginRight: 10
             }}
-            color="#fff"
+            color="#0077ff"
           /> 
         </Text>
 
@@ -145,7 +145,7 @@ export default class ContactScreen extends Component {
             style={{
               marginRight: 10
             }}
-            color="#fff"
+            color="#0077ff"
           /> 
           {"   " + e.email + "   "}
           <Ionicons
@@ -154,37 +154,39 @@ export default class ContactScreen extends Component {
             style={{
               marginRight: 10
             }}
-            color="#fff"
+            color="#0077ff"
           /> 
         </Text>
       </View>
     ));
 
     return (
-      <ScrollView style={styles.container}>
-        <Text style={styles.logoText}>Contact Us</Text>
-
-        {contacts}
-
-        <View style={styles.darkBG}>
-          <Text style={{ ...styles.primaryText, ...styles.upperText }}>
-            Reach Us At
-          </Text>
-          <Text style={styles.secondaryText}>breeze@snu.edu.in</Text>
-
-          <Text
-            style={{
-              ...styles.primaryText,
-              ...styles.upperText,
-              marginTop: 10
-            }}
-          >
-            Address
-          </Text>
-          <Text style={{ ...styles.secondaryText }}>
-            Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
-            Uttar Pradesh - 201315
-          </Text>
+      <ScrollView>
+        <View style={styles.container}>>
+          <Text style={styles.logoText}>Contact Us</Text>
+  
+          {contacts}
+  
+          <View style={styles.darkBG}>
+            <Text style={{ ...styles.primaryText, ...styles.upperText }}>
+              Reach Us At
+            </Text>
+            <Text style={styles.secondaryText}>breeze@snu.edu.in</Text>
+  
+            <Text
+              style={{
+                ...styles.primaryText,
+                ...styles.upperText,
+                marginTop: 10
+              }}
+            >
+              Address
+            </Text>
+            <Text style={{ ...styles.secondaryText }}>
+              Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
+              Uttar Pradesh - 201315
+            </Text>
+          </View>
         </View>
       </ScrollView>
     );

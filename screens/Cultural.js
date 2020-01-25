@@ -162,7 +162,8 @@ export default class Cultural extends Component {
   render() {
     const eventList = this.state.eventList.map(event => {
       return (
-        <View style={styles.darkBG}>
+        <View style={styles.darkBG}
+        >
           <Text
             style={{
               ...styles.secondaryText,
@@ -304,5 +305,8 @@ const styles = StyleSheet.create({
     margin: 20,
     marginRight: 50,
     marginLeft: 50
+  },
+  link: {
+    color: "blue"
   }
 });

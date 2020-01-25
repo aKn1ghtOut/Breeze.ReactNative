@@ -6,7 +6,8 @@ import {
   View,
   Dimensions,
   Button,
-  SafeAreaView
+  SafeAreaView,
+  Linking
 } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
 import {
@@ -14,9 +15,10 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback
 } from "react-native-gesture-handler";
-import WebView from "react-native-webview";
+import { WebView } from "react-native-webview";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import HTMLView from "react-native-htmlview"
 
 class SpokenWordsPoetry extends Component {
   state = {};
@@ -26,85 +28,220 @@ class SpokenWordsPoetry extends Component {
     var category = this.props.navigation
       .getParam("category", "Cultural")
       .toLowerCase();
-    var sub_event = this.props.navigation
-      .getParam("eventName", "aagaaz");
-    console.log(category + "-" + sub_event);
+    var sub_event = this.props.navigation.getParam("eventName", "aagaaz");
 
     var link = `https://api.snu-breeze.com/api/${category}_events_get/details/?name=${sub_event}`;
     //link = link.replace(/[ ]/g, "%20");
-    console.log(link)
 
-    fetch(
-      link,
-      {
-        headers: new Headers({
-          "Accept" : "application/json"
-        })
-      }
-    ).then(async res => {
+    fetch(link, {
+      headers: new Headers({
+        Accept: "application/json"
+      })
+    }).then(async res => {
       // handle success
       // console.log(response.data.name);
       var response = await res.json();
-      console.log(response);
+      // console.log(response);
       //console.log(response.name)
       this.setState({
         ...response
       });
+      console.log(response.rules)
     });
   }
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.darkBG}>
-          <Text            style={{
-              ...styles.secondaryText,
-              ...styles.upperText,
-              ...styles.textCenter,
-              ...styles.headingText
-            }}> {this.state.name} </Text>
+      <View style={styles.container}>
+        <ScrollView style={{flex: 1}}>
+          <View style={styles.darkBG} >
+            
+            <Text
+              style={{
+                ...styles.secondaryText,
+                ...styles.upperText,
+                ...styles.textCenter,
+                ...styles.headingText
+              }}
+            >
+              {" "}
+              {this.state.name}{" "}
+            </Text>
   
-          <Text style={styles.normalText}>Prize: </Text>
-          <Text style={styles.normalText}> &#8377; {this.state.prize_money} </Text>
+            <Text style={{ ...styles.normalText, ...styles.normalTextHeading }}>
+              Prize:{" "}
+            </Text>
+            <Text style={styles.normalText}>
+              {" "}
+              &#8377; {this.state.prize_money}{" "}
+            </Text>
   
-          {this.state.team_size_max !== this.state.team_size_min
-            ? [
-                <View>
-                  <Text style={styles.normalText}>Minimum Team Size: </Text>
-                  <Text style={styles.normalText}> {this.state.team_size_min} </Text>
-                </View>,
-                <View>
-                  <Text style={styles.normalText}>Maximum Team Size: </Text>
-                  <Text style={styles.normalText}> {this.state.team_size_max} </Text>
-                </View>
-              ]
-            : null}
+            {this.state.team_size_max !== this.state.team_size_min
+              ? [
+                  <View>
+                    <Text
+                      style={{
+                        ...styles.normalText,
+                        ...styles.normalTextHeading
+                      }}
+                    >
+                      Minimum Team Size:{" "}
+                    </Text>
+                    <Text style={styles.normalText}>
+                      {" "}
+                      {this.state.team_size_min}{" "}
+                    </Text>
+                  </View>,
+                  <View>
+                    <Text
+                      style={{
+                        ...styles.normalText,
+                        ...styles.normalTextHeading
+                      }}
+                    >
+                      Maximum Team Size:{" "}
+                    </Text>
+                    <Text style={styles.normalText}>
+                      {" "}
+                      {this.state.team_size_max}{" "}
+                    </Text>
+                  </View>
+                ]
+              : null}
   
-          {this.state.description && this.state.description.length >= 10
-            ? [
-                <Text style={styles.normalText}>DESCRIPTION</Text>,
-                <WebView source={{ html: this.state.description }} />
-              ]
-            : null}
-          <Text style={styles.normalText}>RULES</Text>
-          <WebView source={{ html: this.state.rules }} />
-          <Text style={styles.normalText}>REGISTRATION</Text>
+            {this.state.description && this.state.description.length >= 10
+              ? [
+                  <Text
+                    style={{ ...styles.normalText, ...styles.normalTextHeading }}
+                  >
+                    DESCRIPTION
+                  </Text>,
+                  <HTMLView
+                    stylesheet={{
+                      p: {
+                        color: "#fff",
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        fontSize: 20,
+                        marginTop: 0
+                      },
+                      div: {
+                        color: "#fff",
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        fontSize: 20,
+                        marginTop: 0
+                      },
+                      li: {
+                        color: "#fff",
+        
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        fontSize: 20,
+                        marginTop: 0
+                      },
+                      h3: {
+                        margin: 0,
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        fontSize: 25,
+                        color: Colors.gullyOrange,
+                        fontWeight: "bold",
+                        marginTop: 0
+                      },
+                      ul: {
+                        color: "#fff",
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        fontSize: 20,
+                        marginTop: 0
+                      },
+                      br:{
+                        display: "none"
+                      }
+                    }}
+                    value={"<div>" + this.state.description + "</div>"}
+                  />
   
-          <Text style={styles.normalText}>Fee: </Text>
-          <Text style={styles.normalText}>
-            {" "}
-            &#8377;{" "}
-            {this.state.fees_amount +
-              (this.state.perperson ? " per person" : "")}{" "}
-          </Text>
+                ]
+              : null}
+            <Text style={{ ...styles.normalText, ...styles.normalTextHeading }}>
+              RULES
+            </Text>
+            <HTMLView
+              stylesheet={{
+                p: {
+                  color: "#fff",
   
-          <Text style={styles.normalText}>Person Of Contact: </Text>
-          <Text style={styles.normalText}>
-            {" "}
-            {this.state.person_of_contact} - {this.state.person_of_contactno}{" "}
-          </Text>
-        </View>
-      </ScrollView>
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  fontSize: 20,
+                  marginTop: 0
+                },
+                li: {
+                  color: "#fff",
+  
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  fontSize: 20,
+                  marginTop: 0
+                },
+                h3: {
+                  margin: 0,
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  fontSize: 25,
+                  color: Colors.gullyOrange,
+                  fontWeight: "bold",
+                  marginTop: 0
+                },
+                ul: {
+                  color: "#fff",
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  fontSize: 20,
+                  marginTop: 0
+                },
+                div: {
+                  color: "#fff",
+  
+                  textTransform: "uppercase",
+                  textAlign: "center",
+                  fontSize: 20,
+                  marginTop: 0
+                }
+              }}
+              value={"<div>" + this.state.rules + "</div>" }
+            />
+  
+            <Text style={{ ...styles.normalText, ...styles.normalTextHeading }}>
+              Fee:{" "}
+            </Text>
+            <Text style={styles.normalText}>
+              {" "}
+              &#8377;{" "}
+              {this.state.fees_amount +
+                (this.state.perperson ? " per person" : "")}{" "}
+            </Text>
+  
+            <Text style={{ ...styles.normalText, ...styles.normalTextHeading }}>
+              Person Of Contact:{" "}
+            </Text>
+            <Text style={styles.normalText}>
+              {" "}
+              {this.state.person_of_contact} -
+            </Text>
+            <Text
+              style={{ ...styles.normalText, color: "#0077ff" }}
+              onPress={() => {
+                Linking.openURL(`tel:${this.state.person_of_contactno}`);
+              }}
+            >
+              {this.state.person_of_contactno}
+            </Text>
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -117,8 +254,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 35,
-    paddingTop: 70,
-    backgroundColor: "rgba(0,0,0,0)"
+    paddingTop: 50,
+    paddingBottom: 0,
+    backgroundColor: "rgba(0,0,0,0)",
+    alignItems: "center",
+    justifyContent: "center"
   },
   logoText: {
     fontFamily: "just-fist",
@@ -137,8 +277,7 @@ const styles = StyleSheet.create({
   darkBG: {
     backgroundColor: "rgba(25, 25, 25, 0.95)",
     padding: 20,
-    borderRadius: 15,
-    marginTop: 15
+    borderRadius: 15
   },
   primaryText: {
     color: Colors.gullyRed,
@@ -153,7 +292,7 @@ const styles = StyleSheet.create({
   },
   headingText: {
     fontFamily: "axiforma-bold",
-    fontSize: 30
+    fontSize: 40
   },
   textCenter: {
     textAlign: "center"
@@ -165,6 +304,10 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     textAlign: "center",
     fontSize: 20
+  },
+  normalTextHeading: {
+    color: Colors.gullyOrange,
+    fontWeight: "bold"
   },
   button: {
     fontSize: 17,
@@ -185,6 +328,5 @@ const styles = StyleSheet.create({
     marginLeft: 50
   }
 });
-
 
 export default SpokenWordsPoetry;
