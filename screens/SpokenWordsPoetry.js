@@ -19,9 +19,12 @@ import { WebView } from "react-native-webview";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import HTMLView from "react-native-htmlview"
+import {DoubleBounce} from "react-native-loader"
 
 class SpokenWordsPoetry extends Component {
-  state = {};
+  state = {
+    loaded: false
+  };
 
   componentDidMount() {
     var self = this;
@@ -44,13 +47,16 @@ class SpokenWordsPoetry extends Component {
       // console.log(response);
       //console.log(response.name)
       this.setState({
-        ...response
+        ...response,
+        loaded: true
       });
-      console.log(response.rules)
+
     });
   }
 
   render() {
+
+    if(this.state.loaded)
     return (
       <View style={styles.container}>
         <ScrollView style={{flex: 1}}>
@@ -243,6 +249,14 @@ class SpokenWordsPoetry extends Component {
         </ScrollView>
       </View>
     );
+
+    else
+      return(
+        <View style={styles.loader}>
+        {/* <ActivityIndicator style={styles.loader} size="large" color={Colors.gullyOrange} /> */}
+        <DoubleBounce size={30} color={Colors.gullyOrange} />
+      </View>
+      )
   }
 }
 
@@ -326,6 +340,11 @@ const styles = StyleSheet.create({
     margin: 20,
     marginRight: 50,
     marginLeft: 50
+  },
+  loader: {
+    position: "absolute",
+    top: Dimensions.get("window").height/2.5,
+    left: Dimensions.get("window").width/2.5
   }
 });
 

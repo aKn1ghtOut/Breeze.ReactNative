@@ -35,6 +35,9 @@ async function loadResourcesAsync() {
     Asset.loadAsync([
       require('./assets/images/Logo.png'),
       require('./assets/images/backgrounds/home_bg.png'),
+      require('./assets/images/events_bg/cultural.png'),
+      require('./assets/images/events_bg/technical.png'),
+      require('./assets/images/events_bg/sports_mob.png')
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar
