@@ -74,7 +74,10 @@ async function loadResourcesAsync() {
       require('./assets/images/backgrounds/cultural_bg.png'),
       require('./assets/images/backgrounds/cultural_categories.png'),
       require('./assets/images/backgrounds/sports_bg.png'),
-      require('./assets/images/backgrounds/technical_bg.png')
+      require('./assets/images/backgrounds/technical_bg.png'),
+      require('./assets/images/events_bg/cultural.png'),
+      require('./assets/images/events_bg/technical.png'),
+      require('./assets/images/events_bg/sports_mob.png')
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar

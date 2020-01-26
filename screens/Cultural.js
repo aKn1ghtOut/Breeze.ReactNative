@@ -8,7 +8,8 @@ import {
   Button,
   TextInput,
   TouchableNativeFeedback,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
 import { SafeAreaView } from "react-navigation";
@@ -18,7 +19,8 @@ import {
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
-import Colors from "../constants/Colors";
+import Colors from "../constants/Colors"
+import {Bubbles, DoubleBounce, Bars, Pulse } from "react-native-loader"
 
 import DefaultNavOptions from "../navigation/DefaultNavOptions";
 
@@ -37,7 +39,7 @@ export default class Cultural extends Component {
     categoryButtons: [],
     selectedCategory: "all",
     mainCategory: "",
-    input: "Search for an Event"
+    loaded: false
   };
 
   componentDidMount() {
@@ -54,17 +56,13 @@ export default class Cultural extends Component {
         let resp = await res.json();
         var events = resp[category];
 
-
-
         self.setState({
-          eventList: events
-            .sort((a, b) => a.name.localeCompare(b.name))
+          eventList: events.sort((a, b) => a.name.localeCompare(b.name)),
+          loaded: true
         });
       }
     );
   }
-
-
 
   componentWillUnmount() {}
 
@@ -126,8 +124,7 @@ export default class Cultural extends Component {
   render() {
     const eventList = this.state.eventList.map(event => {
       return (
-        <View style={styles.darkBG}
-        >
+        <View style={styles.darkBG}>
           <Text
             style={{
               ...styles.secondaryText,
@@ -157,43 +154,20 @@ export default class Cultural extends Component {
       );
     });
 
-    return (
-      <View style={styles.container}>
-        <Text style={styles.logoText}>{this.state.mainCategory} events</Text>
-
-        {/* <View >
-              
-                <Text
-                  onPress={this.allButton}
-                  ref={this.allB}
-                >
-                  All
-                </Text>
-                {this.state.categories.length ===
-                this.state.categoryButtons.length
-                  ? this.state.categories.map((categ, i) => (
-                      <Text
-                        ref={this.state.categoryButtons[i].ref}
-                      >
-                        {categ}
-                      </Text>
-                    ))
-                  : null}
-              
-              <TextInput
-                onChange={this.search}
-                ref={this.searchBar}
-                value={this.state.input}
-              />
-            </View> */}
-        {/* <Text ref={this.eventsHolder}>
-              {eventList}
-            </Text> */}
-        <ScrollView>
-          {eventList}
-        </ScrollView>
-      </View>
-    );
+    if (this.state.loaded)
+      return (
+        <View style={styles.container}>
+          <Text style={styles.logoText}>{this.state.mainCategory} events</Text>
+          <ScrollView>{eventList}</ScrollView>
+        </View>
+      );
+    else
+      return (
+        <View style={styles.loader}>
+          {/* <ActivityIndicator style={styles.loader} size="large" color={Colors.gullyOrange} /> */}
+          <DoubleBounce size={30} color={Colors.gullyOrange} />
+        </View>
+      );
   }
 }
 
@@ -274,5 +248,10 @@ const styles = StyleSheet.create({
   },
   link: {
     color: "blue"
+  },
+  loader: {
+    position: "absolute",
+    top: Dimensions.get("window").height/2.5,
+    left: Dimensions.get("window").width/2.5
   }
 });

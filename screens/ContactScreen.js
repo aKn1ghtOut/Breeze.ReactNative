@@ -108,7 +108,7 @@ class ContactScreen extends Component {
 
   render() {
     const contacts = this.state.people.map(e => (
-      <View style={{ ...styles.darkBG, marginRight: 15, height: 180 }}>
+      <View style={{ ...styles.darkBG,  height: 180 }}>
         <Text
           style={{
             ...styles.secondaryText,
@@ -178,7 +178,7 @@ class ContactScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.logoText}>Contact Us</Text>
 
-        <ScrollView>{contacts}</ScrollView>
+        <ScrollView>{contacts}
 
         <View style={styles.darkBG}>
           <Text
@@ -191,7 +191,7 @@ class ContactScreen extends Component {
             Reach Us At
           </Text>
           <Text
-            style={{ ...styles.normalText, fontSize: 20 }}
+            style={{ ...styles.normalText, fontSize: 15 }}
             onPress={() => {
               Linking.openURL("mailto: breeze@snu.edu.in");
             }}
@@ -213,11 +213,12 @@ class ContactScreen extends Component {
           >
             Addressing
           </Text>
-          <Text style={{ ...styles.normalText, fontSize: 20 }}>
+          <Text style={{ ...styles.normalText, fontSize: 15 }}>
             Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
             Uttar Pradesh - 201315
           </Text>
         </View>
+        </ScrollView>
       </View>
     );
   }

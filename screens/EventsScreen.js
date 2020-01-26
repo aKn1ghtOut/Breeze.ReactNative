@@ -149,38 +149,45 @@ function ScheduleScreen(props) {
         flex: 1
       }}
     >
-    
       <View style={{ flexDirection: "column" }}>
         <View style={styles.container}>
           <DayViewScreen
             selected={selected === 0}
             position={selected === 0 ? 1 : selected === 1 ? 0 : 2}
           >
-              <Text
-                style={styles.screenText}
-                onPress={() => openList("Cultural")}
-              >
-                Cultural
-              </Text>
-           
+            <Text style={styles.heading}>Cultural</Text>
+            <Text style={styles.normalText}>A plethora of events to invoke the talented you</Text>
+            <Image style={styles.eventBackPic} source={CulturalBg} />
+            <Text
+              style={styles.screenText}
+              onPress={() => openList("Cultural")}
+            >
+              Explore
+            </Text>
           </DayViewScreen>
           <DayViewScreen
             selected={selected === 1}
             position={selected === 0 ? 2 : selected === 1 ? 1 : 0}
           >
+          <Text style={styles.heading}>Technical</Text>
+          <Text style={styles.normalText}>Hurry up and ace the game, before it's obsolete!</Text>
+            <Image style={styles.eventBackPic} source={TechnicalBg} />
             <Text
               style={styles.screenText}
               onPress={() => openList("Technical")}
             >
-              Technical
+              Explore
             </Text>
           </DayViewScreen>
           <DayViewScreen
             selected={selected === 2}
             position={selected === 0 ? 0 : selected === 1 ? 2 : 1}
           >
+          <Text style={styles.heading}>Sports</Text>
+          <Text style={styles.normalText}>Score the goal, the ball is now in your court!</Text>
+            <Image style={styles.eventBackPic} source={SportsBg} />
             <Text style={styles.screenText} onPress={() => openList("Sports")}>
-              Sports
+              Explore
             </Text>
           </DayViewScreen>
         </View>
@@ -263,13 +270,40 @@ const styles = StyleSheet.create({
   screenText: {
     color: "#FFFFFF",
     fontSize: 20,
-    fontFamily: "just-fist",
+    fontFamily: "axiforma-bold",
     alignSelf: "center",
     backgroundColor: Colors.gullyRed,
-    padding: 15,
+    padding: 10,
     paddingRight: 40,
     paddingLeft: 40,
-    borderRadius: 20
+    borderRadius: 20,
+    marginBottom: 100
+  },
+  eventBackPic: {
+    position: "absolute",
+    width: Dimensions.get("window").width ,
+    height: Dimensions.get("window").height - 350,
+    bottom: -180,
+    left: 0,
+    right: 0
+  },
+  heading: {
+    color: Colors.gullyOrange,
+    fontSize: 60,
+    fontFamily: "just-fist",
+    marginTop: -100,
+    marginBottom: 25,
+    textShadowColor: "#000000",
+    textShadowRadius: 15,
+    borderWidth: 7,
+    textAlign: "center",
+    borderColor: "rgba(0, 0, 0, 0)"
+  },
+  normalText: {
+    color: "#fff",
+    fontSize: 20,
+    fontFamily: "axiforma-bold",
+    marginBottom: 30
   }
 });
 
