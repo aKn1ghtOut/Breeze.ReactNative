@@ -1,6 +1,6 @@
 import { combineReducers } from "redux"
-import AccountReducer from "./Account"
+import UIReducer from "./UIReducer"
 
 export default combineReducers({
-    Account:        AccountReducer
+    UI:        UIReducer
 });

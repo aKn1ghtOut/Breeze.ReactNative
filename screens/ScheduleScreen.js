@@ -16,6 +16,10 @@ import {
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
+import { connect } from "react-redux";
+
+import {withNavigationFocus} from "react-navigation"
+import {home_bg} from "../redux/actions/UI"
 
 function mod(val, num) {
   val = val % num;
@@ -84,7 +88,7 @@ function DayViewScreen(props) {
   );
 }
 
-export default function ScheduleScreen(props) {
+function ScheduleScreen(props) {
   const [selected, setSelected] = useState(0);
   var key = 0;
 
@@ -93,6 +97,11 @@ export default function ScheduleScreen(props) {
   const goBack = () => {
     setSelected(selected => mod(selected - 1, 3));
   };
+
+  useEffect(()=>{
+    if(props.isFocused)
+    props.home_bg();
+  }, [props.isFocused])
 
   const goNext = () => {
     setSelected(selected => mod(selected + 1, 3));
@@ -234,3 +243,5 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   }
 });
+
+export default connect(null, {home_bg})(withNavigationFocus(ScheduleScreen));

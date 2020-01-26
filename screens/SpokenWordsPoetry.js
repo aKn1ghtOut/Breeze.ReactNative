@@ -19,11 +19,14 @@ import { WebView } from "react-native-webview";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import HTMLView from "react-native-htmlview"
+import {eventpage_bg} from "../redux/actions/UI"
+import { connect } from "react-redux";
 
 class SpokenWordsPoetry extends Component {
   state = {};
 
   componentDidMount() {
+    this.props.eventpage_bg();
     var self = this;
     var category = this.props.navigation
       .getParam("category", "Cultural")
@@ -329,4 +332,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SpokenWordsPoetry;
+export default connect(null, {eventpage_bg})(SpokenWordsPoetry);

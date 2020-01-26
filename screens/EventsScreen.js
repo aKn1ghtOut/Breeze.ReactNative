@@ -21,6 +21,10 @@ import Colors from "../constants/Colors";
 import CulturalBg from "../assets/images/events_bg/cultural.png"
 import SportsBg from "../assets/images/events_bg/sports_mob.png"
 import TechnicalBg from "../assets/images/events_bg/technical.png"
+import { connect } from "react-redux";
+import {withNavigationFocus} from "react-navigation"
+
+import {sports_bg, cultural_bg, technical_bg} from "../redux/actions/UI"
 
 function mod(val, num) {
   val = val % num;
@@ -89,7 +93,7 @@ function DayViewScreen(props) {
   );
 }
 
-export default function ScheduleScreen(props) {
+function ScheduleScreen(props) {
   const [selected, setSelected] = useState(0);
   var key = 0;
 
@@ -102,6 +106,28 @@ export default function ScheduleScreen(props) {
   const goNext = () => {
     setSelected(selected => mod(selected + 1, 3));
   };
+
+  useEffect(() => {
+    if(!props.isFocused)
+    return
+    switch(selected)
+    {
+      case 0:
+        props.cultural_bg();
+        break;
+      
+      case 1:
+        props.technical_bg();
+        break;
+
+      case 2:
+        props.sports_bg();
+        break;
+
+      default:
+        props.cultural_bg();
+    }
+  }, [selected, props.isFocused])
 
   const openList = category => {
     console.log(
@@ -246,3 +272,7 @@ const styles = StyleSheet.create({
     borderRadius: 20
   }
 });
+
+const MapStateToProps = state => ({});
+
+export default connect(MapStateToProps, {sports_bg, cultural_bg, technical_bg})(withNavigationFocus(ScheduleScreen));

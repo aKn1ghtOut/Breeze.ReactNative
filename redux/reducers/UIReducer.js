@@ -7,27 +7,35 @@ const initialState = {
 export default function(state = initialState, action){
 	switch(action.type)
 	{
-		case RETRIEVE_USER_STATUS:
-		return {
-			...state,
-			user:		action.userState,
-			retrieved:	true
-		};
+		case HOME_BG:
+			return {
+				...initialState,
+				background : "home_bg"
+			}
 
-		case USER_NOT_AUTHENTICATED:
-		return {
-			...state,
-			status: 	false,
-			retrieved:	true
-		}
+		case TECHNICAL_BG:
+			return {
+				...initialState,
+				background : "technical_bg"
+			}
+		
+		case EVENTPAGE_BG:
+			return {
+				...initialState,
+				background : "cultural_categories"
+			}
 
-		case LOGIN_DATA:
-		return {
-			...state,
-			status: true,
-			user:		action.userState,
-			retrieved: true,
-		}
+		case SPORTS_BG:
+			return {
+				...initialState,
+				background : "sports_bg"
+			}
+
+		case CULTURAL_BG:
+			return {
+				...initialState,
+				background : "cultural_bg"
+			}
 
 		default:
 		return state;

@@ -15,6 +15,9 @@ import Animated, { Easing } from 'react-native-reanimated';
 
 import Colors from "../constants/Colors"
 import { startAsync } from 'expo/build/AR';
+import { connect } from 'react-redux';
+
+import {home_bg} from "../redux/actions/UI"
 
 const pWrapper = (method) => {
   return new Promise(resolve => method(resolve));
@@ -26,6 +29,7 @@ function HomeScreen(props) {
   const [MarginV] = useState(new Animated.Value(0))
 
   const start = async() =>{
+    props.home_bg();
     await pWrapper((resolve) =>
       Animated.timing(
         LogoRotate,
@@ -137,4 +141,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default withNavigationFocus(HomeScreen)
+export default connect(null, {home_bg})(withNavigationFocus(HomeScreen));

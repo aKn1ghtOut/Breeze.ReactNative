@@ -1,11 +1,50 @@
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View, ImageBackground } from 'react-native';
+import React, { useState, Component } from 'react';
+import { Platform, StatusBar, StyleSheet, View, ImageBackground, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import AppNavigator from './navigation/AppNavigator';
+import { Provider, connect } from 'react-redux';
+
+import store from "./redux/store"
+
+class ImageBG extends Component
+{
+
+  constructor(props)
+  {
+    super(props);
+
+    this.BGRef = React.createRef();
+  }
+
+  backgroundImages = {
+    "home_bg" : require("./assets/images/backgrounds/home_bg.png"),
+    "cultural_bg" : require("./assets/images/backgrounds/cultural_bg.png"),
+    "sports_bg" : require("./assets/images/backgrounds/sports_bg.png"),
+    "technical_bg" : require("./assets/images/backgrounds/technical_bg.png"),
+    "cultural_categories" : require("./assets/images/backgrounds/cultural_categories.png"),
+  }
+
+  render(){
+    return (
+      <ImageBackground style={styles.container} source={this.props.background ? this.backgroundImages[this.props.background] : require("./assets/images/backgrounds/home_bg.png")} ref={this.BGRef}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </ImageBackground>
+    )
+  }
+}
+
+const MapStateToProps = state => ({
+  background : state.UI.background
+});
+
+ImageBGComp = connect(MapStateToProps, null)(ImageBG);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -20,12 +59,9 @@ export default function App(props) {
     );
   } else {
     return (
-      <ImageBackground style={styles.container} source={require("./assets/images/backgrounds/home_bg.png")}>
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
-      </ImageBackground>
+      <Provider store={store}>
+        <ImageBGComp/>
+      </Provider>
     );
   }
 }
@@ -35,6 +71,10 @@ async function loadResourcesAsync() {
     Asset.loadAsync([
       require('./assets/images/Logo.png'),
       require('./assets/images/backgrounds/home_bg.png'),
+      require('./assets/images/backgrounds/cultural_bg.png'),
+      require('./assets/images/backgrounds/cultural_categories.png'),
+      require('./assets/images/backgrounds/sports_bg.png'),
+      require('./assets/images/backgrounds/technical_bg.png')
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar

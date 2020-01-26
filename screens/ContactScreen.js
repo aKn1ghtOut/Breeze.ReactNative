@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { ScrollView, StyleSheet, Text, View, Linking } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import { connect } from "react-redux";
+import {home_bg} from "../redux/actions/UI"
+import {withNavigationFocus} from "react-navigation"
 
 // export default function ContactScreen() {
 //   return (
@@ -15,7 +18,7 @@ import { Ionicons } from "@expo/vector-icons";
 //   );
 // }
 
-export default class ContactScreen extends Component {
+class ContactScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -90,6 +93,17 @@ export default class ContactScreen extends Component {
         }
       ]
     };
+  }
+
+  componentDidMount()
+  {
+    this.props.home_bg();
+  }
+
+  componentDidUpdate()
+  {
+    if(this.props.isFocused)
+    this.props.home_bg();
   }
 
   render() {
@@ -267,3 +281,5 @@ const styles = StyleSheet.create({
     fontSize: 20
   }
 });
+
+export default connect(null, {home_bg})(withNavigationFocus(ContactScreen));
