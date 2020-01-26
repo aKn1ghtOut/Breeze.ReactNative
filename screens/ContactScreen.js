@@ -94,7 +94,7 @@ export default class ContactScreen extends Component {
 
   render() {
     const contacts = this.state.people.map(e => (
-      <View style={{ ...styles.darkBG }}>
+      <View style={{ ...styles.darkBG, marginRight: 15, height: 180 }}>
         <Text
           style={{
             ...styles.secondaryText,
@@ -121,16 +121,16 @@ export default class ContactScreen extends Component {
               marginRight: 10
             }}
             color="#0077ff"
-          /> 
-           {"   " + e.phone + "   "}
-           <Ionicons
+          />
+          {"   " + e.phone + "   "}
+          <Ionicons
             name="md-link"
             size={20}
             style={{
               marginRight: 10
             }}
             color="#0077ff"
-          /> 
+          />
         </Text>
 
         <Text
@@ -139,14 +139,14 @@ export default class ContactScreen extends Component {
             Linking.openURL(`mailto:${e.email}`);
           }}
         >
-                    <Ionicons
+          <Ionicons
             name="md-mail"
             size={20}
             style={{
               marginRight: 10
             }}
             color="#0077ff"
-          /> 
+          />
           {"   " + e.email + "   "}
           <Ionicons
             name="md-link"
@@ -155,40 +155,56 @@ export default class ContactScreen extends Component {
               marginRight: 10
             }}
             color="#0077ff"
-          /> 
+          />
         </Text>
       </View>
     ));
 
     return (
-      <ScrollView>
-        <View style={styles.container}>>
-          <Text style={styles.logoText}>Contact Us</Text>
-  
-          {contacts}
-  
-          <View style={styles.darkBG}>
-            <Text style={{ ...styles.primaryText, ...styles.upperText }}>
-              Reach Us At
-            </Text>
-            <Text style={styles.secondaryText}>breeze@snu.edu.in</Text>
-  
-            <Text
-              style={{
-                ...styles.primaryText,
-                ...styles.upperText,
-                marginTop: 10
-              }}
-            >
-              Address
-            </Text>
-            <Text style={{ ...styles.secondaryText }}>
-              Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
-              Uttar Pradesh - 201315
-            </Text>
-          </View>
+      <View style={styles.container}>
+        <Text style={styles.logoText}>Contact Us</Text>
+
+        <ScrollView>{contacts}</ScrollView>
+
+        <View style={styles.darkBG}>
+          <Text
+            style={{
+              ...styles.secondaryText,
+              ...styles.upperText,
+              fontSize: 25
+            }}
+          >
+            Reach Us At
+          </Text>
+          <Text
+            style={{ ...styles.normalText, fontSize: 20 }}
+            onPress={() => {
+              Linking.openURL("mailto: breeze@snu.edu.in");
+            }}
+          >
+            <Ionicons name="md-mail" size={20} color="#0077ff" />
+            {"   "}
+            breeze@snu.edu.in
+            {"   "}
+            <Ionicons name="md-link" size={20} color="#0077ff" />
+          </Text>
+
+          <Text
+            style={{
+              ...styles.secondaryText,
+              ...styles.upperText,
+              fontSize: 25,
+              marginTop: 10
+            }}
+          >
+            Addressing
+          </Text>
+          <Text style={{ ...styles.normalText, fontSize: 20 }}>
+            Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
+            Uttar Pradesh - 201315
+          </Text>
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -200,7 +216,7 @@ ContactScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 35,
+    padding: 25,
     paddingTop: 70,
     backgroundColor: "rgba(0,0,0,0)"
   },

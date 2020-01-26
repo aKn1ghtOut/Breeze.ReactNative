@@ -7,7 +7,8 @@ import {
   Dimensions,
   Button,
   TextInput,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  AsyncStorage
 } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
 import { SafeAreaView } from "react-navigation";
@@ -53,54 +54,17 @@ export default class Cultural extends Component {
         let resp = await res.json();
         var events = resp[category];
 
-        console.log(events);
+
+
         self.setState({
           eventList: events
-            .map(event => {
-              event.display = "block";
-              event.searched = true;
-              return event;
-            })
             .sort((a, b) => a.name.localeCompare(b.name))
         });
-        // self.state.eventList.forEach(event => {
-        //   let categs = event.category.split(/[,]+/i);
-        //   categs.forEach(category => {
-        //     if (
-        //       category.length > 0 &&
-        //       this.state.categories.indexOf(category) < 0
-        //     )
-        //       this.setState({
-        //         categories: [...this.state.categories, category]
-        //       });
-        //   });
-        // });
-
-        // this.setState({
-        //   categoryButtons: this.state.categories.map((categ, i) => {
-        //     return {
-        //       ref: React.createRef(),
-        //       added: false
-        //     };
-        //   })
-        // });
       }
     );
   }
 
-  // allButton() {
-  //   this.state.categoryButtons.forEach(butto =>
-  //     butto.ref.current.classList.remove("active")
-  //   );
-  //   this.allB.current.classList.add("active");
 
-  //   this.setState({
-  //     eventList: this.state.eventList.map(event => {
-  //       event.display = "block";
-  //       return event;
-  //     })
-  //   });
-  // }
 
   componentWillUnmount() {}
 
@@ -194,7 +158,7 @@ export default class Cultural extends Component {
     });
 
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.logoText}>{this.state.mainCategory} events</Text>
 
         {/* <View >
@@ -225,8 +189,10 @@ export default class Cultural extends Component {
         {/* <Text ref={this.eventsHolder}>
               {eventList}
             </Text> */}
-        {eventList}
-      </ScrollView>
+        <ScrollView>
+          {eventList}
+        </ScrollView>
+      </View>
     );
   }
 }
