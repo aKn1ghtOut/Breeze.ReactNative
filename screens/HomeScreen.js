@@ -69,6 +69,38 @@ function HomeScreen(props) {
 
   const degrees = Animated.concat(LogoRotate, "deg")
 
+  const news = 
+    (
+      <View style={styles.darkBG}>
+        <View style={styles.innerView}>
+          <Text style={{...styles.teamName}}>
+            TEAM 1
+          </Text>
+          <Text style={styles.inBetween}>
+            vs
+          </Text>
+          <Text style={{...styles.teamName}}>
+            TEAM 2
+          </Text>
+        </View>
+        <Text style={styles.eventName}>
+          Football
+        </Text>
+        <View style={styles.innerView}>
+          <Text style={{...styles.teamName}}>
+            1
+          </Text>
+          <Text style={styles.inBetween}>
+            -
+          </Text>
+          <Text style={{...styles.teamName}}>
+            2
+          </Text>
+        </View>
+      </View>
+    )
+  
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -108,6 +140,11 @@ function HomeScreen(props) {
         }}>
           GULLY NEWS
         </Text>
+
+        <ScrollView>
+          {news}
+        </ScrollView>
+         
       </ScrollView>
     </View>
   );
@@ -133,6 +170,37 @@ const styles = StyleSheet.create({
   },
   contentContainer : {
     backgroundColor : "rgba(0,0,0,0)"
+  },
+  darkBG: {
+    backgroundColor: "rgba(25, 25, 25, 0.95)",
+    padding: 20,
+    borderRadius: 15,
+    marginTop: 15,
+    margin: 10
+  },
+  innerView: {
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  teamName: {
+    color: "#41f988",
+    fontFamily: "axiforma-bold",
+    fontSize: 25,
+    textAlign: "center",
+    margin: 10
+  },
+  inBetween: {
+    color: Colors.gullyRed,
+    fontSize: 20,
+    textAlign: "center",
+    fontFamily: "axiforma-bold",
+    margin: 10
+  },
+  eventName: {
+    fontFamily: "just-fist",
+    color: Colors.gullyOrange,
+    fontSize: 40,
+    textAlign: "center"
   }
 });
 

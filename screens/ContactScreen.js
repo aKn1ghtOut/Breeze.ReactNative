@@ -164,7 +164,7 @@ export default class ContactScreen extends Component {
       <View style={styles.container}>
         <Text style={styles.logoText}>Contact Us</Text>
 
-        <ScrollView>{contacts}</ScrollView>
+        <ScrollView>{contacts}
 
         <View style={styles.darkBG}>
           <Text
@@ -204,6 +204,7 @@ export default class ContactScreen extends Component {
             Uttar Pradesh - 201315
           </Text>
         </View>
+        </ScrollView>
       </View>
     );
   }
