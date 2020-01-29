@@ -233,6 +233,7 @@ ScheduleScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
+    paddingBottom: 0,
     flexDirection: "column",
     backgroundColor: "rgba(0,0,0,0)",
     width: Dimensions.get("window").width,
@@ -303,6 +304,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     fontFamily: "axiforma-bold",
+    paddingHorizontal: 10,
+    textAlign: "center",
     marginBottom: 30
   }
 });

@@ -12,6 +12,7 @@ import EventsList from '../screens/Cultural'
 
 import ScheduleScreen from '../screens/ScheduleScreen';
 import ContactScreen from "../screens/ContactScreen";
+import SponsorScreen from "../screens/SponsorScreen"
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -39,13 +40,17 @@ HomeStack.navigationOptions = {
           ? `ios-home'}`
           : 'md-home'
       }
+      focusedColor="#ECBA09"
     />
-  )
+  ),
+  labelStyle: ({focused}) => ({
+    color: focused ? "#ECBA09" : "white"
+  })
 };
 
 HomeStack.path = '';
 
-const EventsStack = createStackNavigator(
+const MoreStack = createStackNavigator(
   {
     Events: EventsScreen,
     EventPage: EventPage,
@@ -54,14 +59,22 @@ const EventsStack = createStackNavigator(
   config
 );
 
-EventsStack.navigationOptions = {
-  tabBarLabel: 'Events',
+MoreStack.navigationOptions = {
+  tabBarLabel: 'More',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-apps' : 'md-apps'} />
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === 'ios' ? 'ios-apps' : 'md-apps'}
+      focusedColor="#ECBA09"
+    />
   ),
+  labelStyle: ({focused}) => ({
+    color: focused ? "#ECBA09" : "white"
+  }),
+  initialRouteName : "Events"
 };
 
-EventsStack.path = '';
+MoreStack.path = '';
 
 const ScheduleStack = createStackNavigator(
   {
@@ -73,8 +86,12 @@ const ScheduleStack = createStackNavigator(
 ScheduleStack.navigationOptions = {
   tabBarLabel: 'Schedule',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-calendar' : 'md-calendar'} focusedColor="#ECBA09" />
   ),
+  labelStyle: ({focused}) => ({
+    fontWeight : "700",
+    color: focused ? "#ECBA09" : "white"
+  })
 };
 
 ScheduleStack.path = '';
@@ -89,18 +106,44 @@ const ContactStack = createStackNavigator(
 ContactStack.navigationOptions = {
   tabBarLabel: 'Contact',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-contact' : 'md-contact'} />
+    <TabBarIcon focusedColor="#ECBA09" focused={focused} name={Platform.OS === 'ios' ? 'ios-contact' : 'md-contact'} />
   ),
+  labelStyle: ({focused}) => ({
+    fontWeight : "700",
+    color: focused ? "#E22028" : "white"
+  })
 };
 
 ContactStack.path = '';
 
+const SponsorStack = createStackNavigator(
+  {
+    Sponsor: SponsorScreen,
+  },
+  config
+);
+
+SponsorStack.navigationOptions = {
+  tabBarLabel: 'Sponsors',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focusedColor="#ECBA09" focused={focused} name={'ios-heart'} />
+  ),
+  initialRouteName : "Sponsor",
+  labelStyle: ({focused}) => ({
+    fontWeight : "700",
+    color: focused ? "#E22028" : "white"
+  }),
+};
+
+SponsorStack.path = '';
+
 
 const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  EventsStack,
   ScheduleStack,
   ContactStack,
+  HomeStack,
+  SponsorStack,
+  MoreStack
 },
 {
   initialRouteName : "HomeStack",
@@ -116,10 +159,10 @@ const tabNavigator = createBottomTabNavigator({
       backgroundColor : "rgba(0,0,0,0)",
       borderTopWidth : 0
     },
-    labelStyle : {
+    labelStyle: {
       fontWeight : "700",
-      color: "white"
-    },
+      color:  "white"
+    }
   }
 }
 );

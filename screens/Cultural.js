@@ -21,10 +21,13 @@ import { Ionicons } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
 import Colors from "../constants/Colors"
 import {Bubbles, DoubleBounce, Bars, Pulse } from "react-native-loader"
+import {withNavigationFocus} from "react-navigation"
+import {eventpage_bg} from "../redux/actions/UI"
 
 import DefaultNavOptions from "../navigation/DefaultNavOptions";
+import { connect } from "react-redux";
 
-export default class Cultural extends Component {
+class Cultural extends Component {
   constructor(props) {
     super(props);
     // this.searchBar = React.createRef();
@@ -43,6 +46,7 @@ export default class Cultural extends Component {
   };
 
   componentDidMount() {
+    this.props.eventpage_bg();
     var category = this.props.navigation.getParam("category", "Cultural");
     category = category.toLowerCase();
     this.setState({
@@ -64,54 +68,10 @@ export default class Cultural extends Component {
     );
   }
 
-  componentWillUnmount() {}
-
-  componentDidUpdate() {
-    this.state.categoryButtons.forEach((button, i) => {
-      if (button.added) return;
-
-      // button.ref.current.addEventListener("click", () => {
-      //   this.state.categoryButtons.forEach(butto =>
-      //     butto.ref.current.classList.remove("active")
-      //   );
-      //   this.allB.current.classList.remove("active");
-      //   button.ref.current.classList.add("active");
-
-      //   this.setState({
-      //     eventList: this.state.eventList.map(event => {
-      //       event.display = event.category.includes(this.state.categories[i])
-      //         ? "block"
-      //         : "none";
-      //       return event;
-      //     })
-      //   });
-      // });
-
-      button.added = true;
-      this.setState({
-        categoryButtons: this.state.categoryButtons.map((but, j) => {
-          if (i == j) but.added = true;
-
-          return but;
-        })
-      });
-    });
-  }
-
-  search() {
-    let searchedVal = this.searchBar.current.value;
-    this.setState({
-      input: searchedVal
-    });
-    searchedVal = searchedVal.toLowerCase();
-    this.setState({
-      eventList: this.state.eventList.map(element => {
-        if (element.name.toLowerCase().indexOf(searchedVal) < 0)
-          element.searched = false;
-        else element.searched = true;
-        return element;
-      })
-    });
+  componentWillReceiveProps(props)
+  {
+    if(props.isFocused !== this.props.isFocused)
+    this.props.eventpage_bg();
   }
 
   openEvent = event => {
@@ -157,8 +117,10 @@ export default class Cultural extends Component {
     if (this.state.loaded)
       return (
         <View style={styles.container}>
-          <Text style={styles.logoText}>{this.state.mainCategory} events</Text>
-          <ScrollView>{eventList}</ScrollView>
+          <ScrollView>
+            <Text style={styles.logoText}>{this.state.mainCategory} events</Text>
+            {eventList}
+          </ScrollView>
         </View>
       );
     else
@@ -178,8 +140,9 @@ Cultural.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 35,
+    paddingHorizontal: 35,
     paddingTop: 70,
+    paddingBottom: 0,
     backgroundColor: "rgba(0,0,0,0)"
   },
   logoText: {
@@ -255,3 +218,5 @@ const styles = StyleSheet.create({
     left: Dimensions.get("window").width/2.5
   }
 });
+
+export default connect(null, {eventpage_bg})(withNavigationFocus(Cultural));
