@@ -107,8 +107,8 @@ class ContactScreen extends Component {
   }
 
   render() {
-    const contacts = this.state.people.map(e => (
-      <View style={{ ...styles.darkBG,  height: 180 }}>
+    const contacts = this.state.people.map((e, index) => (
+      <View style={{ ...styles.darkBG,  height: "auto" }} key={index}>
         <Text
           style={{
             ...styles.secondaryText,
@@ -147,7 +147,7 @@ class ContactScreen extends Component {
           />
         </Text>
 
-        <Text
+        {/* <Text
           style={styles.normalText}
           onPress={() => {
             Linking.openURL(`mailto:${e.email}`);
@@ -170,7 +170,7 @@ class ContactScreen extends Component {
             }}
             color="#0077ff"
           />
-        </Text>
+        </Text> */}
       </View>
     ));
 
@@ -247,7 +247,8 @@ const styles = StyleSheet.create({
       width: 5,
       height: 0
     },
-    marginBottom: 20
+    marginBottom: 20,
+    textTransform: "uppercase"
   },
   darkBG: {
     backgroundColor: "rgba(25, 25, 25, 0.95)",

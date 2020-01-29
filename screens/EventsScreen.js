@@ -297,7 +297,8 @@ const styles = StyleSheet.create({
     textShadowRadius: 15,
     borderWidth: 7,
     textAlign: "center",
-    borderColor: "rgba(0, 0, 0, 0)"
+    borderColor: "rgba(0, 0, 0, 0)",
+    textTransform: "uppercase"
   },
   normalText: {
     color: "#fff",

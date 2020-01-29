@@ -14,18 +14,12 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { connect } from "react-redux";
-
-import {withNavigationFocus} from "react-navigation"
-import {home_bg} from "../redux/actions/UI"
-
-function mod(val, num) {
-  val = val % num;
-  if (val < 0) val = val + num;
-  return val;
-}
+import Colors from "../constants/Colors";
+import { withNavigationFocus } from "react-navigation";
+import { home_bg } from "../redux/actions/UI";
 
 function DayViewScreen(props) {
   const [animator] = useState(new Animated.Value(1));
@@ -88,110 +82,369 @@ function DayViewScreen(props) {
   );
 }
 
-function ScheduleScreen(props) {
-  const [selected, setSelected] = useState(0);
-  var key = 0;
+function ScheduleDays(props) {
+  const day1 = [
+    {
+      title: "HackData 4.0",
+      event: "HackData",
+      time: "10:00 - ",
+      venue: "B012, B016",
+      category: "technical"
+    },
+    {
+      title: "Bipartisan",
+      event: "Bipartisan - the turncoat event",
+      time: "12:00 - 16:00",
+      venue: "C021",
+      category: "technical"
+    },
+    {
+      title: "Render",
+      event: "Render",
+      time: "12:00 - 17:00",
+      venue: "Main Stage Arena",
+      category: "cultural"
+    },
+    {
+      title: "Envision",
+      event: "En-Vision",
+      time: "12:00 - 17:00",
+      venue: "D330",
+      category: "technical"
+    },
+    {
+      title: "Into the Night",
+      event: "Into the Night",
+      time: "22:00 - ",
+      venue: "Library Front Side",
+      category: "cultural"
+    }
+  ];
 
-  const Categories = ["Day 1", "Day 2", "Day 3"];
+  const day2 = [
+    {
+      title: "Raw N Rugged",
+      event: "Raw N Rugged",
+      time: "09:00 - 12:00",
+      venue: "B315",
+      category: "cultural"
+    },
+    {
+      title: "Hack IEEE",
+      event: "<hack.ieee>",
+      time: "09:00 - 18:00",
+      venue: "Embedded Labs",
+      category: "cultural"
+    },
+    {
+      title: "Acoustyx(Solo Vocal)",
+      event: "Acoustyx",
+      time: "09:30 - 12:30",
+      venue: "D022, D026",
+      category: "cultural"
+    },
+    {
+      title: "Verbatim",
+      event: "Verbatim",
+      time: "10:00 - ",
+      venue: "D330",
+      category: "cultural"
+    },
+    {
+      title: "The Gully Games(Fair)",
+      event: "none",
+      time: "10:00 - ",
+      venue: "Library Path",
+      category: "cultural"
+    },
+    {
+      title: "HackData 4.0",
+      event: "HackData",
+      time: "10:00 - 14:00",
+      venue: "B012, B016",
+      category: "technical"
+    },
+    {
+      title: "Materchef 2.0",
+      event: "MaterChef 2.0",
+      time: "10:00 - 18:00",
+      venue: "DH2",
+      category: "cultural"
+    },
+    {
+      title: "Into the Night",
+      event: "Into the Night",
+      time: "22:30 - ",
+      venue: "Library Front Side",
+      category: "cultural"
+    },
+    {
+      title: "Graffiti",
+      event: "Graffiti",
+      time: "11:00 - 14:00",
+      venue: "Central Path",
+      category: "cultural"
+    },
+    {
+      title: "Lawyer Up",
+      event: "Lawyer Up",
+      time: "11:00 - 17:00",
+      venue: "D326",
+      category: "cultural"
+    },
+    {
+      title: "FIFA",
+      event: "FIFA Tournament",
+      time: "12:00 - 16:00",
+      venue: "B012",
+      category: "technical"
+    },
+    {
+      title: "Line Follower",
+      event: "Line Follower",
+      time: "12:00 - 16:00",
+      venue: "In Front of DSA",
+      category: "technical"
+    },
+    {
+      title: "Rally Race",
+      event: "Into the Night",
+      time: "12:00 - 16:00",
+      venue: "In Front of Library",
+      category: "technical"
+    },
+    {
+      title: "Speed Climbing",
+      event: "none",
+      time: "12:30 - 18:00",
+      venue: "Indoor Sports Complex",
+      category: "sports"
+    },
+    {
+      title: "No Strings Attached(Acappela)",
+      event: "No Strings Attached",
+      time: "12:30 - 15:30",
+      venue: "C021",
+      category: "cultural"
+    },
+    {
+      title: "Dance Boulevard(Group dance)",
+      event: "Bounce Boulevard",
+      time: "12:30 - 17:00",
+      venue: "Main Stage Arena",
+      category: "cultural"
+    },
+    {
+      title: "Obstacle Race",
+      event: "Obstacle race",
+      time: "13:00 - 17:00",
+      venue: "Mount SNU",
+      category: "technical"
+    },
+    {
+      title: "Bhasad( Stand Up Comedy)",
+      event: "Bhasad",
+      time: "14:00 - 16:00",
+      venue: "D217",
+      category: "cultural"
+    },
+    {
+      title: "Rap Battle",
+      event: "Rap Battle",
+      time: "16:00 - 19:00",
+      venue: "Library Stairs",
+      category: "cultural"
+    }
+  ];
 
-  const goBack = () => {
-    setSelected(selected => mod(selected - 1, 3));
-  };
+  const day3 = [
+    {
+      title: "Verbatim",
+      event: "Verbatim",
+      time: "10:00 - ",
+      venue: "D330",
+      category: "cultural"
+    },
+    {
+      title: "The Gully Games(Fair)",
+      event: "none",
+      time: "10:00 - ",
+      venue: "Library Path",
+      category: ""
+    },
+    {
+      title: "Spin-a-Yarn",
+      event: "Spin A Yarn",
+      time: "11:00 - 13:00",
+      venue: "D026",
+      category: "cultural"
+    },
+    {
+      title: "Staccato",
+      event: "Staccato (Instrumental Solo)",
+      time: "11:00 - 14:00",
+      venue: "B315",
+      category: "cultural"
+    },
+    {
+      title: "Green Hunt",
+      event: "none",
+      time: "11:00 - 14:00",
+      venue: "Main Stage Arena",
+      category: "cultural"
+    },
+    {
+      title: "Live Sketching",
+      event: "Live Sketching",
+      time: "11:00 - 14:00",
+      venue: "Central Vista",
+      category: "cultural"
+    },
+    {
+      title: "Slam Poetry",
+      event: "Slam Poetry",
+      time: "11:00 - 15:00",
+      venue: "A-B Atrium",
+      category: "cultural"
+    },
+    {
+      title: "Aaagaz(Nukkad Natak)",
+      event: "Aagaz",
+      time: "11:00 - 16:00",
+      venue: "In Front of Library",
+      category: "cultural"
+    },
+    {
+      title: "Countdown",
+      event: "Countdown",
+      time: "12:00 - 15:00",
+      venue: "Do22",
+      category: "technical"
+    },
+    {
+      title: "Counter Strike",
+      event: "Counter Strike",
+      time: "12:30 - 17:30",
+      venue: "D106, D110",
+      category: "technical"
+    },
+    {
+      title: "Scavenger Vortex",
+      event: "Scavenger Vortex:42",
+      time: "10:00 - 17:00",
+      venue: "D007, D006, D003, Central Vista",
+      category: "technical"
+    },
+    {
+      title: "Crescendo",
+      event: "Crescendo (Battle of the Bands)",
+      time: "13:00 - 16:30",
+      venue: "Main Stage Arena",
+      category: "cultural"
+    },
+    {
+      title: "Gully Games(Quiz)",
+      event: "Gully Games (A Sports Quiz)",
+      time: "15:00 - 18:00",
+      venue: "B315",
+      category: "cultural"
+    },
+    {
+      title: "Music Art",
+      event: "Music Art",
+      time: "15:00 - 18:00",
+      venue: "B009",
+      category: "cultural"
+    },
+    {
+      title: "BuildUp",
+      event: "The Build Up",
+      time: "11:00 - 17:00",
+      venue: "A317, A318, A309, A313",
+      category: "cultural"
+    }
+  ];
 
-  useEffect(()=>{
-    if(props.isFocused)
-    props.home_bg();
-  }, [props.isFocused])
+  var dayViewed;
 
-  const goNext = () => {
-    setSelected(selected => mod(selected + 1, 3));
-  };
-
-  const openList = category => {
-    console.log(
-      props.navigation.navigate("EventsList", {
+  function goToEvent(event, category) {
+    event==="none"
+      ?
+        null
+      :
+  
+      props.navigation.navigate("EventPage", {
+        eventName: event,
         category: category
-      })
-    );
-  };
+      });
+    
+  }
+
+  if (props.day == "1") dayViewed = day1;
+  else if (props.day == "2") dayViewed = day2;
+  else dayViewed = day3;
 
   return (
-    <GestureRecognizer
-      onSwipeLeft={goNext}
-      onSwipeRight={goBack}
-      config={{
-        velocityThreshold: 0.3,
-        directionalOffsetThreshold: 80
-      }}
-      style={{
-        flex: 1
-      }}
-    >
-      <View style={{ flexDirection: "column" }}>
-        <View style={styles.container}>
-          <DayViewScreen
-            selected={selected === 0}
-            position={selected === 0 ? 1 : selected === 1 ? 0 : 2}
+    <View>
+      {dayViewed.map((e, index) => (
+        <View style={styles.eventSchedule} key={index}>
+          <Text style={{ ...styles.screenText, flex: 1 }}>{e.time} </Text>
+          <Text
+            style={{ ...styles.titleText, flex: 2 }}
+            onPress={() => goToEvent(e.event, e.category)}
           >
-            <Text
-              style={styles.screenText}
-              onPress={() => openList("Cultural")}
-            >
-              Day 1
-            </Text>
-          </DayViewScreen>
-          <DayViewScreen
-            selected={selected === 1}
-            position={selected === 0 ? 2 : selected === 1 ? 1 : 0}
-          >
-            <Text
-              style={styles.screenText}
-              onPress={() => openList("Technical")}
-            >
-              Day 2
-            </Text>
-          </DayViewScreen>
-          <DayViewScreen
-            selected={selected === 2}
-            position={selected === 0 ? 0 : selected === 1 ? 2 : 1}
-          >
-            <Text style={styles.screenText} onPress={() => openList("Sports")}>
-              Day 3
-            </Text>
-          </DayViewScreen>
-        </View>
-        <View style={styles.buttonRow}>
-          <TouchableHighlight style={styles.navButtons} onPress={goBack}>
-            <View style={styles.buttoner}>
-              <Ionicons
-                name={"md-arrow-dropleft"}
-                size={30}
-                color={"#FFFFFF"}
-              ></Ionicons>
-              <Text style={styles.buttonText}>
-                {Categories[mod(selected - 1, 3)] || "Previous"}
-              </Text>
-            </View>
-          </TouchableHighlight>
-          <TouchableHighlight style={styles.navButtons} onPress={goNext}>
-            <View
+            {e.title}
+          </Text>
+          <View style={{ flex: 1, flexDirection: "row", paddingRight: 20 }}>
+            <Entypo
+              name="location-pin"
+              size={20}
               style={{
-                ...styles.buttoner
+                marginRight: 0,
+                alignSelf: "center"
               }}
-            >
-              <Ionicons
-                name={"md-arrow-dropright"}
-                size={30}
-                color={"#FFFFFF"}
-              ></Ionicons>
-              <Text style={styles.buttonText}>
-                {Categories[mod(selected + 1, 3)] || "Next"}
-              </Text>
-            </View>
-          </TouchableHighlight>
+              color={Colors.gullyGreen}
+            />
+            <Text style={{ ...styles.screenText, color: Colors.gullyGreen }}>
+              {e.venue}
+            </Text>
+          </View>
         </View>
-      </View>
-    </GestureRecognizer>
+      ))}
+    </View>
+  );
+}
+
+function ScheduleScreen(props) {
+  var key = 0;
+
+  useEffect(() => {
+    if (props.isFocused) props.home_bg();
+  }, [props.isFocused]);
+
+  return (
+    <View style={styles.container}>
+      <ScrollView stickyHeaderIndices={[0,2,4]}>
+        
+          <View>
+            <Text style={styles.logoText}>DAY 1</Text>
+          </View>
+          <ScheduleDays day="1" navigation={props.navigation} />
+       
+        
+          <View>
+            <Text style={styles.logoText}>DAY 2</Text>
+          </View>
+          <ScheduleDays day="2" navigation={props.navigation} />
+       
+        
+          <View>
+            <Text style={styles.logoText}>DAY 3</Text>
+          </View>
+          <ScheduleDays day="3" navigation={props.navigation} />
+       
+      </ScrollView>
+    </View>
   );
 }
 
@@ -202,46 +455,52 @@ ScheduleScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
+    paddingTop: 50,
+    paddingBottom: 0,
     flexDirection: "column",
     backgroundColor: "rgba(0,0,0,0)",
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 150
-  },
-  buttonRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    height: 50,
-    justifyContent: "space-between"
-  },
-  buttoner: {
-    textAlign: "right",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-    padding: 10,
-    width: 100
-  },
-  navButtons: {},
-  buttonText: {
-    fontSize: 15,
-    color: "#FFFFFF"
-  },
-  slide: {
-    position: "absolute",
-    top: 30,
-    left: 0,
-    flex: 1,
-    width: Dimensions.get("window").width,
     height: Dimensions.get("window").height - 150,
-    alignItems: "center",
-    justifyContent: "center"
   },
   screenText: {
     color: "#FFFFFF",
     fontSize: 20,
-    fontFamily: "just-fist",
+    fontFamily: "axiforma-bold",
     alignSelf: "center"
+  },
+  titleText: {
+    color: Colors.gullyOrange,
+    fontFamily: "axiforma-bold",
+    textAlign: "center",
+    fontSize: 25,
+    alignSelf: "center"
+  },
+  logoText: {
+    fontFamily: "just-fist",
+    fontSize: 60,
+    color: "#fff",
+    letterSpacing: 4,
+    textShadowColor: "#aaa",
+    textShadowRadius: 10,
+    textAlign: "center",
+    textShadowOffset: {
+      width: 5,
+      height: 0
+    },
+    margin: 20,
+    position: "relative",
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    borderRadius: 15,
+    padding: 10,
+    
+  },
+  eventSchedule: {
+    flexDirection: "row",
+    marginTop: 15,
+    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    borderRadius: 15,
+    padding: 10,
   }
 });
 
-export default connect(null, {home_bg})(withNavigationFocus(ScheduleScreen));
+export default connect(null, { home_bg })(withNavigationFocus(ScheduleScreen));

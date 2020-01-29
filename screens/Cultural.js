@@ -52,13 +52,18 @@ export default class Cultural extends Component {
     var self = this;
 
     fetch("https://api.snu-breeze.com/" + `api/${category}_events_get`).then(
+
+
       async res => {
+        self.setState({
+          loaded: true
+        })
+
         let resp = await res.json();
         var events = resp[category];
 
         self.setState({
-          eventList: events.sort((a, b) => a.name.localeCompare(b.name)),
-          loaded: true
+          eventList: events.sort((a, b) => a.name.localeCompare(b.name))
         });
       }
     );
@@ -122,9 +127,9 @@ export default class Cultural extends Component {
   };
 
   render() {
-    const eventList = this.state.eventList.map(event => {
+    const eventList = this.state.eventList.map((event, index) => {
       return (
-        <View style={styles.darkBG}>
+        <View style={styles.darkBG} key={index}>
           <Text
             style={{
               ...styles.secondaryText,
@@ -164,7 +169,7 @@ export default class Cultural extends Component {
     else
       return (
         <View style={styles.loader}>
-          {/* <ActivityIndicator style={styles.loader} size="large" color={Colors.gullyOrange} /> */}
+          <Text style={styles.loadingText}>Loading ... </Text>
           <DoubleBounce size={30} color={Colors.gullyOrange} />
         </View>
       );
@@ -194,7 +199,8 @@ const styles = StyleSheet.create({
       width: 5,
       height: 0
     },
-    marginBottom: 20
+    marginBottom: 20,
+    textTransform: "uppercase"
   },
   darkBG: {
     backgroundColor: "rgba(25, 25, 25, 0.95)",
@@ -253,5 +259,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: Dimensions.get("window").height/2.5,
     left: Dimensions.get("window").width/2.5
+  },
+  loadingText: {
+    color: Colors.gullyOrange,
+    textTransform: "uppercase",
+    fontSize: 30,
+    fontFamily: "axiforma-bold",
+    marginBottom: 10,
+    marginLeft: -30
   }
 });

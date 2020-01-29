@@ -35,6 +35,7 @@ class SpokenWordsPoetry extends Component {
       .getParam("category", "Cultural")
       .toLowerCase();
     var sub_event = this.props.navigation.getParam("eventName", "aagaaz");
+    console.log(sub_event)
 
     var link = `https://api.snu-breeze.com/api/${category}_events_get/details/?name=${sub_event}`;
     //link = link.replace(/[ ]/g, "%20");
@@ -271,8 +272,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 35,
-    paddingTop: 50,
     paddingBottom: 0,
+    flexDirection: "row",
     backgroundColor: "rgba(0,0,0,0)",
     alignItems: "center",
     justifyContent: "center"
