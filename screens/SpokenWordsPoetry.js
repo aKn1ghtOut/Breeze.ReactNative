@@ -22,6 +22,7 @@ import HTMLView from "react-native-htmlview"
 import {eventpage_bg} from "../redux/actions/UI"
 import { connect } from "react-redux";
 import {DoubleBounce} from "react-native-loader"
+import {withNavigationFocus} from "react-navigation"
 
 class SpokenWordsPoetry extends Component {
   state = {
@@ -56,6 +57,12 @@ class SpokenWordsPoetry extends Component {
       });
 
     });
+  }
+
+  componentWillReceiveProps(props)
+  {
+    if(props.isFocused !== this.props.isFocused)
+    this.props.eventpage_bg();
   }
 
   render() {
@@ -352,4 +359,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, {eventpage_bg})(SpokenWordsPoetry);
+export default connect(null, {eventpage_bg})(withNavigationFocus(SpokenWordsPoetry));

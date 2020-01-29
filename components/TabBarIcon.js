@@ -37,10 +37,6 @@ export default function TabBarIcon(props) {
           scale : sizer.interpolate({
             inputRange : [0, 1],
             outputRange : [1, 1.2]
-          }),
-          translateY : sizer.interpolate({
-            inputRange : [0, 1],
-            outputRange : [0, -5]
           })
         }]
       }}
@@ -51,7 +47,7 @@ export default function TabBarIcon(props) {
         style={{ 
           marginBottom: -3,
         }}
-        color={props.focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+        color={props.focused ? (props.focusedColor || Colors.tabIconSelected) : (props.idleColor || Colors.tabIconDefault)}
       />
     </Animated.View>
   );
