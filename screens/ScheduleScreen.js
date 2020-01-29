@@ -14,7 +14,7 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from "react-native-gesture-handler";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, Ionicons } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { connect } from "react-redux";
 import Colors from "../constants/Colors";
@@ -385,7 +385,10 @@ function ScheduleDays(props) {
   else dayViewed = day3;
 
   return (
-    <View>
+    <View style={{
+      paddingTop: 30,
+      paddingBottom: 60
+    }}>
       {dayViewed.map((e, index) => (
         <View style={styles.eventSchedule} key={index}>
           <Text style={{ ...styles.screenText, flex: 1 }}>{e.time} </Text>
@@ -427,19 +430,25 @@ function ScheduleScreen(props) {
       <ScrollView stickyHeaderIndices={[0,2,4]}>
         
           <View>
-            <Text style={styles.logoText}>DAY 1</Text>
+            <Text style={styles.logoText}>
+              {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 1"}
+            </Text>
           </View>
           <ScheduleDays day="1" navigation={props.navigation} />
        
         
           <View>
-            <Text style={styles.logoText}>DAY 2</Text>
+            <Text style={styles.logoText}>
+              {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 2"}
+            </Text>
           </View>
           <ScheduleDays day="2" navigation={props.navigation} />
        
         
           <View>
-            <Text style={styles.logoText}>DAY 3</Text>
+            <Text style={styles.logoText}>
+              {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 3"}
+            </Text>
           </View>
           <ScheduleDays day="3" navigation={props.navigation} />
        
@@ -459,8 +468,6 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     flexDirection: "column",
     backgroundColor: "rgba(0,0,0,0)",
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height - 150,
   },
   screenText: {
     color: "#FFFFFF",
@@ -476,20 +483,18 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   logoText: {
-    fontFamily: "just-fist",
-    fontSize: 60,
-    color: "#fff",
+    fontFamily: "axiforma-bold",
+    fontSize: 40,
+    color: Colors.gullyOrange,
     letterSpacing: 4,
-    textShadowColor: "#aaa",
-    textShadowRadius: 10,
-    textAlign: "center",
-    textShadowOffset: {
-      width: 5,
-      height: 0
-    },
-    margin: 20,
+    textAlign: "left",
+    borderBottomColor: Colors.gullyOrange,
+    borderBottomWidth: 5,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    marginVertical: 10,
     position: "relative",
-    backgroundColor: "rgba(0, 0, 0, 0.9)",
+    backgroundColor: "rgba(0, 0, 0, 1)",
     borderRadius: 15,
     padding: 10,
     

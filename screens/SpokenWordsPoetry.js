@@ -65,6 +65,37 @@ class SpokenWordsPoetry extends Component {
     this.props.eventpage_bg();
   }
 
+  componentDidUpdate()
+  {
+    this.props.eventpage_bg();
+    var self = this;
+    var category = this.props.navigation
+      .getParam("category", "Cultural")
+      .toLowerCase();
+    var sub_event = this.props.navigation.getParam("eventName", "aagaaz");
+    console.log(sub_event)
+
+    var link = `https://api.snu-breeze.com/api/${category}_events_get/details/?name=${sub_event}`;
+    //link = link.replace(/[ ]/g, "%20");
+
+    fetch(link, {
+      headers: new Headers({
+        Accept: "application/json"
+      })
+    }).then(async res => {
+      // handle success
+      // console.log(response.data.name);
+      var response = await res.json();
+      // console.log(response);
+      //console.log(response.name)
+      this.setState({
+        ...response,
+        loaded: true
+      });
+
+    });
+  }
+
   render() {
 
     if(this.state.loaded)
@@ -137,29 +168,24 @@ class SpokenWordsPoetry extends Component {
                     stylesheet={{
                       p: {
                         color: "#fff",
-                        textTransform: "uppercase",
                         textAlign: "center",
                         fontSize: 20,
                         marginTop: 0
                       },
                       div: {
                         color: "#fff",
-                        textTransform: "uppercase",
                         textAlign: "center",
                         fontSize: 20,
                         marginTop: 0
                       },
                       li: {
                         color: "#fff",
-        
-                        textTransform: "uppercase",
                         textAlign: "center",
                         fontSize: 20,
                         marginTop: 0
                       },
                       h3: {
                         margin: 0,
-                        textTransform: "uppercase",
                         textAlign: "center",
                         fontSize: 25,
                         color: Colors.gullyOrange,
@@ -168,7 +194,6 @@ class SpokenWordsPoetry extends Component {
                       },
                       ul: {
                         color: "#fff",
-                        textTransform: "uppercase",
                         textAlign: "center",
                         fontSize: 20,
                         marginTop: 0
@@ -189,23 +214,18 @@ class SpokenWordsPoetry extends Component {
               stylesheet={{
                 p: {
                   color: "#fff",
-  
-                  textTransform: "uppercase",
                   textAlign: "center",
                   fontSize: 20,
                   marginTop: 0
                 },
                 li: {
                   color: "#fff",
-  
-                  textTransform: "uppercase",
                   textAlign: "center",
                   fontSize: 20,
                   marginTop: 0
                 },
                 h3: {
                   margin: 0,
-                  textTransform: "uppercase",
                   textAlign: "center",
                   fontSize: 25,
                   color: Colors.gullyOrange,
@@ -214,15 +234,12 @@ class SpokenWordsPoetry extends Component {
                 },
                 ul: {
                   color: "#fff",
-                  textTransform: "uppercase",
                   textAlign: "center",
                   fontSize: 20,
                   marginTop: 0
                 },
                 div: {
                   color: "#fff",
-  
-                  textTransform: "uppercase",
                   textAlign: "center",
                   fontSize: 20,
                   marginTop: 0
