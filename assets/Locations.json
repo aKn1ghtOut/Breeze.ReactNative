@@ -1,0 +1,182 @@
+[
+    {
+        "name" : "Shiv Nadar University (Main Campus)",
+        "location": {
+            "latitude": 28.526475,
+            "longitude": 77.57562,
+            "latitudeDelta": 0.015,
+            "longitudeDelta": 0.015
+          }
+    },
+    {
+        "name" : "D Block",
+        "location": {
+            "latitude":28.525351,
+            "longitude": 77.575796,
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "C Block",
+        "location": {
+            "latitude":28.525829, 
+            "longitude": 77.575949,
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "B Block",
+        "location": {
+            "latitude":28.526295, 
+            "longitude":77.576474,
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "A Block",
+        "location": {
+            "latitude":28.526524, 
+            "longitude":77.577110,
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Central Vista",
+        "location": {
+            "latitude":28.526417, 
+            "longitude": 77.574992,
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Central Library",
+        "location": {
+            "latitude":28.525031,  
+            "longitude": 77.574421,
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Hostel 1A, 1B, 1C",
+        "location": {
+            "latitude":28.524451, 
+            "longitude": 77.573032,  
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Hostel 2A, 2B, 2C",
+        "location": {
+            "latitude":28.523032,  
+            "longitude": 77.573322,  
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Hostel 3A, 3B",
+        "location": {
+            "latitude":28.524998,   
+            "longitude": 77.570840,  
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Towers",
+        "location": {
+            "latitude":28.528523,    
+            "longitude": 77.576968,  
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "DH1",
+        "location": {
+            "latitude":28.523763,    
+            "longitude":  77.573465,  
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "DH2",
+        "location": {
+            "latitude":28.524474,     
+            "longitude": 77.570241,  
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "DH3",
+        "location": {
+            "latitude":28.529583,     
+            "longitude":  77.580403, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Health and Wellness Centre",
+        "location": {
+            "latitude":28.527127,      
+            "longitude": 77.572603, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Basketball Grounds",
+        "location": {
+            "latitude":28.524214,      
+            "longitude":  77.571165, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Indoor Sports Centre",
+        "location": {
+            "latitude":28.521414,       
+            "longitude":  77.571047, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Inner Gate",
+        "location": {
+            "latitude":28.525566,       
+            "longitude":  77.571650, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Main Gate",
+        "location": {
+            "latitude":28.533426,       
+            "longitude": 77.576355, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    },
+    {
+        "name" : "Main Stage Arena",
+        "location": {
+            "latitude":28.526035,       
+            "longitude": 77.572035, 
+            "latitudeDelta": 0.003,
+            "longitudeDelta": 0.003
+          }
+    }
+]

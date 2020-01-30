@@ -89,35 +89,40 @@ function ScheduleDays(props) {
       event: "HackData",
       time: "10:00 - ",
       venue: "B012, B016",
-      category: "technical"
+      category: "technical",
+      locationIndex:  3
     },
     {
       title: "Bipartisan",
       event: "Bipartisan - the turncoat event",
       time: "12:00 - 16:00",
       venue: "C021",
-      category: "technical"
+      category: "technical",
+      locationIndex: 2
     },
     {
       title: "Render",
       event: "Render",
       time: "12:00 - 17:00",
       venue: "Main Stage Arena",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 19
     },
     {
       title: "Envision",
       event: "En-Vision",
       time: "12:00 - 17:00",
       venue: "D330",
-      category: "technical"
+      category: "technical",
+      locationIndex: 1
     },
     {
       title: "Into the Night",
       event: "Into the Night",
       time: "22:00 - ",
       venue: "Library Front Side",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 6
     }
   ];
 
@@ -127,133 +132,152 @@ function ScheduleDays(props) {
       event: "Raw N Rugged",
       time: "09:00 - 12:00",
       venue: "B315",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 3
     },
     {
       title: "Hack IEEE",
       event: "<hack.ieee>",
       time: "09:00 - 18:00",
       venue: "Embedded Labs",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 2
     },
     {
       title: "Acoustyx(Solo Vocal)",
       event: "Acoustyx",
       time: "09:30 - 12:30",
       venue: "D022, D026",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 1
     },
     {
       title: "Verbatim",
       event: "Verbatim",
       time: "10:00 - ",
       venue: "D330",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 1
     },
     {
       title: "The Gully Games(Fair)",
       event: "none",
       time: "10:00 - ",
       venue: "Library Path",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 6
     },
     {
       title: "HackData 4.0",
       event: "HackData",
       time: "10:00 - 14:00",
       venue: "B012, B016",
-      category: "technical"
+      category: "technical",
+      locationIndex: 3
     },
     {
-      title: "Materchef 2.0",
-      event: "MaterChef 2.0",
+      title: "Masterchef 2.0",
+      event: "MasterChef 2.0",
       time: "10:00 - 18:00",
       venue: "DH2",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 12
     },
     {
       title: "Into the Night",
       event: "Into the Night",
       time: "22:30 - ",
       venue: "Library Front Side",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 6
     },
     {
       title: "Graffiti",
       event: "Graffiti",
       time: "11:00 - 14:00",
       venue: "Central Path",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 5
     },
     {
       title: "Lawyer Up",
       event: "Lawyer Up",
       time: "11:00 - 17:00",
       venue: "D326",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 1
     },
     {
       title: "FIFA",
       event: "FIFA Tournament",
       time: "12:00 - 16:00",
       venue: "B012",
-      category: "technical"
+      category: "technical",
+      locationIndex: 3
     },
     {
       title: "Line Follower",
       event: "Line Follower",
       time: "12:00 - 16:00",
       venue: "In Front of DSA",
-      category: "technical"
+      category: "technical",
+      locationIndex: 1
     },
     {
       title: "Rally Race",
       event: "Into the Night",
       time: "12:00 - 16:00",
       venue: "In Front of Library",
-      category: "technical"
+      category: "technical",
+      locationIndex: 6
     },
     {
       title: "Speed Climbing",
       event: "none",
       time: "12:30 - 18:00",
       venue: "Indoor Sports Complex",
-      category: "sports"
+      category: "sports",
+      locationIndex: 16
     },
     {
       title: "No Strings Attached(Acappela)",
       event: "No Strings Attached",
       time: "12:30 - 15:30",
       venue: "C021",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 2
     },
     {
       title: "Dance Boulevard(Group dance)",
       event: "Bounce Boulevard",
       time: "12:30 - 17:00",
       venue: "Main Stage Arena",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 19
     },
     {
       title: "Obstacle Race",
       event: "Obstacle race",
       time: "13:00 - 17:00",
       venue: "Mount SNU",
-      category: "technical"
+      category: "technical",
+      locationIndex: 2
     },
     {
       title: "Bhasad( Stand Up Comedy)",
       event: "Bhasad",
       time: "14:00 - 16:00",
       venue: "D217",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 1
     },
     {
       title: "Rap Battle",
       event: "Rap Battle",
       time: "16:00 - 19:00",
       venue: "Library Stairs",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 6
     }
   ];
 
@@ -263,105 +287,120 @@ function ScheduleDays(props) {
       event: "Verbatim",
       time: "10:00 - ",
       venue: "D330",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 1
     },
     {
       title: "The Gully Games(Fair)",
       event: "none",
       time: "10:00 - ",
       venue: "Library Path",
-      category: ""
+      category: "",
+      locationIndex: 6
     },
     {
       title: "Spin-a-Yarn",
       event: "Spin A Yarn",
       time: "11:00 - 13:00",
       venue: "D026",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 1
     },
     {
       title: "Staccato",
       event: "Staccato (Instrumental Solo)",
       time: "11:00 - 14:00",
       venue: "B315",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 3
     },
     {
       title: "Green Hunt",
       event: "none",
       time: "11:00 - 14:00",
       venue: "Main Stage Arena",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 19
     },
     {
       title: "Live Sketching",
       event: "Live Sketching",
       time: "11:00 - 14:00",
       venue: "Central Vista",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 5
     },
     {
       title: "Slam Poetry",
       event: "Slam Poetry",
       time: "11:00 - 15:00",
       venue: "A-B Atrium",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 4
     },
     {
       title: "Aaagaz(Nukkad Natak)",
       event: "Aagaz",
       time: "11:00 - 16:00",
       venue: "In Front of Library",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 6
     },
     {
       title: "Countdown",
       event: "Countdown",
       time: "12:00 - 15:00",
-      venue: "Do22",
-      category: "technical"
+      venue: "D022",
+      category: "technical",
+      locationIndex: 1
     },
     {
       title: "Counter Strike",
       event: "Counter Strike",
       time: "12:30 - 17:30",
       venue: "D106, D110",
-      category: "technical"
+      category: "technical",
+      locationIndex: 1
     },
     {
       title: "Scavenger Vortex",
       event: "Scavenger Vortex:42",
       time: "10:00 - 17:00",
       venue: "D007, D006, D003, Central Vista",
-      category: "technical"
+      category: "technical",
+      locationIndex: 1
     },
     {
       title: "Crescendo",
       event: "Crescendo (Battle of the Bands)",
       time: "13:00 - 16:30",
       venue: "Main Stage Arena",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 19
     },
     {
       title: "Gully Games(Quiz)",
       event: "Gully Games (A Sports Quiz)",
       time: "15:00 - 18:00",
       venue: "B315",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 3
     },
     {
       title: "Music Art",
       event: "Music Art",
       time: "15:00 - 18:00",
       venue: "B009",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 3
     },
     {
       title: "BuildUp",
       event: "The Build Up",
       time: "11:00 - 17:00",
       venue: "A317, A318, A309, A313",
-      category: "cultural"
+      category: "cultural",
+      locationIndex: 4
     }
   ];
 
@@ -378,6 +417,13 @@ function ScheduleDays(props) {
         category: category
       });
     
+  }
+
+  function goToLoc(locationIndex){
+    console.log(locationIndex)
+    props.navigation.navigate("ReactNativeMaps",{
+      locationIndex: locationIndex
+    })
   }
 
   if (props.day == "1") dayViewed = day1;
@@ -408,7 +454,7 @@ function ScheduleDays(props) {
               }}
               color={Colors.gullyGreen}
             />
-            <Text style={{ ...styles.screenText, color: Colors.gullyGreen }}>
+            <Text style={{ ...styles.screenText, color: Colors.gullyGreen }} onPress={() => goToLoc(e.locationIndex)}>
               {e.venue}
             </Text>
           </View>
