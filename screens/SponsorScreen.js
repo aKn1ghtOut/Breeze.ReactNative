@@ -176,11 +176,11 @@ class ContactScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.scroller}>
           <Text style={styles.logoText}>Contact Us</Text>
           {contacts}
 
-          <View style={styles.darkBG}>
+          <View style={{...styles.darkBG, marginBottom: 120}}>
             <Text
               style={{
                 ...styles.secondaryText,
@@ -235,6 +235,9 @@ const styles = StyleSheet.create({
     paddingTop: 70,
     paddingBottom: 0,
     backgroundColor: "rgba(0,0,0,0)"
+  },
+  scroller: {
+    paddingBottom: 120
   },
   logoText: {
     fontFamily: "just-fist",

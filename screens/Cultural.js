@@ -125,6 +125,7 @@ class Cultural extends Component {
           <ScrollView>
             <Text style={styles.logoText}>{this.state.mainCategory} events</Text>
             {eventList}
+            <View style={{marginBottom: 120}}/>
           </ScrollView>
         </View>
       );
@@ -149,6 +150,9 @@ const styles = StyleSheet.create({
     paddingTop: 70,
     paddingBottom: 0,
     backgroundColor: "rgba(0,0,0,0)"
+  },
+  scroller: {
+    paddingBottom: 120
   },
   logoText: {
     fontFamily: "just-fist",

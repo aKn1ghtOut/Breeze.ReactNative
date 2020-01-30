@@ -427,7 +427,7 @@ function ScheduleScreen(props) {
 
   return (
     <View style={styles.container}>
-      <ScrollView stickyHeaderIndices={[0,2,4]}>
+      <ScrollView stickyHeaderIndices={[0,2,4]} style={styles.scroller}>
         
           <View>
             <Text style={styles.logoText}>
@@ -451,7 +451,7 @@ function ScheduleScreen(props) {
             </Text>
           </View>
           <ScheduleDays day="3" navigation={props.navigation} />
-       
+          <View style={{marginBottom: 120}}/>
       </ScrollView>
     </View>
   );
@@ -468,6 +468,9 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     flexDirection: "column",
     backgroundColor: "rgba(0,0,0,0)",
+  },
+  scroller: {
+    paddingBottom: 120
   },
   screenText: {
     color: "#FFFFFF",

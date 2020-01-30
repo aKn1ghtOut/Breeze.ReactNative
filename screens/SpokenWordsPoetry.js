@@ -31,12 +31,10 @@ class SpokenWordsPoetry extends Component {
 
   componentDidMount() {
     this.props.eventpage_bg();
-    var self = this;
     var category = this.props.navigation
       .getParam("category", "Cultural")
       .toLowerCase();
     var sub_event = this.props.navigation.getParam("eventName", "aagaaz");
-    console.log(sub_event)
 
     var link = `https://api.snu-breeze.com/api/${category}_events_get/details/?name=${sub_event}`;
     //link = link.replace(/[ ]/g, "%20");
@@ -65,15 +63,13 @@ class SpokenWordsPoetry extends Component {
     this.props.eventpage_bg();
   }
 
-  componentDidUpdate()
+  componentWillReceiveProps(props)
   {
     this.props.eventpage_bg();
-    var self = this;
-    var category = this.props.navigation
+    var category = props.navigation
       .getParam("category", "Cultural")
       .toLowerCase();
-    var sub_event = this.props.navigation.getParam("eventName", "aagaaz");
-    console.log(sub_event)
+    var sub_event = props.navigation.getParam("eventName", "aagaaz");
 
     var link = `https://api.snu-breeze.com/api/${category}_events_get/details/?name=${sub_event}`;
     //link = link.replace(/[ ]/g, "%20");
@@ -101,7 +97,7 @@ class SpokenWordsPoetry extends Component {
     if(this.state.loaded)
     return (
       <View style={styles.container}>
-        <ScrollView style={{flex: 1}}>
+        <ScrollView style={{...styles.scroller,flex: 1}}>
           <View style={styles.darkBG} >
             
             <Text
@@ -274,6 +270,7 @@ class SpokenWordsPoetry extends Component {
               {this.state.person_of_contactno}
             </Text>
           </View>
+          <View style={{marginBottom: 120}}/>
         </ScrollView>
       </View>
     );
@@ -295,12 +292,16 @@ SpokenWordsPoetry.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 35,
+    padding: 10,
+    paddingTop: 35,
     paddingBottom: 0,
     flexDirection: "row",
     backgroundColor: "rgba(0,0,0,0)",
     alignItems: "center",
     justifyContent: "center"
+  },
+  scroller: {
+    paddingBottom: 120
   },
   logoText: {
     fontFamily: "just-fist",

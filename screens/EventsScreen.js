@@ -233,11 +233,15 @@ ScheduleScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
+    marginBottom: 120,
     paddingBottom: 0,
     flexDirection: "column",
     backgroundColor: "rgba(0,0,0,0)",
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height - 150
+  },
+  scroller: {
+    paddingBottom: 120
   },
   buttonRow: {
     flexDirection: "row",
