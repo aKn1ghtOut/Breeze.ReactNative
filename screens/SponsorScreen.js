@@ -1,235 +1,75 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, View, Linking } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Linking,
+  Image,
+  TouchableOpacity
+} from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
-import {home_bg} from "../redux/actions/UI"
-import {withNavigationFocus} from "react-navigation"
+import { home_bg } from "../redux/actions/UI";
+import { withNavigationFocus } from "react-navigation";
 
-// SPONSORS IMAGES
-import townscript from "../assets/sponsors/townscript.svg"
-import duassassin from "../assets/sponsors/duassassins.png"
-import duexpress from "../assets/sponsors/duexpress.png"
-import dubeat from "../assets/sponsors/dubeat.jpg"
-import ed from "../assets/sponsors/ed.png"
-import feevin from "../assets/sponsors/duexpress.png"
-import ATKT from "../assets/sponsors/ATKT.png"
-import socialrush from "../assets/sponsors/social-rush.jpg"
-import fiest from "../assets/sponsors/fiesto_nobg.png"
-import duvibes from "../assets/sponsors/duvibes.jpg"
-import educationtree from "../assets/sponsors/education-tree.png"
-import noidadairy from "../assets/sponsors/noidadiary.png"
-import newsaurchai from "../assets/sponsors/newsaurchai.png"
-import afflatus from "../assets/sponsors/duexpress.png"
-import insider from "../assets/sponsors/insider.png"
-import grabon from "../assets/sponsors/GrabOn.png"
-import bme from "../assets/sponsors/bme.jpg"
-import rani from "../assets/sponsors/rani.jpg"
-import Cornitos from "../assets/sponsors/Cornitos.png"
-import brewhouse from "../assets/sponsors/brewhouse.png"
-import longshot2 from "../assets/sponsors/longshot-2.jpg"
+import Sponsors from "../assets/Sponsors.json";
 
 class SponsorsScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      people: [
-        {
-          name: "Balaji Vunnava",
-          position: "ChairPerson",
-          phone: "7042049395",
-          email: "bv808@snu.edu.in"
-        },
-        {
-          name: "Mohnish Jagwani",
-          position: "Co-Chairperson",
-          phone: "8017035960",
-          email: "mj474@snu.edu.in"
-        },
-        {
-          name: "Rahul Goyal",
-          position: "Administrator",
-          phone: "9821400910",
-          email: "rg294@snu.edu.in"
-        },
-
-        {
-          name: "Anirudh Kaushik ",
-          position: "Technical Director",
-          phone: "9884983595",
-          email: "ak669@snu.edu.in"
-        },
-        {
-          name: "Madhur Gupta",
-          position: "Head of Finance",
-          phone: "9818245177",
-          email: "mg786@snu.edu.in"
-        },
-        {
-          name: "Mallika Gupta",
-          position: "Head of Public Relations",
-          phone: "9149392440",
-          email: "mg958@snu.edu.in"
-        },
-        {
-          name: "Sarath Chandra Mudigonda ",
-          position: "Head of Finance",
-          phone: "9884491080 ",
-          email: "sm261@snu.edu.in "
-        },
-        {
-          name: "Keval Sushruth",
-          position: "Sports Director",
-          phone: "8826243936",
-          email: "sk405@snu.edu.in"
-        },
-        {
-          name: "Kaustuv Acharyya ",
-          position: "Head of Public Relations",
-          phone: "9643427888",
-          email: "ka117@snu.edu.in"
-        },
-        {
-          name: "Abhinav Keshri",
-          position: "Cultural Director",
-          phone: "9835534434",
-          email: "ak825@snu.edu.in"
-        },
-        {
-          name: "Abhirami Reddy",
-          position: "Sports Director",
-          phone: "9515502260",
-          email: "ar197@snu.edu.in "
-        }
-      ]
+      sponsors: Sponsors
     };
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
     this.props.home_bg();
   }
 
-  componentDidUpdate()
-  {
-    if(this.props.isFocused)
-    this.props.home_bg();
+  componentDidUpdate() {
+    if (this.props.isFocused) this.props.home_bg();
+  }
+
+  goTo = (link, img) => {
+    link ? Linking.openURL(link) : null;
+  };
+
+  returnImage = (image) => {
+    var x = ("require('" + image + "')")
+    console.log(x)
+    return x
   }
 
   render() {
-    const contacts = this.state.people.map(e => (
-      <View style={{ ...styles.darkBG,  height: 180 }}>
-        <Text
-          style={{
-            ...styles.secondaryText,
-            ...styles.upperText,
-            ...styles.textCenter,
-            ...styles.headingText
-          }}
-        >
-          {e.name}
-        </Text>
-
-        <Text style={styles.normalText}>{e.position} </Text>
-
-        <Text
-          style={styles.normalText}
-          onPress={() => {
-            Linking.openURL(`tel:${e.phone}`);
-          }}
-        >
-          <Ionicons
-            name="md-phone-portrait"
-            size={20}
+    const partners = this.state.sponsors.map((partner, index) => (
+      <View key={index} style={{marginVertical: 30}}>
+        <TouchableOpacity onPress={() => this.goTo(partner.link, partner.img)}>
+          <Text style={styles.textHeading}>{partner.name}</Text>
+          <Image
+            source={require("../assets/sponsors/duassassins.png")}
             style={{
-              marginRight: 10
+              resizeMode: "contain",
+              width: 350,
+              height: 150,
+              marginVertical: 15
             }}
-            color="#0077ff"
           />
-          {"   " + e.phone + "   "}
-          <Ionicons
-            name="md-link"
-            size={20}
-            style={{
-              marginRight: 10
-            }}
-            color="#0077ff"
-          />
-        </Text>
-
-        <Text
-          style={styles.normalText}
-          onPress={() => {
-            Linking.openURL(`mailto:${e.email}`);
-          }}
-        >
-          <Ionicons
-            name="md-mail"
-            size={20}
-            style={{
-              marginRight: 10
-            }}
-            color="#0077ff"
-          />
-          {"   " + e.email + "   "}
-          <Ionicons
-            name="md-link"
-            size={20}
-            style={{
-              marginRight: 10
-            }}
-            color="#0077ff"
-          />
-        </Text>
+          <Text style={styles.normalText}>{partner.title}</Text>
+        </TouchableOpacity>
       </View>
     ));
 
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <Text style={styles.logoText}>Contact Us</Text>
-          {contacts}
-
-          <View style={styles.darkBG}>
-            <Text
-              style={{
-                ...styles.secondaryText,
-                ...styles.upperText,
-                fontSize: 25
-              }}
-            >
-              Reach Us At
-            </Text>
-            <Text
-              style={{ ...styles.normalText, fontSize: 15 }}
-              onPress={() => {
-                Linking.openURL("mailto: breeze@snu.edu.in");
-              }}
-            >
-              <Ionicons name="md-mail" size={20} color="#0077ff" />
-              {"   "}
-              breeze@snu.edu.in
-              {"   "}
-              <Ionicons name="md-link" size={20} color="#0077ff" />
-            </Text>
-
-            <Text
-              style={{
-                ...styles.secondaryText,
-                ...styles.upperText,
-                fontSize: 25,
-                marginTop: 10
-              }}
-            >
-              Addressing
-            </Text>
-            <Text style={{ ...styles.normalText, fontSize: 15 }}>
-              Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
-              Uttar Pradesh - 201315
-            </Text>
-          </View>
-        </ScrollView>
+        <View style={styles.darkBG}>
+          <ScrollView>
+            <Text style={styles.logoText}>Our Partners</Text>
+            {partners}
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -267,32 +107,20 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginTop: 15
   },
-  primaryText: {
-    color: Colors.gullyRed,
-    fontSize: 20
-  },
-  secondaryText: {
+  textHeading: {
     color: Colors.gullyOrange,
-    fontSize: 15
-  },
-  upperText: {
-    textTransform: "uppercase"
-  },
-  headingText: {
+    fontSize: 30,
+    fontWeight: "bold",
     fontFamily: "axiforma-bold",
-    fontSize: 30
-  },
-  textCenter: {
+    textTransform: "uppercase",
     textAlign: "center"
   },
   normalText: {
+    fontFamily: "axiforma-bold",
+    fontSize: 20,
     color: "#fff",
-    marginTop: 5,
-    marginBottom: 5,
-    textTransform: "uppercase",
-    textAlign: "center",
-    fontSize: 20
+    textAlign: 'center'
   }
 });
 
-export default connect(null, {home_bg})(withNavigationFocus(SponsorsScreen));
+export default connect(null, { home_bg })(withNavigationFocus(SponsorsScreen));
