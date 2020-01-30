@@ -119,7 +119,6 @@ class ContactScreen extends Component {
         >
           {e.name}
         </Text>
-
         <Text style={styles.normalText}>{e.position} </Text>
 
         <Text

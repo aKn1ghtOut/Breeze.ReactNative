@@ -18,13 +18,13 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
 import Colors from "../constants/Colors";
-import CulturalBg from "../assets/images/events_bg/cultural.png"
-import SportsBg from "../assets/images/events_bg/sports_mob.png"
-import TechnicalBg from "../assets/images/events_bg/technical.png"
+import CulturalBg from "../assets/images/events_bg/cultural.png";
+import SportsBg from "../assets/images/events_bg/sports_mob.png";
+import TechnicalBg from "../assets/images/events_bg/technical.png";
 import { connect } from "react-redux";
-import {withNavigationFocus} from "react-navigation"
+import { withNavigationFocus } from "react-navigation";
 
-import {sports_bg, cultural_bg, technical_bg} from "../redux/actions/UI"
+import { sports_bg, cultural_bg, technical_bg } from "../redux/actions/UI";
 
 function mod(val, num) {
   val = val % num;
@@ -108,14 +108,12 @@ function ScheduleScreen(props) {
   };
 
   useEffect(() => {
-    if(!props.isFocused)
-    return
-    switch(selected)
-    {
+    if (!props.isFocused) return;
+    switch (selected) {
       case 0:
         props.cultural_bg();
         break;
-      
+
       case 1:
         props.technical_bg();
         break;
@@ -127,7 +125,7 @@ function ScheduleScreen(props) {
       default:
         props.cultural_bg();
     }
-  }, [selected, props.isFocused])
+  }, [selected, props.isFocused]);
 
   const openList = category => {
     console.log(
@@ -136,6 +134,10 @@ function ScheduleScreen(props) {
       })
     );
   };
+
+  const openMap = () => {
+    props.navigation.navigate("ReactNativeMaps")
+  }
 
   return (
     <GestureRecognizer
@@ -156,7 +158,9 @@ function ScheduleScreen(props) {
             position={selected === 0 ? 1 : selected === 1 ? 0 : 2}
           >
             <Text style={styles.heading}>Cultural</Text>
-            <Text style={styles.normalText}>A plethora of events to invoke the talented you</Text>
+            <Text style={styles.normalText}>
+              A plethora of events to invoke the talented you
+            </Text>
             <Image style={styles.eventBackPic} source={CulturalBg} />
             <Text
               style={styles.screenText}
@@ -164,13 +168,21 @@ function ScheduleScreen(props) {
             >
               Explore
             </Text>
+            <Text
+              style={styles.screenText}
+              onPress={() => openMap()}
+            >
+              MAP
+            </Text>
           </DayViewScreen>
           <DayViewScreen
             selected={selected === 1}
             position={selected === 0 ? 2 : selected === 1 ? 1 : 0}
           >
-          <Text style={styles.heading}>Technical</Text>
-          <Text style={styles.normalText}>Hurry up and ace the game, before it's obsolete!</Text>
+            <Text style={styles.heading}>Technical</Text>
+            <Text style={styles.normalText}>
+              Hurry up and ace the game, before it's obsolete!
+            </Text>
             <Image style={styles.eventBackPic} source={TechnicalBg} />
             <Text
               style={styles.screenText}
@@ -183,8 +195,10 @@ function ScheduleScreen(props) {
             selected={selected === 2}
             position={selected === 0 ? 0 : selected === 1 ? 2 : 1}
           >
-          <Text style={styles.heading}>Sports</Text>
-          <Text style={styles.normalText}>Score the goal, the ball is now in your court!</Text>
+            <Text style={styles.heading}>Sports</Text>
+            <Text style={styles.normalText}>
+              Score the goal, the ball is now in your court!
+            </Text>
             <Image style={styles.eventBackPic} source={SportsBg} />
             <Text style={styles.screenText} onPress={() => openList("Sports")}>
               Explore
@@ -282,7 +296,7 @@ const styles = StyleSheet.create({
   },
   eventBackPic: {
     position: "absolute",
-    width: Dimensions.get("window").width ,
+    width: Dimensions.get("window").width,
     height: Dimensions.get("window").height - 350,
     bottom: -180,
     left: 0,
@@ -313,4 +327,8 @@ const styles = StyleSheet.create({
 
 const MapStateToProps = state => ({});
 
-export default connect(MapStateToProps, {sports_bg, cultural_bg, technical_bg})(withNavigationFocus(ScheduleScreen));
+export default connect(MapStateToProps, {
+  sports_bg,
+  cultural_bg,
+  technical_bg
+})(withNavigationFocus(ScheduleScreen));

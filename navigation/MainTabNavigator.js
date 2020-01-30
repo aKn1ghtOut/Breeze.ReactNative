@@ -13,6 +13,7 @@ import EventsList from '../screens/Cultural'
 import ScheduleScreen from '../screens/ScheduleScreen';
 import ContactScreen from "../screens/ContactScreen";
 import SponsorScreen from "../screens/SponsorScreen"
+import ReactNativeMaps from "../screens/ReactNativeMaps"
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -54,7 +55,8 @@ const MoreStack = createStackNavigator(
   {
     Events: EventsScreen,
     EventPage: EventPage,
-    EventsList: EventsList
+    EventsList: EventsList,
+    ReactNativeMaps: ReactNativeMaps
   },
   config
 );

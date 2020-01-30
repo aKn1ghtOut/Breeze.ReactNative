@@ -6,19 +6,30 @@ import { connect } from "react-redux";
 import {home_bg} from "../redux/actions/UI"
 import {withNavigationFocus} from "react-navigation"
 
-// export default function ContactScreen() {
-//   return (
-//     <ScrollView style={styles.container}>
-//       {/**
-//        * Make this as similar to the web Contact page as possible,
-//        * with pull-to-refresh, search, etc
-//        */}
-//        <Text>Hey</Text>
-//     </ScrollView>
-//   );
-// }
+// SPONSORS IMAGES
+import townscript from "../assets/sponsors/townscript.svg"
+import duassassin from "../assets/sponsors/duassassins.png"
+import duexpress from "../assets/sponsors/duexpress.png"
+import dubeat from "../assets/sponsors/dubeat.jpg"
+import ed from "../assets/sponsors/ed.png"
+import feevin from "../assets/sponsors/duexpress.png"
+import ATKT from "../assets/sponsors/ATKT.png"
+import socialrush from "../assets/sponsors/social-rush.jpg"
+import fiest from "../assets/sponsors/fiesto_nobg.png"
+import duvibes from "../assets/sponsors/duvibes.jpg"
+import educationtree from "../assets/sponsors/education-tree.png"
+import noidadairy from "../assets/sponsors/noidadiary.png"
+import newsaurchai from "../assets/sponsors/newsaurchai.png"
+import afflatus from "../assets/sponsors/duexpress.png"
+import insider from "../assets/sponsors/insider.png"
+import grabon from "../assets/sponsors/GrabOn.png"
+import bme from "../assets/sponsors/bme.jpg"
+import rani from "../assets/sponsors/rani.jpg"
+import Cornitos from "../assets/sponsors/Cornitos.png"
+import brewhouse from "../assets/sponsors/brewhouse.png"
+import longshot2 from "../assets/sponsors/longshot-2.jpg"
 
-class ContactScreen extends Component {
+class SponsorsScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -224,7 +235,7 @@ class ContactScreen extends Component {
   }
 }
 
-ContactScreen.navigationOptions = {
+SponsorsScreen.navigationOptions = {
   header: null
 };
 
@@ -284,4 +295,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, {home_bg})(withNavigationFocus(ContactScreen));
+export default connect(null, {home_bg})(withNavigationFocus(SponsorsScreen));
