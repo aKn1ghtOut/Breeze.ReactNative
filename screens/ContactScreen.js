@@ -175,7 +175,7 @@ class ContactScreen extends Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView>
+        <ScrollView style={styles.scroller}>
           <Text style={styles.logoText}>Contact Us</Text>
           {contacts}
 
@@ -217,6 +217,7 @@ class ContactScreen extends Component {
               Uttar Pradesh - 201315
             </Text>
           </View>
+          <View style={{marginBottom: 120}}/>
         </ScrollView>
       </View>
     );
@@ -234,6 +235,9 @@ const styles = StyleSheet.create({
     paddingTop: 70,
     paddingBottom: 0,
     backgroundColor: "rgba(0,0,0,0)"
+  },
+  scroller: {
+    paddingBottom: 120
   },
   logoText: {
     fontFamily: "just-fist",

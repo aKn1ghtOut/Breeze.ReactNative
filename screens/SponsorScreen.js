@@ -87,6 +87,9 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     backgroundColor: "rgba(0,0,0,0)"
   },
+  scroller: {
+    paddingBottom: 120
+  },
   logoText: {
     fontFamily: "just-fist",
     fontSize: 60,

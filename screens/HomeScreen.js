@@ -25,8 +25,49 @@ const pWrapper = (method) => {
 
 function HomeScreen(props) {
 
-  const [LogoRotate] = useState(new Animated.Value(0))
-  const [MarginV] = useState(new Animated.Value(0))
+  const [LogoRotate] = useState(new Animated.Value(0));
+  const [MarginV] = useState(new Animated.Value(0));
+  const [NewsItems, setNewsItems] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const reloadNews = async() => {
+    try{
+      setRefreshing(true);
+      const res = await fetch("https://spreadsheets.google.com/feeds/cells/1si3-h4Vsmitn4Yh_lU7owfVJFNQTHmyIb3n92q8Sh4k/1/public/values?alt=json");
+      const resp = await res.json();
+      const values = resp.feed.entry;
+      console.log(Array.isArray(values));
+      const rows = values.reduce((accumulator, val) => {
+        if(!Array.isArray(accumulator))
+        accumulator = [[accumulator]];
+        let index = accumulator.length - 1;
+        if(accumulator[index].length == 5)
+        {
+          accumulator.push([]);
+          index++;
+        }
+        accumulator[index].push(val);
+        return accumulator;
+      });
+
+      console.log(JSON.stringify(rows));
+
+      if(rows.length == 0)
+      {
+        setNewsItems("No News")
+        return;
+      }
+
+      setNewsItems(rows);
+      setRefreshing(false);
+    }
+    catch(e)
+    {
+      console.log(e);
+      setRefreshing(false);
+      setNewsItems("Couldn't retreive news")
+    }
+  }
 
   const start = async() =>{
     props.home_bg();
@@ -68,48 +109,52 @@ function HomeScreen(props) {
       MarginV.setValue(0);
     }
     else
-    start()
+    {
+      start()
+      reloadNews()
+    }
   }, [props.isFocused]);
 
   const degrees = Animated.concat(LogoRotate, "deg")
 
-  const news = 
-    (
-      <View style={styles.darkBG}>
+  const news = Array.isArray(NewsItems) && NewsItems.slice(1).map((newsItem, index) => (
+      <View style={styles.darkBG} key={"News" + index}>
         <View style={styles.innerView}>
           <Text style={{...styles.teamName}}>
-            TEAM 1
+            {newsItem[1].content["$t"]}
           </Text>
           <Text style={styles.inBetween}>
             vs
           </Text>
           <Text style={{...styles.teamName}}>
-            TEAM 2
+            {newsItem[2].content["$t"]}
           </Text>
         </View>
         <Text style={styles.eventName}>
-          Football
+          {newsItem[0].content["$t"]}
         </Text>
         <View style={styles.innerView}>
           <Text style={{...styles.teamName}}>
-            1
+            {newsItem[3].content["$t"]}
           </Text>
           <Text style={styles.inBetween}>
             -
           </Text>
           <Text style={{...styles.teamName}}>
-            2
+            {newsItem[4].content["$t"]}
           </Text>
         </View>
       </View>
     )
+  );
   
 
   return (
     <View style={styles.container}>
       <ScrollView
+        style={styles.scroller}
         refreshControl={
-          <RefreshControl refreshing={false} onRefresh={null}/>
+          <RefreshControl refreshing={refreshing} onRefresh={reloadNews}/>
         }
       >
         <Animated.View
@@ -144,10 +189,8 @@ function HomeScreen(props) {
         }}>
           GULLY NEWS
         </Text>
-
-        <ScrollView>
           {news}
-        </ScrollView>
+          <View style={{marginBottom: 120}}/>
          
       </ScrollView>
     </View>
@@ -161,7 +204,11 @@ HomeScreen.navigationOptions = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor : "rgba(0,0,0,0)"
+    backgroundColor : "rgba(0,0,0,0)",
+    paddingTop: 40
+  },
+  scroller: {
+    paddingBottom: 120
   },
   BreezeLogo : {
     width: 300,
@@ -189,9 +236,11 @@ const styles = StyleSheet.create({
   teamName: {
     color: "#41f988",
     fontFamily: "axiforma-bold",
-    fontSize: 25,
+    fontSize: 20,
     textAlign: "center",
-    margin: 10
+    margin: 10,
+    flexWrap: "wrap",
+    flexShrink: 1
   },
   inBetween: {
     color: Colors.gullyRed,
@@ -203,7 +252,7 @@ const styles = StyleSheet.create({
   eventName: {
     fontFamily: "just-fist",
     color: Colors.gullyOrange,
-    fontSize: 40,
+    fontSize: 20,
     textAlign: "center"
   }
 });

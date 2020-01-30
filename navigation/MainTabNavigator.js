@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 
+import MoreScreen from "../screens/MoreScreen"
+
 import EventsScreen from '../screens/EventsScreen';
 import EventPage from "../screens/SpokenWordsPoetry";
 import EventsList from '../screens/Cultural'
@@ -53,6 +55,7 @@ HomeStack.path = '';
 
 const MoreStack = createStackNavigator(
   {
+    More : MoreScreen,
     Events: EventsScreen,
     EventPage: EventPage,
     EventsList: EventsList,
@@ -73,7 +76,7 @@ MoreStack.navigationOptions = {
   labelStyle: ({focused}) => ({
     color: focused ? "#ECBA09" : "white"
   }),
-  initialRouteName : "Events"
+  initialRouteName : "More"
 };
 
 MoreStack.path = '';
@@ -151,11 +154,16 @@ const tabNavigator = createBottomTabNavigator({
   initialRouteName : "HomeStack",
   tabBarOptions: {
     style : {
-      backgroundColor : "rgba(0,0,0,0.2)",
-      paddingTop : 20,
+      backgroundColor : "rgba(0,0,0,0.8)",
+      paddingTop : 10,
       paddingBottom : 20,
+      paddingHorizontal : 10,
       height : 100,
-      borderTopWidth : 0
+      borderTopWidth : 0,
+      margin: 10,
+      borderRadius: 15,
+      position: "absolute",
+      bottom: 0
     },
     tabStyle : {
       backgroundColor : "rgba(0,0,0,0)",
