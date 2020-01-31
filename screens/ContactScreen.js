@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, View, Linking } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Linking,
+  TouchableOpacity
+} from "react-native";
 import Colors from "../constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Entypo } from "@expo/vector-icons";
 import { connect } from "react-redux";
-import {home_bg} from "../redux/actions/UI"
-import {withNavigationFocus} from "react-navigation"
+import { home_bg } from "../redux/actions/UI";
+import { withNavigationFocus } from "react-navigation";
 
 // export default function ContactScreen() {
 //   return (
@@ -95,20 +102,23 @@ class ContactScreen extends Component {
     };
   }
 
-  componentDidMount()
-  {
+  componentDidMount() {
     this.props.home_bg();
   }
 
-  componentDidUpdate()
-  {
-    if(this.props.isFocused)
-    this.props.home_bg();
+  componentDidUpdate() {
+    if (this.props.isFocused) this.props.home_bg();
+  }
+
+  goToLoc = (locIndex) => {
+    this.props.navigation.navigate("ReactNativeMaps",{
+      locationIndex: locIndex
+    })
   }
 
   render() {
     const contacts = this.state.people.map((e, index) => (
-      <View style={{ ...styles.darkBG,  height: "auto" }} key={index}>
+      <View style={{ ...styles.darkBG, height: "auto" }} key={index}>
         <Text
           style={{
             ...styles.secondaryText,
@@ -210,14 +220,26 @@ class ContactScreen extends Component {
                 marginTop: 10
               }}
             >
-              Addressing
+              Address
             </Text>
-            <Text style={{ ...styles.normalText, fontSize: 15 }}>
-              Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
-              Uttar Pradesh - 201315
-            </Text>
+            <TouchableOpacity onPress={() => this.goToLoc(0)}>
+              <Text style={{ ...styles.normalText, fontSize: 15, flex: 1 }}>
+                <Entypo
+                  name="location-pin"
+                  size={20}
+                  style={{
+                    marginRight: 0,
+                    alignSelf: "center",
+                    flex: 1
+                  }}
+                  color={Colors.gullyGreen}
+                />
+                Shiv Nadar University NH - 91, Tehsil Dadri Gautam Buddha Nagar
+                Uttar Pradesh - 201315
+              </Text>
+            </TouchableOpacity>
           </View>
-          <View style={{marginBottom: 120}}/>
+          <View style={{ marginBottom: 120 }} />
         </ScrollView>
       </View>
     );
@@ -288,4 +310,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, {home_bg})(withNavigationFocus(ContactScreen));
+export default connect(null, { home_bg })(withNavigationFocus(ContactScreen));

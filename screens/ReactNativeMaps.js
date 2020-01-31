@@ -24,8 +24,7 @@ import { connect } from "react-redux";
 import { withNavigationFocus } from "react-navigation";
 import MapView, { Marker } from "react-native-maps";
 import CustomMapStyle from "../assets/CustomMapStyling.json";
-import Locations from "../assets/Locations.json"
-
+import Locations from "../assets/Locations.json";
 
 class ReactNativeMaps extends Component {
   state = {
@@ -39,34 +38,41 @@ class ReactNativeMaps extends Component {
 
   constructor(props) {
     super(props);
-    this.onValueChange = this.onValueChange.bind(this)
+    this.onValueChange = this.onValueChange.bind(this);
   }
 
-  componentDidMount(){
-    if(this.props.navigation.state.params.locationIndex)
+  componentDidMount() {
+    if (this.props.navigation.state.params.locationIndex)
       this.setState({
-        selectedRegion: Locations[this.props.navigation.state.params.locationIndex].location,
-        selected: Locations[this.props.navigation.state.params.locationIndex].name
-      })
-    console.log(Locations[this.props.navigation.state.params.locationIndex])
+        selectedRegion:
+          Locations[this.props.navigation.state.params.locationIndex].location,
+        selected:
+          Locations[this.props.navigation.state.params.locationIndex].name,
+        description:
+          Locations[this.props.navigation.state.params.locationIndex]
+            .description
+      });
   }
 
-  componentWillReceiveProps(props){
-    if(props.navigation.state.params.locationIndex)
+  componentWillReceiveProps(props) {
+    if (props.navigation.state.params.locationIndex)
       this.setState({
-        selectedRegion: Locations[props.navigation.state.params.locationIndex].location,
-        selected: Locations[props.navigation.state.params.locationIndex].name
-      })
+        selectedRegion:
+          Locations[props.navigation.state.params.locationIndex].location,
+        selected: Locations[props.navigation.state.params.locationIndex].name,
+        description:
+          Locations[props.navigation.state.params.locationIndex].description
+      });
   }
 
   onValueChange = (itemValue, itemIndex) => {
-      let location = Locations[itemIndex];
-      this.setState({
-          selectedRegion: location.location,
-          selected: itemValue
-      })
-      console.log(itemIndex)
-  }
+    let location = Locations[itemIndex];
+    this.setState({
+      selectedRegion: location.location,
+      selected: itemValue,
+      description: location.description
+    });
+  };
 
   render() {
     return (
@@ -82,36 +88,31 @@ class ReactNativeMaps extends Component {
               latitude: this.state.selectedRegion.latitude,
               longitude: this.state.selectedRegion.longitude
             }}
-            title="Shiv Nadar University"
-            description="Main campus string"
+            title={this.state.selected}
+            description={this.state.description}
             pinColor={Colors.gullyRed}
-            identifier="MainMarker"
           />
         </MapView>
         <View style={styles.picker}>
           <Text
             style={{
-              fontWeight: "bold"
+              fontWeight: "bold",
+              fontSize: 15
             }}
           >
             Go to :
           </Text>
           <Picker
             selectedValue={this.state.selected}
-            style={{}}
             onValueChange={this.onValueChange}
           >
-            {
-                Locations.map((l, index) => (
-                    
-                    <Picker.Item
-                        label={(index + 1) + ". " + l.name}
-                        value={l.name}
-                        key={index}
-                    />
-
-                ))
-            }
+            {Locations.map((l, index) => (
+              <Picker.Item
+                label={index + 1 + ". " + l.name}
+                value={l.name}
+                key={index}
+              />
+            ))}
           </Picker>
         </View>
       </View>

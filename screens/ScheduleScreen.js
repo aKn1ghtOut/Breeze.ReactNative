@@ -86,7 +86,7 @@ function ScheduleDays(props) {
   const day1 = [
     {
       title: "HackData 4.0",
-      event: "HackData",
+      event: "HackData 4.0",
       time: "10:00 - ",
       venue: "B012, B016",
       category: "technical",
@@ -420,7 +420,6 @@ function ScheduleDays(props) {
   }
 
   function goToLoc(locationIndex){
-    console.log(locationIndex)
     props.navigation.navigate("ReactNativeMaps",{
       locationIndex: locationIndex
     })

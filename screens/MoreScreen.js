@@ -31,6 +31,10 @@ class MoreScreen extends Component {
   {
   }
 
+  onPress = () => {
+    this.props.navigation.navigate("Events");
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -39,7 +43,7 @@ class MoreScreen extends Component {
             <Text style={styles.initTextView}>
               <Ionicons name="ios-bulb" size={40} color="#FFF"/>
             </Text>
-            <Text style={styles.initTextView}>
+            <Text style={styles.initTextView} onPress={this.onPress}>
               There's a lot happening this Breeze. Find out more about how you can make the best of it!
             </Text>
           </View>
