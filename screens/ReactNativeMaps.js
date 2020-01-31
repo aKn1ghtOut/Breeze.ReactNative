@@ -22,9 +22,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { eventpage_bg } from "../redux/actions/UI";
 import { connect } from "react-redux";
 import { withNavigationFocus } from "react-navigation";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, Callout } from "react-native-maps";
 import CustomMapStyle from "../assets/CustomMapStyling.json";
-import Locations from "../assets/Locations.json";
+import Locations from "../assets/Locations.json"
+
+const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
 
 class ReactNativeMaps extends Component {
   state = {
@@ -33,7 +35,9 @@ class ReactNativeMaps extends Component {
       longitude: 77.57562,
       latitudeDelta: 0.015,
       longitudeDelta: 0.015
-    }
+    },
+    selected: "Shiv Nadar University",
+    currentMarker: "Main Campus String"
   };
 
   constructor(props) {
@@ -80,8 +84,11 @@ class ReactNativeMaps extends Component {
         <MapView
           style={styles.mapStyle}
           region={this.state.selectedRegion}
+          mapType="hybrid"
           customMapStyle={CustomMapStyle}
-          showsUserstring={true}
+          showsUserLocation={true}
+          followsUserLocation={true}
+          showsMyLocationButton={true}
         >
           <Marker
             coordinate={{

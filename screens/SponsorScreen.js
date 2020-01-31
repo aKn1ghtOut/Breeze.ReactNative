@@ -6,7 +6,8 @@ import {
   View,
   Linking,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from "react-native";
 import Colors from "../constants/Colors";
 import { connect } from "react-redux";
@@ -179,8 +180,8 @@ class SponsorsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.darkBG}>
           <ScrollView>
-            <Text style={styles.logoText}>Our Partners</Text>
             {partners}
+            <View style={{marginBottom: 120}} />
           </ScrollView>
         </View>
       </View>
@@ -189,7 +190,16 @@ class SponsorsScreen extends Component {
 }
 
 SponsorsScreen.navigationOptions = {
-  header: null
+  title: "Our Partners",
+  headerStyle: {
+    backgroundColor: "#000"
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    color: "#FFF",
+    width: Dimensions.get("window").width - 40
+  },
 };
 
 const styles = StyleSheet.create({
@@ -218,10 +228,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   darkBG: {
-    backgroundColor: "rgba(25, 25, 25, 0.95)",
-    padding: 20,
-    borderRadius: 15,
-    marginTop: 15
+    backgroundColor: "#fff",
+    padding: 20
   },
   textHeading: {
     color: Colors.gullyOrange,

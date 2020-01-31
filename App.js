@@ -1,4 +1,5 @@
-import { AppLoading } from "expo";
+import { AppLoading, Notifications } from "expo";
+import * as Permissions from 'expo-permissions';
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
 import React, { useState, Component } from "react";
@@ -8,7 +9,8 @@ import {
   StyleSheet,
   View,
   ImageBackground,
-  Image
+  Image,
+  AsyncStorage
 } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
@@ -31,6 +33,46 @@ class ImageBG extends Component {
     technical_bg: require("./assets/images/backgrounds/technical_bg.png"),
     cultural_categories: require("./assets/images/backgrounds/cultural_categories.png")
   };
+
+  componentDidMount()
+  {
+    this.registerDevice();
+  }
+
+  async registerDevice()
+  {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    console.log(`Status : ${status}`);
+    if (status !== 'granted') {
+      console.log('No notification permissions!');
+      return;
+    }
+    let token = await Notifications.getExpoPushTokenAsync();
+    try {
+      const value = await AsyncStorage.getItem('registered');
+      console.log(`Value : ${value}`);
+      
+      if (value !== null)
+      return; //Already registered
+
+      const formData = new FormData();
+      formData.append("entry.1354444817", token);
+
+      var res = await fetch(
+        "https://docs.google.com/forms/d/e/1FAIpQLSdoidrJK7AD6GN-yIKzMtv2sVVBvalijAiaS06woJbA1qINQQ/formResponse",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
+
+      var resp = res.body;
+      console.log(resp);
+      await AsyncStorage.setItem('registered', 'done.');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   render() {
     return (
