@@ -22,10 +22,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { eventpage_bg } from "../redux/actions/UI";
 import { connect } from "react-redux";
 import { withNavigationFocus } from "react-navigation";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, Callout } from "react-native-maps";
 import CustomMapStyle from "../assets/CustomMapStyling.json";
 import Locations from "../assets/Locations.json"
 
+const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
 
 class ReactNativeMaps extends Component {
   state = {
@@ -35,6 +36,7 @@ class ReactNativeMaps extends Component {
       latitudeDelta: 0.015,
       longitudeDelta: 0.015
     },
+    selected: "Shiv Nadar University",
     currentMarker: "Main Campus String"
   };
 
@@ -44,16 +46,15 @@ class ReactNativeMaps extends Component {
   }
 
   componentDidMount(){
-    if(this.props.navigation.state.params.locationIndex)
+    if(this.props.navigation.getParam("locationIndex", false))
       this.setState({
         selectedRegion: Locations[this.props.navigation.state.params.locationIndex].location,
         selected: Locations[this.props.navigation.state.params.locationIndex].name
       })
-    console.log(Locations[this.props.navigation.state.params.locationIndex])
   }
 
   componentWillReceiveProps(props){
-    if(props.navigation.state.params.locationIndex)
+    if(props.navigation.getParam("locationIndex", false))
       this.setState({
         selectedRegion: Locations[props.navigation.state.params.locationIndex].location,
         selected: Locations[props.navigation.state.params.locationIndex].name
@@ -75,8 +76,11 @@ class ReactNativeMaps extends Component {
         <MapView
           style={styles.mapStyle}
           region={this.state.selectedRegion}
-          mapType="satellite"
-          showsUserstring={true}
+          mapType="hybrid"
+          customMapStyle={CustomMapStyle}
+          showsUserLocation={true}
+          followsUserLocation={true}
+          showsMyLocationButton={true}
         >
           <Marker
             coordinate={{
@@ -86,7 +90,50 @@ class ReactNativeMaps extends Component {
             title={this.state.selected || "Shiv Nadar University"}
             pinColor={Colors.gullyRed}
             identifier="MainMarker"
-          />
+          >
+            <Callout
+              tooltip={true}
+              onPress={() => {
+                const latLng = `${this.state.selectedRegion.latitude},${this.state.selectedRegion.longitude}`;
+                const label = this.state.selected;
+                const url = Platform.select({
+                  ios: `${scheme}${label}@${latLng}`,
+                  android: `${scheme}${latLng}(${label})`
+                });
+                Linking.openURL(url); 
+              }}
+            >
+              <TouchableHighlight>
+                <View
+                  style={{
+                    borderRadius: 10,
+                    backgroundColor: "#FFF",
+                    padding: 10
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: "bold",
+                      color: "#000",
+                      textAlign: "center",
+                      fontFamily: "axiforma-bold"
+                    }}
+                  >{this.state.selected}</Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: "bold",
+                      color: "#0077ff",
+                      textAlign: "center",
+                      textDecorationLine: "underline",
+                      fontFamily: "axiforma-bold"
+                    }}
+                  >Open on Google Maps</Text>
+                </View>
+              </TouchableHighlight>
+            </Callout>
+          </Marker>
         </MapView>
         <View style={styles.picker}>
           <Text

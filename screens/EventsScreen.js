@@ -151,7 +151,7 @@ function ScheduleScreen(props) {
         flex: 1
       }}
     >
-      <View style={{ flexDirection: "column" }}>
+      <View style={{ flexDirection: "column", height: Dimensions.get("window").height - 120}}>
         <View style={styles.container}>
           <DayViewScreen
             selected={selected === 0}
@@ -167,12 +167,6 @@ function ScheduleScreen(props) {
               onPress={() => openList("Cultural")}
             >
               Explore
-            </Text>
-            <Text
-              style={styles.screenText}
-              onPress={() => openMap()}
-            >
-              MAP
             </Text>
           </DayViewScreen>
           <DayViewScreen
@@ -260,6 +254,9 @@ const styles = StyleSheet.create({
   buttonRow: {
     flexDirection: "row",
     alignItems: "center",
+    position: "absolute",
+    width: Dimensions.get("window").width,
+    bottom: 200,
     height: 50,
     justifyContent: "space-between"
   },

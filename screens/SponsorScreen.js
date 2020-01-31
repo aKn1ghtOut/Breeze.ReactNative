@@ -6,7 +6,8 @@ import {
   View,
   Linking,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions
 } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -14,15 +15,9 @@ import { connect } from "react-redux";
 import { home_bg } from "../redux/actions/UI";
 import { withNavigationFocus } from "react-navigation";
 
-import Sponsors from "../assets/Sponsors.json";
-
 class SponsorsScreen extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      sponsors: Sponsors
-    };
   }
 
   componentDidMount() {
@@ -43,18 +38,135 @@ class SponsorsScreen extends Component {
     return x
   }
 
+  SponsorsArr = [
+    {
+        "title":"",
+        "name":"Townscript",
+        "img": require("../assets/sponsors/townscript.svg"),
+        "link":"https://www.townscript.com/in/india"
+    },
+    {
+        "title":"",
+        "name":"DU Assassin",
+        "img": require("../assets/sponsors/duassassins.png"),
+        "link":"https://duassassins.in/"
+    },
+    {
+        "title":"",
+        "name":"DU Express",
+        "img": require("../assets/sponsors/duexpress.png"),
+        "link":"https://duexpress.in/"
+    },
+    {
+        "title":"",
+        "name":"DU Beat",
+        "img": require("../assets/sponsors/dubeat.jpg"),
+        "link":"http://dubeat.com/"
+    },
+    {
+        "title":"",
+        "name":"ED Times",
+        "img": require("../assets/sponsors/ed.png"),
+        "link":"https://www.google.com/amp/s/www.edtimes.in/%3famp"
+    },
+    {
+        "title":"",
+        "name":"ATKT",
+        "img": require("../assets/sponsors/ATKT.png"),
+        "link":"https://atkt.in/"
+    },
+    {
+        "title":"",
+        "name":"Social Rush",
+        "img": require("../assets/sponsors/social-rush.jpg"),
+        "link":"https://thesocialrush.com/"
+    },
+    {
+        "title":"",
+        "name":"Fiesto",
+        "img": "../assets/sponsors/fiesto_nobg.png",
+        "link":"https://www.fiesto.live"
+    },
+    {
+        "title":"",
+        "name":"DU Vibe",
+        "img": require("../assets/sponsors/duvibes.jpg"),
+        "link":"https://m.facebook.com/DUVibes/"
+    },
+    {
+        "title":"",
+        "name":"Education Tree",
+        "img": require("../assets/sponsors/education-tree.png"),
+        "link":"https://m.facebook.com/theeducationtree?fref=ts"
+    },
+    {
+        "title":"",
+        "name":"Noida Diary",
+        "img": require("../assets/sponsors/noidadiary.png"),
+        "link":"http://www.noidadiary.in/"
+    },
+    {
+        "title":"Official Digital News Partner",
+        "name":"NewsAurChai",
+        "img": require("../assets/sponsors/newsaurchai.png"),
+        "link":"https://newsaurchai.com/"
+    },
+    {
+        "title":"",
+        "name":"Insider.In",
+        "img": require("../assets/sponsors/insider.png"),
+        "link":"https://insider.in/city-selector"
+    },
+    {
+        "title":"Official Saving Partner",
+        "name":"Grabon",
+        "img": require("../assets/sponsors/GrabOn.png"),
+        "link":"https://www.grabon.in/"
+    },
+    {
+        "title":"Official Ticketing Partner",
+        "name":"BME",
+        "img": require("../assets/sponsors/bme.jpg"),
+        "link":"https://www.bookmyevent.com/"
+    },
+    {
+        "title":"",
+        "name":"Rani",
+        "img": require("../assets/sponsors/rani.jpg"),
+        "link":"https://www.raniworld.com/"
+    },
+    {
+        "title":"",
+        "name":"Cornitos",
+        "img": require("../assets/sponsors/Cornitos.png"),
+        "link":"https://www.cornitos.in/"
+    },
+    {
+        "title":"",
+        "name":"Brew House",
+        "img": require("../assets/sponsors/brewhouse.png"),
+        "link":"https://m.facebook.com/brewhouseicetea/"
+    },
+    {
+        "title":"Official Gifting Partner",
+        "name":"The Official Longshot",
+        "img": require("../assets/sponsors/longshot-2.jpg"),
+        "link":"https://theofficiallongshot.com"
+    }
+  ]
+
   render() {
-    const partners = this.state.sponsors.map((partner, index) => (
-      <View key={index} style={{marginVertical: 30}}>
+    const partners = this.SponsorsArr.map((partner, index) => (
+      <View key={index} style={{marginVertical: 10, alignItems: "center"}}>
         <TouchableOpacity onPress={() => this.goTo(partner.link, partner.img)}>
           <Text style={styles.textHeading}>{partner.name}</Text>
           <Image
-            source={require("../assets/sponsors/duassassins.png")}
+            source={partner.img}
             style={{
               resizeMode: "contain",
-              width: 350,
-              height: 150,
-              marginVertical: 15
+              width: 300,
+              height: 100,
+              marginVertical: 10
             }}
           />
           <Text style={styles.normalText}>{partner.title}</Text>
@@ -66,8 +178,8 @@ class SponsorsScreen extends Component {
       <View style={styles.container}>
         <View style={styles.darkBG}>
           <ScrollView>
-            <Text style={styles.logoText}>Our Partners</Text>
             {partners}
+            <View style={{marginBottom: 120}} />
           </ScrollView>
         </View>
       </View>
@@ -76,16 +188,22 @@ class SponsorsScreen extends Component {
 }
 
 SponsorsScreen.navigationOptions = {
-  header: null
+  title: "Our Partners",
+  headerStyle: {
+    backgroundColor: "#000"
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    color: "#FFF",
+    width: Dimensions.get("window").width - 40
+  },
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 25,
-    paddingTop: 70,
     paddingBottom: 0,
-    backgroundColor: "rgba(0,0,0,0)"
   },
   scroller: {
     paddingBottom: 120
@@ -105,10 +223,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   darkBG: {
-    backgroundColor: "rgba(25, 25, 25, 0.95)",
-    padding: 20,
-    borderRadius: 15,
-    marginTop: 15
+    backgroundColor: "#fff",
+    padding: 20
   },
   textHeading: {
     color: Colors.gullyOrange,

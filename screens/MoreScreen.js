@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { ScrollView, StyleSheet, Text, View, Linking, Dimensions } from "react-native";
+import { ScrollView, StyleSheet, Text, View, Linking, Dimensions, PermissionsAndroid } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import {home_bg} from "../redux/actions/UI"
 import {withNavigationFocus} from "react-navigation"
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 // export default function ContactScreen() {
 //   return (
@@ -21,6 +22,34 @@ import {withNavigationFocus} from "react-navigation"
 class MoreScreen extends Component {
   constructor(props) {
     super(props);
+
+    this.openMaps = this.openMaps.bind(this);
+  }
+
+  menuItems = [
+    {
+      title : "Explore the events",
+      pageTo: "Events"
+    },
+    {
+      title : "Open the Campus Map",
+      pageTo: "ReactNativeMaps",
+      onPress: this.openMaps
+    }
+  ]
+
+  openMaps = async () => {
+    console.log("trying");
+    const granted = await PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION );
+
+    if (granted) {
+      console.log( "You can use the ACCESS_FINE_LOCATION" )
+    } 
+    else {
+      console.log( "ACCESS_FINE_LOCATION permission denied" )
+    }
+
+    this.props.navigation.navigate("ReactNativeMaps")
   }
 
   componentDidMount()
@@ -43,6 +72,46 @@ class MoreScreen extends Component {
               There's a lot happening this Breeze. Find out more about how you can make the best of it!
             </Text>
           </View>
+          <TouchableHighlight
+            onPress={() => this.props.navigation.navigate("Events")}
+          >
+            <View style={{
+              padding: 10,
+              borderBottomColor: "rgba(255, 255, 255, 0.1)",
+              borderBottomWidth: 1,
+              alignItems: "flex-start"
+            }}>
+              <Text
+                style={{
+                  color: "#FFF",
+                  fontWeight: "bold",
+                  fontSize: 22,
+                  flex: 1,
+                  fontFamily: "axiforma-bold"
+                }}
+              >Explore the events</Text>
+            </View>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this.openMaps}
+          >
+            <View style={{
+              padding: 10,
+              borderBottomColor: "rgba(255, 255, 255, 0.1)",
+              borderBottomWidth: 1,
+              alignItems: "flex-start"
+            }}>
+              <Text
+                style={{
+                  color: "#FFF",
+                  fontWeight: "bold",
+                  fontSize: 22,
+                  flex: 1,
+                  fontFamily: "axiforma-bold"
+                }}
+              >Open the Campus Map</Text>
+            </View>
+          </TouchableHighlight>
           <View style={{marginBottom: 120}}/>
         </ScrollView>
       </View>
