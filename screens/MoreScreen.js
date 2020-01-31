@@ -49,7 +49,9 @@ class MoreScreen extends Component {
       console.log( "ACCESS_FINE_LOCATION permission denied" )
     }
 
-    this.props.navigation.navigate("ReactNativeMaps")
+    this.props.navigation.navigate("ReactNativeMaps", {
+      locationIndex: 0
+    })
   }
 
   componentDidMount()
@@ -60,10 +62,6 @@ class MoreScreen extends Component {
   {
   }
 
-  onPress = () => {
-    this.props.navigation.navigate("Events");
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -72,7 +70,7 @@ class MoreScreen extends Component {
             <Text style={styles.initTextView}>
               <Ionicons name="ios-bulb" size={40} color="#FFF"/>
             </Text>
-            <Text style={styles.initTextView} onPress={this.onPress}>
+            <Text style={styles.initTextView}>
               There's a lot happening this Breeze. Find out more about how you can make the best of it!
             </Text>
           </View>

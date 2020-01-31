@@ -2,7 +2,7 @@ import {tintColor} from "../constants/Colors"
 
 export default {
     headerTitleStyle: {
-        color: "#FFF"
+        color: "#FFF",
      },
      headerStyle: {
         backgroundColor: "#393E46",

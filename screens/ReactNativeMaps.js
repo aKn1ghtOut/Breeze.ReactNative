@@ -24,9 +24,9 @@ import { connect } from "react-redux";
 import { withNavigationFocus } from "react-navigation";
 import MapView, { Marker, Callout } from "react-native-maps";
 import CustomMapStyle from "../assets/CustomMapStyling.json";
-import Locations from "../assets/Locations.json"
+import Locations from "../assets/Locations.json";
 
-const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
 
 class ReactNativeMaps extends Component {
   state = {
@@ -35,9 +35,7 @@ class ReactNativeMaps extends Component {
       longitude: 77.57562,
       latitudeDelta: 0.015,
       longitudeDelta: 0.015
-    },
-    selected: "Shiv Nadar University",
-    currentMarker: "Main Campus String"
+    }
   };
 
   constructor(props) {
@@ -46,27 +44,24 @@ class ReactNativeMaps extends Component {
   }
 
   componentDidMount() {
-    if (this.props.navigation.state.params.locationIndex)
-      this.setState({
-        selectedRegion:
-          Locations[this.props.navigation.state.params.locationIndex].location,
-        selected:
-          Locations[this.props.navigation.state.params.locationIndex].name,
-        description:
-          Locations[this.props.navigation.state.params.locationIndex]
-            .description
-      });
+    this.setState({
+      selectedRegion:
+        Locations[this.props.navigation.state.params.locationIndex].location,
+      selected:
+        Locations[this.props.navigation.state.params.locationIndex].name,
+      description:
+        Locations[this.props.navigation.state.params.locationIndex].description
+    });
   }
 
   componentWillReceiveProps(props) {
-    if (props.navigation.state.params.locationIndex)
-      this.setState({
-        selectedRegion:
-          Locations[props.navigation.state.params.locationIndex].location,
-        selected: Locations[props.navigation.state.params.locationIndex].name,
-        description:
-          Locations[props.navigation.state.params.locationIndex].description
-      });
+    this.setState({
+      selectedRegion:
+        Locations[props.navigation.state.params.locationIndex].location,
+      selected: Locations[props.navigation.state.params.locationIndex].name,
+      description:
+        Locations[props.navigation.state.params.locationIndex].description
+    });
   }
 
   onValueChange = (itemValue, itemIndex) => {

@@ -181,7 +181,6 @@ class SponsorsScreen extends Component {
         <View style={styles.darkBG}>
           <ScrollView>
             {partners}
-            <View style={{marginBottom: 120}} />
           </ScrollView>
         </View>
       </View>
@@ -198,7 +197,9 @@ SponsorsScreen.navigationOptions = {
   headerTitleStyle: {
     fontWeight: 'bold',
     color: "#FFF",
-    width: Dimensions.get("window").width - 40
+    width: Dimensions.get("window").width - 40,
+    fontFamily: "just-fist",
+    textTransform: "uppercase"
   },
 };
 
@@ -206,30 +207,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    paddingTop: 70,
-    paddingBottom: 120,
+    paddingBottom: 125,
     backgroundColor: "rgba(0,0,0,0)"
   },
-  scroller: {
-    paddingBottom: 120
-  },
-  logoText: {
-    fontFamily: "just-fist",
-    fontSize: 60,
-    color: "#fff",
-    letterSpacing: 4,
-    textShadowColor: "#000000",
-    textShadowRadius: 10,
-    textAlign: "center",
-    textShadowOffset: {
-      width: 5,
-      height: 0
-    },
-    marginBottom: 20
-  },
   darkBG: {
-    backgroundColor: "#fff",
-    padding: 20
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    borderRadius: 15
   },
   textHeading: {
     color: Colors.gullyOrange,

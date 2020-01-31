@@ -7,17 +7,13 @@ import {
   Dimensions,
   Button,
   SafeAreaView,
-  Linking
+  Linking,
+  TouchableOpacity
 } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-  TouchableNativeFeedback
-} from "react-native-gesture-handler";
 import { WebView } from "react-native-webview";
 import Colors from "../constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import HTMLView from "react-native-htmlview";
 import { eventpage_bg } from "../redux/actions/UI";
 import { connect } from "react-redux";
@@ -89,6 +85,12 @@ class SpokenWordsPoetry extends Component {
     });
   }
 
+  goToLoc(locationIndex) {
+    this.props.navigation.navigate("ReactNativeMaps", {
+      locationIndex: locationIndex
+    });
+  }
+
   render() {
     if (this.state.loaded)
       return (
@@ -107,6 +109,66 @@ class SpokenWordsPoetry extends Component {
                 {this.state.name}{" "}
               </Text>
 
+              {this.state.date == "." ? (
+                <Text style={styles.normalText}>hey</Text>
+              ) : (
+                <View>
+                  <Text
+                    style={{
+                      ...styles.normalText,
+                      ...styles.normalTextHeading
+                    }}
+                  >
+                    Date:{" "}
+                  </Text>
+                  <Text style={styles.normalText}> {this.state.date} </Text>
+                </View>
+              )}
+
+              {this.state.time == "." ? (
+                <Text style={styles.normalText}>hey</Text>
+              ) : (
+                <View>
+                  <Text
+                    style={{
+                      ...styles.normalText,
+                      ...styles.normalTextHeading
+                    }}
+                  >
+                    time:{" "}
+                  </Text>
+                  <Text style={styles.normalText}> {this.state.time} </Text>
+                </View>
+              )}
+
+              {this.state.venue == "." ? (
+                <Text style={styles.normalText}>hey</Text>
+              ) : (
+                <View>
+                  <Text
+                    style={{
+                      ...styles.normalText,
+                      ...styles.normalTextHeading
+                    }}
+                  >
+                    venue:{" "}
+                  </Text>
+                  <TouchableOpacity >
+                    <Text style={styles.normalText} onPress={() => this.goToLoc(0)}>
+                      <Entypo
+                        name="location-pin"
+                        size={20}
+                        style={{
+                          marginRight: 0,
+                          alignSelf: "center"
+                        }}
+                        color={Colors.gullyGreen}
+                      />
+                      {this.state.venue}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              )}
               <Text
                 style={{ ...styles.normalText, ...styles.normalTextHeading }}
               >
@@ -367,7 +429,8 @@ const styles = StyleSheet.create({
   },
   normalTextHeading: {
     color: Colors.gullyOrange,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textAlign: "center"
   },
   button: {
     fontSize: 17,
