@@ -36,7 +36,6 @@ function HomeScreen(props) {
       const res = await fetch("https://spreadsheets.google.com/feeds/cells/1si3-h4Vsmitn4Yh_lU7owfVJFNQTHmyIb3n92q8Sh4k/1/public/values?alt=json");
       const resp = await res.json();
       const values = resp.feed.entry;
-      console.log(Array.isArray(values));
       const rows = values.reduce((accumulator, val) => {
         if(!Array.isArray(accumulator))
         accumulator = [[accumulator]];
@@ -49,8 +48,6 @@ function HomeScreen(props) {
         accumulator[index].push(val);
         return accumulator;
       });
-
-      console.log(JSON.stringify(rows));
 
       if(rows.length == 0)
       {

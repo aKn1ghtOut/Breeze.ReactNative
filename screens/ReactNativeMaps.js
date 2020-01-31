@@ -34,7 +34,8 @@ class ReactNativeMaps extends Component {
       longitude: 77.57562,
       latitudeDelta: 0.015,
       longitudeDelta: 0.015
-    }
+    },
+    currentMarker: "Main Campus String"
   };
 
   constructor(props) {
@@ -74,7 +75,7 @@ class ReactNativeMaps extends Component {
         <MapView
           style={styles.mapStyle}
           region={this.state.selectedRegion}
-          customMapStyle={CustomMapStyle}
+          mapType="satellite"
           showsUserstring={true}
         >
           <Marker
@@ -82,8 +83,7 @@ class ReactNativeMaps extends Component {
               latitude: this.state.selectedRegion.latitude,
               longitude: this.state.selectedRegion.longitude
             }}
-            title="Shiv Nadar University"
-            description="Main campus string"
+            title={this.state.selected || "Shiv Nadar University"}
             pinColor={Colors.gullyRed}
             identifier="MainMarker"
           />
