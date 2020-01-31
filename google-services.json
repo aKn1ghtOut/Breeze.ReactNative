@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "76105085933",
+    "firebase_url": "https://breeze-fcm-api.firebaseio.com",
+    "project_id": "breeze-fcm-api",
+    "storage_bucket": "breeze-fcm-api.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:76105085933:android:19eed10d58682308482de4",
+        "android_client_info": {
+          "package_name": "com.snu_breeze.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "76105085933-3k77r60ds8scmbfo5t85seghftd8kc6u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBddRkI1gd62toqwofDxR9D9_hIMh8ieo8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "76105085933-3k77r60ds8scmbfo5t85seghftd8kc6u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

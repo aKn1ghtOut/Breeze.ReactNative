@@ -42,7 +42,7 @@ class SponsorsScreen extends Component {
     {
         "title":"",
         "name":"Townscript",
-        "img": require("../assets/sponsors/townscript.svg"),
+        "img": require("../assets/sponsors/townscript.png"),
         "link":"https://www.townscript.com/in/india"
     },
     {
@@ -84,7 +84,7 @@ class SponsorsScreen extends Component {
     {
         "title":"",
         "name":"Fiesto",
-        "img": "../assets/sponsors/fiesto_nobg.png",
+        "img": require("../assets/sponsors/fiesto_nobg.png"),
         "link":"https://www.fiesto.live"
     },
     {
@@ -166,7 +166,8 @@ class SponsorsScreen extends Component {
               resizeMode: "contain",
               width: 300,
               height: 100,
-              marginVertical: 10
+              marginVertical: 10,
+              backgroundColor: partner.bg || null
             }}
           />
           <Text style={styles.normalText}>{partner.title}</Text>
