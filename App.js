@@ -132,7 +132,7 @@ async function loadResourcesAsync() {
       require("./assets/images/events_bg/cultural.png"),
       require("./assets/images/events_bg/technical.png"),
       require("./assets/images/events_bg/sports_mob.png"),
-      require("./assets/sponsors/townscript.svg"),
+      require("./assets/sponsors/townscript.png"),
       require("./assets/sponsors/duassassins.png"),
       require("./assets/sponsors/duexpress.png"),
       require("./assets/sponsors/dubeat.jpg"),

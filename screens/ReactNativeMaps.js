@@ -26,7 +26,7 @@ import MapView, { Marker, Callout } from "react-native-maps";
 import Locations from "../assets/Locations.json"
 import CustomMapStyle from "../assets/CustomMapStyling.json"
 
-const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+const scheme = Platform.select({ ios: "maps:0,0?q=", android: "geo:0,0?q=" });
 
 class ReactNativeMaps extends Component {
   state = {
@@ -43,33 +43,38 @@ class ReactNativeMaps extends Component {
 
   constructor(props) {
     super(props);
-    this.onValueChange = this.onValueChange.bind(this)
+    this.onValueChange = this.onValueChange.bind(this);
   }
 
-  componentDidMount(){
-    if(this.props.navigation.getParam("locationIndex", false))
-      this.setState({
-        selectedRegion: Locations[this.props.navigation.state.params.locationIndex].location,
-        selected: Locations[this.props.navigation.state.params.locationIndex].name
-      })
+  componentDidMount() {
+    this.setState({
+      selectedRegion:
+        Locations[this.props.navigation.state.params.locationIndex].location,
+      selected:
+        Locations[this.props.navigation.state.params.locationIndex].name,
+      description:
+        Locations[this.props.navigation.state.params.locationIndex].description
+    });
   }
 
-  componentWillReceiveProps(props){
-    if(props.navigation.getParam("locationIndex", false))
-      this.setState({
-        selectedRegion: Locations[props.navigation.state.params.locationIndex].location,
-        selected: Locations[props.navigation.state.params.locationIndex].name
-      })
+  componentWillReceiveProps(props) {
+    this.setState({
+      selectedRegion:
+        Locations[props.navigation.state.params.locationIndex].location,
+      selected: Locations[props.navigation.state.params.locationIndex].name,
+      description:
+        Locations[props.navigation.state.params.locationIndex].description
+    });
   }
 
   onValueChange = (itemValue, itemIndex) => {
-      let location = Locations[itemIndex];
-      this.setState({
-          selectedRegion: location.location,
-          selected: itemValue
-      })
-      console.log(itemIndex)
-  }
+    let location = Locations[itemIndex];
+    this.setState({
+      selectedRegion: location.location,
+      selected: itemValue,
+      description: location.description
+    });
+  };
 
   render() {
     return (
@@ -93,78 +98,31 @@ class ReactNativeMaps extends Component {
               latitude: this.state.selectedRegion.latitude,
               longitude: this.state.selectedRegion.longitude
             }}
-            title={this.state.selected || "Shiv Nadar University"}
+            title={this.state.selected}
+            description={this.state.description}
             pinColor={Colors.gullyRed}
-            identifier="MainMarker"
-          >
-            <Callout
-              tooltip={true}
-              onPress={() => {
-                const latLng = `${this.state.selectedRegion.latitude},${this.state.selectedRegion.longitude}`;
-                const label = this.state.selected;
-                const url = Platform.select({
-                  ios: `${scheme}${label}@${latLng}`,
-                  android: `${scheme}${latLng}(${label})`
-                });
-                Linking.openURL(url); 
-              }}
-            >
-              <TouchableHighlight>
-                <View
-                  style={{
-                    borderRadius: 10,
-                    backgroundColor: "#FFF",
-                    padding: 10
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      fontWeight: "bold",
-                      color: "#000",
-                      textAlign: "center",
-                      fontFamily: "axiforma-bold"
-                    }}
-                  >{this.state.selected}</Text>
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      fontWeight: "bold",
-                      color: "#0077ff",
-                      textAlign: "center",
-                      textDecorationLine: "underline",
-                      fontFamily: "axiforma-bold"
-                    }}
-                  >Open on Google Maps</Text>
-                </View>
-              </TouchableHighlight>
-            </Callout>
-          </Marker>
+          />
         </MapView>
         <View style={styles.picker}>
           <Text
             style={{
-              fontWeight: "bold"
+              fontWeight: "bold",
+              fontSize: 15
             }}
           >
             Go to :
           </Text>
           <Picker
             selectedValue={this.state.selected}
-            style={{}}
             onValueChange={this.onValueChange}
           >
-            {
-                Locations.map((l, index) => (
-                    
-                    <Picker.Item
-                        label={(index + 1) + ". " + l.name}
-                        value={l.name}
-                        key={index}
-                    />
-
-                ))
-            }
+            {Locations.map((l, index) => (
+              <Picker.Item
+                label={index + 1 + ". " + l.name}
+                value={l.name}
+                key={index}
+              />
+            ))}
           </Picker>
         </View>
       </View>

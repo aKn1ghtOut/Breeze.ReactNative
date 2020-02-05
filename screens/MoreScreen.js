@@ -8,18 +8,6 @@ import {home_bg} from "../redux/actions/UI"
 import {withNavigationFocus} from "react-navigation"
 import { TouchableHighlight } from "react-native-gesture-handler";
 
-// export default function ContactScreen() {
-//   return (
-//     <ScrollView style={styles.container}>
-//       {/**
-//        * Make this as similar to the web Contact page as possible,
-//        * with pull-to-refresh, search, etc
-//        */}
-//        <Text>Hey</Text>
-//     </ScrollView>
-//   );
-// }
-
 class MoreScreen extends Component {
   constructor(props) {
     super(props);
@@ -40,6 +28,10 @@ class MoreScreen extends Component {
 
       this.props.navigation.navigate("ReactNativeMaps")
     }
+
+    this.props.navigation.navigate("ReactNativeMaps", {
+      locationIndex: 0
+    })
   }
 
   render() {
