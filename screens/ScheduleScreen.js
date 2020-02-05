@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import * as Permissions from "expo-permissions"
 import {
   ScrollView,
   StyleSheet,
@@ -407,23 +408,17 @@ function ScheduleDays(props) {
   var dayViewed;
 
   function goToEvent(event, category) {
-    event==="none"
-      ?
-        null
-      :
-  
+    event==="none"?
+        null:
       props.navigation.navigate("EventPage", {
         eventName: event,
         category: category
       });
-    
   }
 
   function goToLoc(locationIndex){
     console.log(locationIndex)
-    props.navigation.navigate("ReactNativeMaps",{
-      locationIndex: locationIndex
-    })
+    props.goToLoc(locationIndex);
   }
 
   if (props.day == "1") dayViewed = day1;
@@ -471,6 +466,34 @@ function ScheduleScreen(props) {
     if (props.isFocused) props.home_bg();
   }, [props.isFocused]);
 
+  const openMaps = async (locationIndex) => {
+    console.log("trying");
+    try{
+      const {status} = await Permissions.getAsync(Permissions.LOCATION);
+      console.log(`Status: ${status}`);
+      if(status === "granted")
+      props.navigation.navigate("ReactNativeMaps",{
+        locationIndex: locationIndex
+      });
+      else
+      {
+        const {status} = await Permissions.askAsync(Permissions.LOCATION);
+        console(`Status again: ${status}`);
+
+        props.navigation.navigate("ReactNativeMaps",{
+          locationIndex: locationIndex
+        });
+      }
+    }
+    catch(e)
+    {
+      console.log(e);
+      props.navigation.navigate("ReactNativeMaps",{
+        locationIndex: locationIndex
+      })
+    }
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView stickyHeaderIndices={[0,2,4]} style={styles.scroller}>
@@ -480,7 +503,7 @@ function ScheduleScreen(props) {
               {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 1"}
             </Text>
           </View>
-          <ScheduleDays day="1" navigation={props.navigation} />
+          <ScheduleDays day="1" goToLoc={openMaps} navigation={props.navigation} />
        
         
           <View>
@@ -488,7 +511,7 @@ function ScheduleScreen(props) {
               {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 2"}
             </Text>
           </View>
-          <ScheduleDays day="2" navigation={props.navigation} />
+          <ScheduleDays day="2" goToLoc={openMaps} navigation={props.navigation} />
        
         
           <View>
@@ -496,7 +519,7 @@ function ScheduleScreen(props) {
               {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 3"}
             </Text>
           </View>
-          <ScheduleDays day="3" navigation={props.navigation} />
+          <ScheduleDays day="3" goToLoc={openMaps} navigation={props.navigation} />
           <View style={{marginBottom: 120}}/>
       </ScrollView>
     </View>

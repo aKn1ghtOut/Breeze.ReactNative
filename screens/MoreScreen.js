@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import * as Permissions from "expo-permissions"
 import { ScrollView, StyleSheet, Text, View, Linking, Dimensions, PermissionsAndroid } from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -26,38 +27,19 @@ class MoreScreen extends Component {
     this.openMaps = this.openMaps.bind(this);
   }
 
-  menuItems = [
-    {
-      title : "Explore the events",
-      pageTo: "Events"
-    },
-    {
-      title : "Open the Campus Map",
-      pageTo: "ReactNativeMaps",
-      onPress: this.openMaps
-    }
-  ]
-
   openMaps = async () => {
     console.log("trying");
-    const granted = await PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION );
+    const {status} = await Permissions.getAsync(Permissions.LOCATION);
+    console.log(`Status: ${status}`);
+    if(status === "granted")
+    this.props.navigation.navigate("ReactNativeMaps");
+    else
+    {
+      const {status} = await Permissions.askAsync(Permissions.LOCATION);
+      console(`Status again: ${status}`);
 
-    if (granted) {
-      console.log( "You can use the ACCESS_FINE_LOCATION" )
-    } 
-    else {
-      console.log( "ACCESS_FINE_LOCATION permission denied" )
+      this.props.navigation.navigate("ReactNativeMaps")
     }
-
-    this.props.navigation.navigate("ReactNativeMaps")
-  }
-
-  componentDidMount()
-  {
-  }
-
-  componentDidUpdate()
-  {
   }
 
   render() {
@@ -89,7 +71,7 @@ class MoreScreen extends Component {
                   flex: 1,
                   fontFamily: "axiforma-bold"
                 }}
-              >Explore the events</Text>
+              >Explore the Events</Text>
             </View>
           </TouchableHighlight>
           <TouchableHighlight
@@ -109,7 +91,7 @@ class MoreScreen extends Component {
                   flex: 1,
                   fontFamily: "axiforma-bold"
                 }}
-              >Open the Campus Map</Text>
+              >Campus Map</Text>
             </View>
           </TouchableHighlight>
           <View style={{marginBottom: 120}}/>

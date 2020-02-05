@@ -184,7 +184,7 @@ function HomeScreen(props) {
             height : 0
           }
         }}>
-          GULLY NEWS
+          GULLY SPORTS
         </Text>
           {news}
           <View style={{marginBottom: 120}}/>

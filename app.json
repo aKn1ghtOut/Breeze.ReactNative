@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Breeze-Try1",
-    "slug": "breeze2020-try1",
+    "name": "Breeze",
+    "slug": "breeze2020",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -28,12 +28,20 @@
     },
     "android": {
       "package": "com.snu_breeze.android",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD84o8_OXUEIDlIjcPg5ivfrO4w13CavaI"
+        }
+      },
       "icon": "./assets/images/applogo.png",
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
-        "backgroundColor": "#9c8679"
+        "backgroundColor": "#232121"
       }
     },
-    "description": ""
+    "description": "",
+    "notification": {
+      "icon": "./assets/images/applogo.png"
+    }
   }
 }

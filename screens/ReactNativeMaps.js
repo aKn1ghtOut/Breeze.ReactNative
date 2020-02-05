@@ -23,8 +23,8 @@ import { eventpage_bg } from "../redux/actions/UI";
 import { connect } from "react-redux";
 import { withNavigationFocus } from "react-navigation";
 import MapView, { Marker, Callout } from "react-native-maps";
-import CustomMapStyle from "../assets/CustomMapStyling.json";
 import Locations from "../assets/Locations.json"
+import CustomMapStyle from "../assets/CustomMapStyling.json"
 
 const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
 
@@ -37,7 +37,8 @@ class ReactNativeMaps extends Component {
       longitudeDelta: 0.015
     },
     selected: "Shiv Nadar University",
-    currentMarker: "Main Campus String"
+    currentMarker: "Main Campus String",
+    mapWidth: Dimensions.get("window").width + 1
   };
 
   constructor(props) {
@@ -74,13 +75,18 @@ class ReactNativeMaps extends Component {
     return (
       <View style={styles.container}>
         <MapView
-          style={styles.mapStyle}
+          style={[
+            styles.mapStyle, 
+            {
+              width: this.state.mapWidth
+            }
+          ]}
           region={this.state.selectedRegion}
-          mapType="hybrid"
+          mapType="standard"
           customMapStyle={CustomMapStyle}
           showsUserLocation={true}
           followsUserLocation={true}
-          showsMyLocationButton={true}
+          onMapReady={() => this.setState({mapWidth: Dimensions.get("window").width})}
         >
           <Marker
             coordinate={{
