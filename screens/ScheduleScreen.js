@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as Permissions from "expo-permissions"
+import * as Permissions from "expo-permissions";
 import {
   ScrollView,
   StyleSheet,
@@ -7,13 +7,12 @@ import {
   View,
   Dimensions,
   Button,
-  TouchableNativeFeedback
+  TouchableOpacity
 } from "react-native";
 import Animated, { Easing } from "react-native-reanimated";
 import { SafeAreaView } from "react-navigation";
 import {
   TouchableHighlight,
-  TouchableOpacity
 } from "react-native-gesture-handler";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -91,12 +90,12 @@ function ScheduleDays(props) {
       time: "10:00 - ",
       venue: "B012, B016",
       category: "technical",
-      locationIndex:  3
+      locationIndex: 3
     },
     {
       title: "Bipartisan",
       event: "Bipartisan - the turncoat event",
-      time: "12:00 - 16:00",
+      time: "14:00 - 17:00",
       venue: "C021",
       category: "technical",
       locationIndex: 2
@@ -104,7 +103,7 @@ function ScheduleDays(props) {
     {
       title: "Render",
       event: "Render",
-      time: "12:00 - 17:00",
+      time: "12:00 - 16:00",
       venue: "Main Stage Arena",
       category: "cultural",
       locationIndex: 19
@@ -112,7 +111,7 @@ function ScheduleDays(props) {
     {
       title: "Envision",
       event: "En-Vision",
-      time: "12:00 - 17:00",
+      time: "12:00 - ",
       venue: "D330",
       category: "technical",
       locationIndex: 1
@@ -120,7 +119,7 @@ function ScheduleDays(props) {
     {
       title: "Into the Night",
       event: "Into the Night",
-      time: "22:00 - ",
+      time: "23:59 - ",
       venue: "Library Front Side",
       category: "cultural",
       locationIndex: 6
@@ -196,23 +195,23 @@ function ScheduleDays(props) {
       title: "Graffiti",
       event: "Graffiti",
       time: "11:00 - 14:00",
-      venue: "Central Path",
+      venue: "Library Front Side",
       category: "cultural",
-      locationIndex: 5
+      locationIndex: 6
     },
     {
       title: "Lawyer Up",
       event: "Lawyer Up",
       time: "11:00 - 17:00",
-      venue: "D326",
+      venue: "D128, D110",
       category: "cultural",
       locationIndex: 1
     },
     {
       title: "FIFA",
       event: "FIFA Tournament",
-      time: "12:00 - 16:00",
-      venue: "B012",
+      time: "12:00 - 17:30",
+      venue: "B108",
       category: "technical",
       locationIndex: 3
     },
@@ -225,22 +224,6 @@ function ScheduleDays(props) {
       locationIndex: 1
     },
     {
-      title: "Rally Race",
-      event: "Into the Night",
-      time: "12:00 - 16:00",
-      venue: "In Front of Library",
-      category: "technical",
-      locationIndex: 6
-    },
-    {
-      title: "Speed Climbing",
-      event: "none",
-      time: "12:30 - 18:00",
-      venue: "Indoor Sports Complex",
-      category: "sports",
-      locationIndex: 16
-    },
-    {
       title: "No Strings Attached(Acappela)",
       event: "No Strings Attached",
       time: "12:30 - 15:30",
@@ -251,7 +234,7 @@ function ScheduleDays(props) {
     {
       title: "Dance Boulevard(Group dance)",
       event: "Bounce Boulevard",
-      time: "12:30 - 17:00",
+      time: "12:00 - 16:00",
       venue: "Main Stage Arena",
       category: "cultural",
       locationIndex: 19
@@ -267,7 +250,7 @@ function ScheduleDays(props) {
     {
       title: "Bhasad( Stand Up Comedy)",
       event: "Bhasad",
-      time: "14:00 - 16:00",
+      time: "14:00 - 17:00",
       venue: "D217",
       category: "cultural",
       locationIndex: 1
@@ -275,7 +258,7 @@ function ScheduleDays(props) {
     {
       title: "Rap Battle",
       event: "Rap Battle",
-      time: "16:00 - 19:00",
+      time: "15:00 - 18:00",
       venue: "Library Stairs",
       category: "cultural",
       locationIndex: 6
@@ -287,7 +270,7 @@ function ScheduleDays(props) {
       title: "Verbatim",
       event: "Verbatim",
       time: "10:00 - ",
-      venue: "D330",
+      venue: "D007",
       category: "cultural",
       locationIndex: 1
     },
@@ -342,10 +325,10 @@ function ScheduleDays(props) {
     {
       title: "Aaagaz(Nukkad Natak)",
       event: "Aagaz",
-      time: "11:00 - 16:00",
-      venue: "In Front of Library",
+      time: "10:00 - ",
+      venue: "Central Vista",
       category: "cultural",
-      locationIndex: 6
+      locationIndex: 5
     },
     {
       title: "Countdown",
@@ -355,26 +338,26 @@ function ScheduleDays(props) {
       category: "technical",
       locationIndex: 1
     },
-    {
-      title: "Counter Strike",
-      event: "Counter Strike",
-      time: "12:30 - 17:30",
-      venue: "D106, D110",
-      category: "technical",
-      locationIndex: 1
-    },
+    // {
+    //   title: "Counter Strike",
+    //   event: "Counter Strike",
+    //   time: "12:30 - 17:30",
+    //   venue: "D106, D110",
+    //   category: "technical",
+    //   locationIndex: 1
+    // },
     {
       title: "Scavenger Vortex",
       event: "Scavenger Vortex:42",
-      time: "10:00 - 17:00",
-      venue: "D007, D006, D003, Central Vista",
+      time: "13:00 - 17:00",
+      venue: "D007, D006, D003, B012, B016, Central Vista",
       category: "technical",
       locationIndex: 1
     },
     {
       title: "Crescendo",
       event: "Crescendo (Battle of the Bands)",
-      time: "13:00 - 16:30",
+      time: "11:00 - 16:00",
       venue: "Main Stage Arena",
       category: "cultural",
       locationIndex: 19
@@ -383,9 +366,9 @@ function ScheduleDays(props) {
       title: "Gully Games(Quiz)",
       event: "Gully Games (A Sports Quiz)",
       time: "15:00 - 18:00",
-      venue: "B315",
+      venue: "C021",
       category: "cultural",
-      locationIndex: 3
+      locationIndex: 2
     },
     {
       title: "Music Art",
@@ -398,7 +381,7 @@ function ScheduleDays(props) {
     {
       title: "BuildUp",
       event: "The Build Up",
-      time: "11:00 - 17:00",
+      time: "10:00 - 17:00",
       venue: "A317, A318, A309, A313",
       category: "cultural",
       locationIndex: 4
@@ -408,16 +391,14 @@ function ScheduleDays(props) {
   var dayViewed;
 
   function goToEvent(event, category) {
-    event==="none"?
-        null:
-      props.navigation.navigate("EventPage", {
-        eventName: event,
-        category: category
-      });
+    props.navigation.navigate("EventPage", {
+      eventName: event,
+      category: category
+    });
   }
 
-  function goToLoc(locationIndex){
-    console.log(locationIndex)
+  function goToLoc(locationIndex) {
+    console.log(locationIndex);
     props.goToLoc(locationIndex);
   }
 
@@ -426,19 +407,28 @@ function ScheduleDays(props) {
   else dayViewed = day3;
 
   return (
-    <View style={{
-      paddingTop: 30,
-      paddingBottom: 60
-    }}>
+    <View
+      style={{
+        paddingTop: 30,
+        paddingBottom: 60
+      }}
+    >
       {dayViewed.map((e, index) => (
         <View style={styles.eventSchedule} key={index}>
           <Text style={{ ...styles.screenText, flex: 1 }}>{e.time} </Text>
-          <Text
+          {e.event !== "none" ? (
+            <TouchableOpacity 
             style={{ ...styles.titleText, flex: 2 }}
-            onPress={() => goToEvent(e.event, e.category)}
-          >
-            {e.title}
-          </Text>
+            onPress={() => goToEvent(e.event, e.category)}>
+              <Text
+                style={{ ...styles.titleText, flex: 2, textAlignVertical: "center" }}
+              >
+                {e.title}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <Text style={{ ...styles.titleText, flex: 2 }}>{e.title}</Text>
+          )}
           <View style={{ flex: 1, flexDirection: "row", paddingRight: 20 }}>
             <Entypo
               name="location-pin"
@@ -449,7 +439,10 @@ function ScheduleDays(props) {
               }}
               color={Colors.gullyGreen}
             />
-            <Text style={{ ...styles.screenText, color: Colors.gullyGreen }} onPress={() => goToLoc(e.locationIndex)}>
+            <Text
+              style={{ ...styles.screenText, color: Colors.gullyGreen }}
+              onPress={() => goToLoc(e.locationIndex)}
+            >
               {e.venue}
             </Text>
           </View>
@@ -466,61 +459,73 @@ function ScheduleScreen(props) {
     if (props.isFocused) props.home_bg();
   }, [props.isFocused]);
 
-  const openMaps = async (locationIndex) => {
+  const openMaps = async locationIndex => {
     console.log("trying");
-    try{
-      const {status} = await Permissions.getAsync(Permissions.LOCATION);
+    try {
+      const { status } = await Permissions.getAsync(Permissions.LOCATION);
       console.log(`Status: ${status}`);
-      if(status === "granted")
-      props.navigation.navigate("ReactNativeMaps",{
-        locationIndex: locationIndex
-      });
-      else
-      {
-        const {status} = await Permissions.askAsync(Permissions.LOCATION);
+      if (status === "granted")
+        props.navigation.navigate("ReactNativeMaps", {
+          locationIndex: locationIndex
+        });
+      else {
+        const { status } = await Permissions.askAsync(Permissions.LOCATION);
         console(`Status again: ${status}`);
 
-        props.navigation.navigate("ReactNativeMaps",{
+        props.navigation.navigate("ReactNativeMaps", {
           locationIndex: locationIndex
         });
       }
-    }
-    catch(e)
-    {
+    } catch (e) {
       console.log(e);
-      props.navigation.navigate("ReactNativeMaps",{
+      props.navigation.navigate("ReactNativeMaps", {
         locationIndex: locationIndex
-      })
+      });
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <ScrollView stickyHeaderIndices={[0,2,4]} style={styles.scroller}>
-        
-          <View>
-            <Text style={styles.logoText}>
-              {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 1"}
-            </Text>
-          </View>
-          <ScheduleDays day="1" goToLoc={openMaps} navigation={props.navigation} />
-       
-        
-          <View>
-            <Text style={styles.logoText}>
-              {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 2"}
-            </Text>
-          </View>
-          <ScheduleDays day="2" goToLoc={openMaps} navigation={props.navigation} />
-       
-        
-          <View>
-            <Text style={styles.logoText}>
-              {" "}<Ionicons name="ios-arrow-forward" size={40}/>{" DAY 3"}
-            </Text>
-          </View>
-          <ScheduleDays day="3" goToLoc={openMaps} navigation={props.navigation} />
-          <View style={{marginBottom: 120}}/>
+      <ScrollView stickyHeaderIndices={[0, 2, 4]} style={styles.scroller}>
+        <View>
+          <Text style={styles.logoText}>
+            {" "}
+            <Ionicons name="ios-arrow-forward" size={40} />
+            {" DAY 1"}
+          </Text>
+        </View>
+        <ScheduleDays
+          day="1"
+          goToLoc={openMaps}
+          navigation={props.navigation}
+        />
+
+        <View>
+          <Text style={styles.logoText}>
+            {" "}
+            <Ionicons name="ios-arrow-forward" size={40} />
+            {" DAY 2"}
+          </Text>
+        </View>
+        <ScheduleDays
+          day="2"
+          goToLoc={openMaps}
+          navigation={props.navigation}
+        />
+
+        <View>
+          <Text style={styles.logoText}>
+            {" "}
+            <Ionicons name="ios-arrow-forward" size={40} />
+            {" DAY 3"}
+          </Text>
+        </View>
+        <ScheduleDays
+          day="3"
+          goToLoc={openMaps}
+          navigation={props.navigation}
+        />
+        <View style={{ marginBottom: 120 }} />
       </ScrollView>
     </View>
   );
@@ -536,7 +541,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 0,
     flexDirection: "column",
-    backgroundColor: "rgba(0,0,0,0)",
+    backgroundColor: "rgba(0,0,0,0)"
   },
   scroller: {
     paddingBottom: 120
@@ -568,15 +573,14 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "rgba(0, 0, 0, 1)",
     borderRadius: 15,
-    padding: 10,
-    
+    padding: 10
   },
   eventSchedule: {
     flexDirection: "row",
     marginTop: 15,
     backgroundColor: "rgba(0, 0, 0, 0.9)",
     borderRadius: 15,
-    padding: 10,
+    padding: 10
   }
 });
 

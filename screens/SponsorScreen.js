@@ -157,56 +157,165 @@ class SponsorsScreen extends Component {
         {
           title: "",
           name: "HCL",
-          img: require("../assets/sponsors/hcl.png")
-          //link: "www.hcl.com"
+          img: require("../assets/sponsors/hcl.png"),
+          link: "www.hcl.com"
         },
         {
           title: "",
           name: "HP",
-          img: require("../assets/sponsors/hp.png")
-          //link: "https://www8.hp.com/in/en/home.html"
+          img: require("../assets/sponsors/hp.png"),
+          link: "https://www8.hp.com/in/en/home.html"
         },
         {
           title: "",
           name: "Adobe",
-          img: require("../assets/sponsors/adobe.png")
-          //link: "www.adobe.com"
+          img: require("../assets/sponsors/adobe.png"),
+          link: "www.adobe.com"
         },
         {
           title: "",
           name: "Gail",
-          img: require("../assets/sponsors/gail.png")
-          //link: "www.adobe.com"
+          img: require("../assets/sponsors/gail.png"),
+          link: "www.gailonline.com"
+        },
+        {
+          title: "",
+          name: "Blue Circle",
+          img: require("../assets/sponsors/bluecircle.png"),
+          link: "https://www.bluecircle.in/"
+        },
+        {
+          title: "",
+          name: "Tinder",
+          img: require("../assets/sponsors/tinder.png"),
+          link: "https://tinder.com/?lang=en"
         },
         {
           title: "",
           name: "CEG",
-          img: require("../assets/sponsors/ceg.jpg")
-          //link: "https://m.facebook.com/brewhouseicetea/"
+          img: require("../assets/sponsors/ceg.jpg"),
+          link: "http://cegindia.com/"
         },
         {
           title: "",
           name: "Conneqt",
-          img: require("../assets/sponsors/conneqt.png")
-          //link: "https://m.facebook.com/brewhouseicetea/"
+          img: require("../assets/sponsors/conneqt.png"),
+          link: "https://conneqtcorp.com/in/"
         },
         {
           title: "",
           name: "Ruchira",
-          img: require("../assets/sponsors/ruchira.png")
-          //link: "https://m.facebook.com/brewhouseicetea/"
+          img: require("../assets/sponsors/ruchira.png"),
+          link: "http://ruchiragroup.com/group_of_company.php"
+        },
+        {
+          title: "",
+          name: "Dassault Systems",
+          img: require("../assets/sponsors/dassault.png"),
+          link: "https://www.3ds.com/"
+        },
+        {
+          title: "",
+          name: "ICTRC",
+          img: require("../assets/sponsors/ictrc.png"),
+          link: "http://ictrc.ac.in/projects/paradigm/"
+        },
+        {
+          title: "",
+          name: "Swift Mail Comm",
+          img: require("../assets/sponsors/swift.jpg"),
+          link: "http://www.swift-online.com/"
+        },
+        {
+          title: "",
+          name: "Street Life",
+          img: require("../assets/sponsors/streetlife.jpg"),
+          link: "http://www.streetlife.in/"
+        },
+        {
+          title: "",
+          name: "Spectrum Metro",
+          img: require("../assets/sponsors/spectrum.png"),
+          link:
+            "https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj_08e7o7rnAhWVJCsKHadLBJgYABAAGgJzZg&ohost=www.google.co.in&cid=CAESQOD20CNn-yy2pMlKJMG11rwHbocdcyR--hqBldxX02WJTqNsqQvNL9fq5HbNT9zrgqsmKFV2sJLPShQ9R-Foa6E&sig=AOD64_3cHoZK5St3wl8jFWpuiDfNQaZseA&q=&ved=2ahUKEwjbsb67o7rnAhUW_XMBHQRuBaoQ0Qx6BAgREAE&adurl="
+        },
+        {
+          title: "",
+          name: "Towa Optics",
+          img: require("../assets/sponsors/towa.png"),
+          link: "http://towaoptics.com/"
+        },
+        {
+          title: "",
+          name: "Roto Power",
+          img: require("../assets/sponsors/TenonFM.png"),
+          link: "https://www.tenonfm-india.com/"
+        },
+        {
+          title: "",
+          name: "M/S Excel Instruments",
+          img: require("../assets/sponsors/excel.png"),
+          link: "http://www.excelinstruments.biz/"
+        },
+        {
+          title: "",
+          name: "Alpine Modular Interiors",
+          img: require("../assets/sponsors/alpine.jpg"),
+          link: "https://in.linkedin.com/company/novo-alpine"
+        },
+        {
+          title: "",
+          name: "Indusind",
+          img: require("../assets/sponsors/indusind.png"),
+          link: "https://www.indusind.com/"
+        },
+        {
+          title: "",
+          name: "DS Group",
+          img: require("../assets/sponsors/ds.jpg"),
+          link: "https://www.dsgroup.com/"
         },
         {
           title: "",
           name: "Classic Engineers",
-          img: require("../assets/sponsors/classicengineers.png")
-          //link: "https://m.facebook.com/brewhouseicetea/"
+          img: require("../assets/sponsors/classicengineers.png"),
+          link: "http://www.classicengineers.in/"
         },
         {
           title: "Official Wellness Partner",
           name: "VLCC",
-          img: require("../assets/sponsors/vlcc.png")
-          //link: "https://m.facebook.com/brewhouseicetea/"
+          img: require("../assets/sponsors/vlcc.png"),
+          link: "https://www.vlccwellness.com/India/"
+        },
+        {
+          title: "",
+          name: "Aeon Design",
+          img: require("../assets/sponsors/aeon.jpg"),
+          link: "https://www.aeondesignstudio.com/"
+        },
+        {
+          title: "",
+          name: "Bindra",
+          img: require("../assets/sponsors/bindra.png"),
+          link: "http://www.bindratravels.com/"
+        },
+        {
+          title: "",
+          name: "Dashmesh",
+          img: require("../assets/sponsors/dashmesh.png"),
+          link: "https://www.dasmesh.com/"
+        },
+        {
+          title: "",
+          name: "ESP 360",
+          img: require("../assets/sponsors/ESP.png"),
+          link: "https://www.esp360.in/"
+        },
+        {
+          title: "",
+          name: "Sparrow RMS",
+          img: require("../assets/sponsors/sparrow.png"),
+          link: "http://www.sparrowrms.in/"
         }
       ]
     };
@@ -239,29 +348,31 @@ class SponsorsScreen extends Component {
               alignSelf: "center"
             }}
           />
-        {partner.title ? (
-          <Text style={styles.normalText}>{partner.title}</Text>
-        ) : null}
+          {partner.title ? (
+            <Text style={styles.normalText}>{partner.title}</Text>
+          ) : null}
         </TouchableOpacity>
       </View>
     ));
 
     const sponsors = this.state.sponsors.map((sponsor, index) => (
       <View key={index} style={{ marginVertical: 30 }}>
-        <Text style={styles.textHeading}>{sponsor.name}</Text>
-        <Image
-          source={sponsor.img}
-          style={{
-            resizeMode: "contain",
-            width: 350,
-            height: 150,
-            marginTop: 20,
-            alignSelf: "center"
-          }}
-        />
-        {sponsor.title ? (
-          <Text style={styles.normalText}>{sponsor.title}</Text>
-        ) : null}
+        <TouchableOpacity onPress={() => this.goTo(sponsor.link, sponsor.img)}>
+          <Text style={styles.textHeading}>{sponsor.name}</Text>
+          <Image
+            source={sponsor.img}
+            style={{
+              resizeMode: "contain",
+              width: 350,
+              height: 150,
+              marginTop: 20,
+              alignSelf: "center"
+            }}
+          />
+          {sponsor.title ? (
+            <Text style={styles.normalText}>{sponsor.title}</Text>
+          ) : null}
+        </TouchableOpacity>
       </View>
     ));
 

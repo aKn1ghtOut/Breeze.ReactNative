@@ -20,13 +20,17 @@ class MoreScreen extends Component {
     const {status} = await Permissions.getAsync(Permissions.LOCATION);
     console.log(`Status: ${status}`);
     if(status === "granted")
-    this.props.navigation.navigate("ReactNativeMaps");
+    this.props.navigation.navigate("ReactNativeMaps", {
+      locationIndex: 0
+    });
     else
     {
       const {status} = await Permissions.askAsync(Permissions.LOCATION);
       console(`Status again: ${status}`);
 
-      this.props.navigation.navigate("ReactNativeMaps")
+      this.props.navigation.navigate("ReactNativeMaps", {
+        locationIndex: 0
+      })
     }
 
     this.props.navigation.navigate("ReactNativeMaps", {

@@ -32,71 +32,69 @@ class ContactScreen extends Component {
     this.state = {
       people: [
         {
-          name: "Balaji Vunnava",
-          position: "ChairPerson",
-          phone: "7042049395",
-          email: "bv808@snu.edu.in"
+          name: "Ashwin Johnson",
+          position: "Chief Executive",
+          phone: 9599156452
         },
         {
-          name: "Mohnish Jagwani",
-          position: "Co-Chairperson",
-          phone: "8017035960",
-          email: "mj474@snu.edu.in"
+          name: "Jaswant Gujrala",
+          position: "Chief Executive",
+          phone: 9618655777
         },
         {
-          name: "Rahul Goyal",
-          position: "Administrator",
-          phone: "9821400910",
-          email: "rg294@snu.edu.in"
-        },
-
-        {
-          name: "Anirudh Kaushik ",
-          position: "Technical Director",
-          phone: "9884983595",
-          email: "ak669@snu.edu.in"
+          name: "Kaustuv Acharya",
+          position: "Head of PR relations",
+          phone: 9643427888
         },
         {
-          name: "Madhur Gupta",
-          position: "Head of Finance",
-          phone: "9818245177",
-          email: "mg786@snu.edu.in"
-        },
-        {
-          name: "Mallika Gupta",
-          position: "Head of Public Relations",
-          phone: "9149392440",
-          email: "mg958@snu.edu.in"
-        },
-        {
-          name: "Sarath Chandra Mudigonda ",
-          position: "Head of Finance",
-          phone: "9884491080 ",
-          email: "sm261@snu.edu.in "
+          name: "Abhirami",
+          position: "Sports Director",
+          phone: 9515502260
         },
         {
           name: "Keval Sushruth",
           position: "Sports Director",
-          phone: "8826243936",
-          email: "sk405@snu.edu.in"
-        },
-        {
-          name: "Kaustuv Acharyya ",
-          position: "Head of Public Relations",
-          phone: "9643427888",
-          email: "ka117@snu.edu.in"
+          phone: 8826243936
         },
         {
           name: "Abhinav Keshri",
           position: "Cultural Director",
-          phone: "9835534434",
-          email: "ak825@snu.edu.in"
+          phone: 9835534434
         },
         {
-          name: "Abhirami Reddy",
-          position: "Sports Director",
-          phone: "9515502260",
-          email: "ar197@snu.edu.in "
+          name: "Anirudh Kaushik",
+          position: "Technical Director",
+          phone: 9884983595
+        },
+        {
+          name: "Rahul Velaga",
+          position: "Transport Head",
+          phone: 8555976486
+        },
+        {
+          name: "Anjali Ramanathan",
+          position: "Hospitality Lead",
+          phone: 9560124141
+        },
+        {
+          name: "Mallika Gupta",
+          position: "PR Head",
+          phone: 8765775544
+        },
+        {
+          name: "Ananya Gurram",
+          position: "Security Head",
+          phone: 8328669673
+        },
+        {
+          name: "Harris Kangoo",
+          position: "Security Team",
+          phone: 9821880342
+        },
+        {
+          name: "Udbhav Saxena",
+          position: "Security Team",
+          phone: 8800206864
         }
       ]
     };
@@ -127,9 +125,9 @@ class ContactScreen extends Component {
             ...styles.headingText
           }}
         >
-          {e.name}
+          {e.position}
         </Text>
-        <Text style={styles.normalText}>{e.position} </Text>
+        <Text style={styles.normalText}>{e.name} </Text>
 
         <Text
           style={styles.normalText}
