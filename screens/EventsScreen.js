@@ -128,7 +128,7 @@ function ScheduleScreen(props) {
   }, [selected, props.isFocused]);
 
   const openList = category => {
-    console.log(
+    //console.log(
       props.navigation.navigate("EventsList", {
         category: category
       })

@@ -398,7 +398,7 @@ function ScheduleDays(props) {
   }
 
   function goToLoc(locationIndex) {
-    console.log(locationIndex);
+    //console.log(locationIndex);
     props.goToLoc(locationIndex);
   }
 
@@ -460,10 +460,10 @@ function ScheduleScreen(props) {
   }, [props.isFocused]);
 
   const openMaps = async locationIndex => {
-    console.log("trying");
+    //console.log("trying");
     try {
       const { status } = await Permissions.getAsync(Permissions.LOCATION);
-      console.log(`Status: ${status}`);
+      //console.log(`Status: ${status}`);
       if (status === "granted")
         props.navigation.navigate("ReactNativeMaps", {
           locationIndex: locationIndex
@@ -477,7 +477,7 @@ function ScheduleScreen(props) {
         });
       }
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       props.navigation.navigate("ReactNativeMaps", {
         locationIndex: locationIndex
       });

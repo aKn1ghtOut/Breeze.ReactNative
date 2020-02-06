@@ -42,59 +42,89 @@ class ContactScreen extends Component {
           phone: 9618655777
         },
         {
-          name: "Kaustuv Acharya",
-          position: "Head of PR relations",
-          phone: 9643427888
+          name: "KV Sai Teja",
+          position: "Chief Executive",
+          phone: 9971139455
         },
         {
-          name: "Abhirami",
-          position: "Sports Director",
-          phone: 9515502260
-        },
-        {
-          name: "Keval Sushruth",
-          position: "Sports Director",
-          phone: 8826243936
-        },
-        {
-          name: "Abhinav Keshri",
-          position: "Cultural Director",
-          phone: 9835534434
-        },
-        {
-          name: "Anirudh Kaushik",
-          position: "Technical Director",
-          phone: 9884983595
-        },
-        {
-          name: "Rahul Velaga",
-          position: "Transport Head",
-          phone: 8555976486
-        },
-        {
-          name: "Anjali Ramanathan",
-          position: "Hospitality Lead",
-          phone: 9560124141
-        },
-        {
-          name: "Mallika Gupta",
-          position: "PR Head",
-          phone: 8765775544
-        },
-        {
-          name: "Ananya Gurram",
-          position: "Security Head",
+          name: "Ananya Reddy",
+          position: "Security",
           phone: 8328669673
         },
         {
           name: "Harris Kangoo",
-          position: "Security Team",
+          position: "Security",
           phone: 9821880342
         },
         {
           name: "Udbhav Saxena",
-          position: "Security Team",
+          position: "Security",
           phone: 8800206864
+        },
+        {
+          name: "Tanishq Satija",
+          position: "Accommoddation",
+          phone: 9810410348
+        },
+        {
+          name: "Dhruv Agarwal",
+          position: "Accommodation",
+          phone: 9819152688
+        },
+        {
+          name: "Siddhi",
+          position: "Accommodation",
+          phone: 9971525068
+        },
+        {
+          name: "Aadithya VS",
+          position: "Event Management - Sports",
+          phone: 9176726470
+        },
+        {
+          name: "Vineeth",
+          position: "Event Management - Cultural Technical",
+          phone: 9392103617
+        },
+        {
+          name: "Shashank C",
+          position: "Event Management - Informal Events",
+          phone: 9879107993
+        },
+        {
+          name: "Sarthk Taneja",
+          position: "Event Management - Main Arena",
+          phone: 880234578
+        },
+        {
+          name: "Rahul",
+          position: "Transport",
+          phone: 8555976486
+        },
+        {
+          name: "Mahi Kilaru",
+          position: "Transport",
+          phone: 8142176346
+        },
+        {
+          name: "Varchasv Chotani",
+          position: "Transport",
+          phone: 8447352118
+        },
+        {
+          name: "Anjali",
+          position: "Hospitality",
+          phone: 9560124141
+        },
+        {
+          name: "Mohith",
+          position: "Hospitality",
+          phone: 9821324995
+        },
+        {
+          name: "Anubha",
+          position: "Hospitality",
+          phone: 9810135580
         }
       ]
     };

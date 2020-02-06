@@ -63,7 +63,7 @@ class SpokenWordsPoetry extends Component {
       .toLowerCase();
     var sub_event = props.navigation.getParam("eventName", "aagaaz");
 
-    console.log(sub_event);
+    //console.log(sub_event);
 
     var link = `https://api.snu-breeze.com/api/${category}_events_get/details/?name=${sub_event}`;
     //link = link.replace(/[ ]/g, "%20");

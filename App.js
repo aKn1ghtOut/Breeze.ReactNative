@@ -42,15 +42,14 @@ class ImageBG extends Component {
   async registerDevice()
   {
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    console.log(`Status : ${status}`);
     if (status !== 'granted') {
-      console.log('No notification permissions!');
+      // console.log('No notification permissions!');
       return;
     }
     let token = await Notifications.getExpoPushTokenAsync();
     try {
       const value = await AsyncStorage.getItem('registered');
-      console.log(`Value : ${value}`);
+      // console.log(`Value : ${value}`);
       
       if (value !== null)
       return; //Already registered
@@ -67,10 +66,10 @@ class ImageBG extends Component {
       );
 
       var resp = res.body;
-      console.log(resp);
+      // console.log(resp);
       await AsyncStorage.setItem('registered', 'done.');
     } catch (error) {
-      console.log(error);
+     // console.log(error);
     }
   }
 
@@ -150,7 +149,12 @@ async function loadResourcesAsync() {
       require("./assets/sponsors/rani.jpg"),
       require("./assets/sponsors/Cornitos.png"),
       require("./assets/sponsors/brewhouse.png"),
-      require("./assets/sponsors/longshot-2.jpg")
+      require("./assets/sponsors/longshot-2.jpg"),
+      require("./assets/pronights/Moctave.png"),
+      require("./assets/pronights/RahulSubramanium.png"),
+      require("./assets/pronights/Nalayak.png"),
+      require("./assets/pronights/NikhilDsouza.jpeg"),
+      require("./assets/pronights/ProgBrothers.png")
     ]),
     Font.loadAsync({
       // This is the font that we are using for our tab bar

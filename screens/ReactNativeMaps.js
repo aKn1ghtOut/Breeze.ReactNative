@@ -47,7 +47,7 @@ class ReactNativeMaps extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    //console.log(this.props)
     this.setState({
       selectedRegion:
         Locations[this.props.navigation.state.params.locationIndex].location,

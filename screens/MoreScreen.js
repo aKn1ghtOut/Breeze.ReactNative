@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import * as Permissions from "expo-permissions"
-import { ScrollView, StyleSheet, Text, View, Linking, Dimensions, PermissionsAndroid } from "react-native";
+import * as Permissions from "expo-permissions";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  Linking,
+  Dimensions,
+  PermissionsAndroid
+} from "react-native";
 import Colors from "../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { connect } from "react-redux";
-import {home_bg} from "../redux/actions/UI"
-import {withNavigationFocus} from "react-navigation"
+import { home_bg } from "../redux/actions/UI";
+import { withNavigationFocus } from "react-navigation";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
 class MoreScreen extends Component {
@@ -16,27 +24,26 @@ class MoreScreen extends Component {
   }
 
   openMaps = async () => {
-    console.log("trying");
-    const {status} = await Permissions.getAsync(Permissions.LOCATION);
-    console.log(`Status: ${status}`);
-    if(status === "granted")
-    this.props.navigation.navigate("ReactNativeMaps", {
-      locationIndex: 0
-    });
-    else
-    {
-      const {status} = await Permissions.askAsync(Permissions.LOCATION);
+    //console.log("trying");
+    const { status } = await Permissions.getAsync(Permissions.LOCATION);
+    //console.log(`Status: ${status}`);
+    if (status === "granted")
+      this.props.navigation.navigate("ReactNativeMaps", {
+        locationIndex: 0
+      });
+    else {
+      const { status } = await Permissions.askAsync(Permissions.LOCATION);
       console(`Status again: ${status}`);
 
       this.props.navigation.navigate("ReactNativeMaps", {
         locationIndex: 0
-      })
+      });
     }
 
     this.props.navigation.navigate("ReactNativeMaps", {
       locationIndex: 0
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -44,21 +51,24 @@ class MoreScreen extends Component {
         <ScrollView style={styles.scroller}>
           <View style={styles.initText}>
             <Text style={styles.initTextView}>
-              <Ionicons name="ios-bulb" size={40} color="#FFF"/>
+              <Ionicons name="ios-bulb" size={40} color="#FFF" />
             </Text>
             <Text style={styles.initTextView}>
-              There's a lot happening this Breeze. Find out more about how you can make the best of it!
+              There's a lot happening this Breeze. Find out more about how you
+              can make the best of it!
             </Text>
           </View>
           <TouchableHighlight
             onPress={() => this.props.navigation.navigate("Events")}
           >
-            <View style={{
-              padding: 10,
-              borderBottomColor: "rgba(255, 255, 255, 0.1)",
-              borderBottomWidth: 1,
-              alignItems: "flex-start"
-            }}>
+            <View
+              style={{
+                padding: 10,
+                borderBottomColor: "rgba(255, 255, 255, 0.1)",
+                borderBottomWidth: 1,
+                alignItems: "flex-start"
+              }}
+            >
               <Text
                 style={{
                   color: "#FFF",
@@ -67,18 +77,20 @@ class MoreScreen extends Component {
                   flex: 1,
                   fontFamily: "axiforma-bold"
                 }}
-              >Explore the Events</Text>
+              >
+                Explore the Events
+              </Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight
-            onPress={this.openMaps}
-          >
-            <View style={{
-              padding: 10,
-              borderBottomColor: "rgba(255, 255, 255, 0.1)",
-              borderBottomWidth: 1,
-              alignItems: "flex-start"
-            }}>
+          <TouchableHighlight onPress={this.openMaps}>
+            <View
+              style={{
+                padding: 10,
+                borderBottomColor: "rgba(255, 255, 255, 0.1)",
+                borderBottomWidth: 1,
+                alignItems: "flex-start"
+              }}
+            >
               <Text
                 style={{
                   color: "#FFF",
@@ -87,10 +99,33 @@ class MoreScreen extends Component {
                   flex: 1,
                   fontFamily: "axiforma-bold"
                 }}
-              >Campus Map</Text>
+              >
+                Campus Map
+              </Text>
             </View>
           </TouchableHighlight>
-          <View style={{marginBottom: 120}}/>
+          <TouchableHighlight onPress={() => this.props.navigation.navigate("ProNights")}>
+            <View
+              style={{
+                padding: 10,
+                borderBottomColor: "rgba(255, 255, 255, 0.1)",
+                borderBottomWidth: 1,
+                alignItems: "flex-start"
+              }}
+            >
+              <Text
+                style={{
+                  color: "#FFF",
+                  fontWeight: "bold",
+                  fontSize: 22,
+                  flex: 1,
+                  fontFamily: "axiforma-bold"
+                }}
+              >
+                Pro Nights
+              </Text>
+            </View>
+          </TouchableHighlight>
         </ScrollView>
       </View>
     );
@@ -102,12 +137,12 @@ MoreScreen.navigationOptions = {
   headerStyle: {
     backgroundColor: "#000"
   },
-  headerTintColor: '#fff',
+  headerTintColor: "#fff",
   headerTitleStyle: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: "#FFF",
     width: Dimensions.get("window").width - 40
-  },
+  }
 };
 
 const styles = StyleSheet.create({

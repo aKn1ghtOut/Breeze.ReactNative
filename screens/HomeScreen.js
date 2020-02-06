@@ -60,7 +60,7 @@ function HomeScreen(props) {
     }
     catch(e)
     {
-      console.log(e);
+      //console.log(e);
       setRefreshing(false);
       setNewsItems("Couldn't retreive news")
     }

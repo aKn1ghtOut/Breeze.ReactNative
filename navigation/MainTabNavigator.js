@@ -16,6 +16,7 @@ import ScheduleScreen from '../screens/ScheduleScreen';
 import ContactScreen from "../screens/ContactScreen";
 import SponsorScreen from "../screens/SponsorScreen"
 import ReactNativeMaps from "../screens/ReactNativeMaps"
+import ProNights from "../screens/ProNights"
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
@@ -59,7 +60,8 @@ const MoreStack = createStackNavigator(
     Events: EventsScreen,
     EventPage: EventPage,
     EventsList: EventsList,
-    ReactNativeMaps: ReactNativeMaps
+    ReactNativeMaps: ReactNativeMaps,
+    ProNights: ProNights
   },
   config
 );
